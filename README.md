@@ -15,7 +15,7 @@ Predefined dialogs/modals include:
 
 Dependencies:
 
-1.  Angular JS - www.angularjs.org (version 1.1.2+) 
+1.  Angular JS - www.angularjs.org (version 1.1.5 and less) 
 2.  Angular UI Bootstrap - http://angular-ui.github.io/bootstrap/#/modal (version 0.6.0+) with embedded templates.
 3.  Twitter Bootstrap CSS (2+)
 
@@ -27,3 +27,9 @@ Notes:
 
 - Bootstrap 3: There's a problem with the actual modal being displayed even though it appears in the HTML code to be present.  I found that adding a "display: block" to Bootstrap 3's .modal class solved the problem.  
 - It should not rely on including the Bootstrap JS.
+
+ToDo:
+
+- Add support for AngularJS 1.2
+	. change templates in $templateCache to support ng-bind-html instead of ng-bind-html-unsafe
+	. add notes to include ngSanitize for the above change
