@@ -5,9 +5,9 @@ A complete AngularJS service with controllers and templates for generating appli
 
 Demo: http://codepen.io/m-e-conroy/pen/ALsdF
 
-Versions:
-	- v1.0 supports AngularJS 1.1.5 and below.
-	- v2.0 supports AngularJS 1.2 +
+Release Versions:
+	- v1.0 : supports AngularJS 1.1.5 and below.
+	- v2.0 / Master Branch : supports AngularJS 1.2 +
 
 Predefined dialogs/modals include:
 
