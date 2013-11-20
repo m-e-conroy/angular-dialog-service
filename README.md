@@ -6,8 +6,8 @@ A complete AngularJS service with controllers and templates for generating appli
 Demo: http://codepen.io/m-e-conroy/pen/ALsdF
 
 Release Versions:
-	- v1.0 : supports AngularJS 1.1.5 and below.
-	- v2.0 / Master Branch : supports AngularJS 1.2 +
+- v1.0 : supports AngularJS 1.1.5 and below.
+- v2.0 / Master Branch : supports AngularJS 1.2 +
 
 Predefined dialogs/modals include:
 
@@ -32,7 +32,7 @@ v2.0 Additional Dependencies
 
 CSS:
 
-I've included a css file that has a .modal class fix for Bootstrap and also has some predefined styles for the various modals described in the service.
+Included a css file that has a .modal class fix for Bootstrap and also has some predefined styles for the various modals described in the service.
 
 Notes:
 
