@@ -5,6 +5,9 @@ A complete AngularJS service with controllers and templates for generating appli
 
 Demo: http://codepen.io/m-e-conroy/pen/ALsdF
 
+Versions:
+	- v1.0 supports AngularJS 1.1.5 and below.
+
 Predefined dialogs/modals include:
 
 1. $dialogs.error(msg)
