@@ -26,6 +26,7 @@ v1.0
 3.  Twitter Bootstrap CSS (2+)
 
 v2.0 Additional Dependencies
+
 1.  Angular JS ngSanitize - http://code.angularjs.org/1.2.1/angular-sanitize.min.js
 	- ngSanitize: http://docs.angularjs.org/api/ngSanitize (needed for ng-bind-html)
 
