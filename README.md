@@ -3,7 +3,9 @@ angular-dialog-service
 
 A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap and Twitter Bootstrap
 
-Demo: http://codepen.io/m-e-conroy/pen/ALsdF
+Demos 
+- v1.0 : http://codepen.io/m-e-conroy/pen/ALsdF
+- v2.0 : http://codepen.io/m-e-conroy/pen/AmBpL
 
 Release Versions:
 - v1.0 : supports AngularJS 1.1.5 and below.
