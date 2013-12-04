@@ -24,7 +24,7 @@ Dependencies:
 v1.0
 
 1.  Angular JS - www.angularjs.org (version 1.1.5 and less) 
-2.  Angular UI Bootstrap - http://angular-ui.github.io/bootstrap/#/modal (version 0.6.0+) with embedded templates.
+2.  Angular UI Bootstrap - http://angular-ui.github.io/bootstrap/#/modal (version <= 0.6.0, Non-Bootstrap 3 Branch) with embedded templates.
 3.  Twitter Bootstrap CSS (2+)
 
 v2.0 Additional Dependencies
