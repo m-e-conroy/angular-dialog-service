@@ -101,7 +101,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 	/**
 	 * Dialogs Service 
 	 */
-	.factory('$dialogs',['$modal',function($modal){
+	.factory('dialogs',['$modal',function($modal){
 		return {
 			error : function(msg){
 				return $modal.open({
