@@ -8,7 +8,7 @@
     "angular-sanitize": "1.2.x"
   },
   "main": [
-    "dialog.css",
-    "dialog.js"
+    "dialogs.css",
+    "dialogs.js"
   ]
 }
