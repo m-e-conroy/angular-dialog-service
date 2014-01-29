@@ -8,7 +8,7 @@
     "bower-angular-sanitize": "1.2.x"
   },
   "main": [
-    "./dialog.css",
-    "./dialog.js"
+    "dialog.css",
+    "dialog.js"
   ]
 }
