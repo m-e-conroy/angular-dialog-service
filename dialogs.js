@@ -151,6 +151,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			}, // end confirm
 			
 			create : function(url,ctrlr,data,opts){
+				opts = angular.isDefined(opts) ? opts : {};
 				var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
 				var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
 				var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window
