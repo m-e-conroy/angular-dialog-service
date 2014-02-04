@@ -1,0 +1,16 @@
+{
+  "name": "deploy",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-bower": "latest",
+    "grunt-ngmin": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-clean": "latest"
+  }
+}
