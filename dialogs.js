@@ -19,6 +19,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 		
 		$scope.close = function(){
 			$modalInstance.close();
+			$scope.$destroy();
 		}; // end close
 	}]) // end ErrorDialogCtrl
 	
@@ -38,7 +39,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 		
 		// close wait dialog
 		$scope.$on('dialogs.wait.complete',function(){
-			$timeout(function(){ $modalInstance.close(); });
+			$timeout(function(){ $modalInstance.close(); $scope.$destroy();});
 		}); // end on(dialogs.wait.complete)
 		
 		// update the dialog's message
@@ -72,6 +73,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 		
 		$scope.close = function(){
 			$modalInstance.close();
+			$scope.$destroy();
 		}; // end close
 	}]) // end WaitDialogCtrl
 	
