@@ -19,6 +19,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 		
 		$scope.close = function(){
 			$modalInstance.close();
+			$scope.$destroy();
 		}; // end close
 	}]) // end ErrorDialogCtrl
 	
@@ -38,7 +39,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 		
 		// close wait dialog
 		$scope.$on('dialogs.wait.complete',function(){
-			$timeout(function(){ $modalInstance.close(); });
+			$timeout(function(){ $modalInstance.close(); $scope.$destroy();});
 		}); // end on(dialogs.wait.complete)
 		
 		// update the dialog's message
@@ -72,6 +73,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 		
 		$scope.close = function(){
 			$modalInstance.close();
+			$scope.$destroy();
 		}; // end close
 	}]) // end WaitDialogCtrl
 	
@@ -151,6 +153,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			}, // end confirm
 			
 			create : function(url,ctrlr,data,opts){
+				opts = angular.isDefined(opts) ? opts : {};
 				var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
 				var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
 				var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window

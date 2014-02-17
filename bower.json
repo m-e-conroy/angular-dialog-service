@@ -1,0 +1,14 @@
+{
+  "name": "angular-dialog-service",
+  "version": "3.1.0",
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-bootstrap": "0.10.x",
+    "bootstrap": "3.0.x",
+    "angular-sanitize": "1.2.x"
+  },
+  "main": [
+    "dialogs.css",
+    "dialogs.js"
+  ]
+}
