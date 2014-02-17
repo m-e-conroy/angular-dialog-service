@@ -71,7 +71,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs'])
 		}; // end save
 		
 		$scope.hitEnter = function(evt){
-			if(angular.equals(evt.keyCode,13) && !(angular.equals($scope.name,null) || angular.equals($scope.name,'')))
+			if(angular.equals(evt.keyCode,13) && !(angular.equals($scope.user.name,null) || angular.equals($scope.user.name,'')))
 				$scope.save();
 		};
 	}) // end controller(customDialogCtrl)
