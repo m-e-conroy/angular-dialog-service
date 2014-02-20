@@ -9,7 +9,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Error Dialog Controller 
 	 */
-	.controller('errorDialogCtrl',['$scope','$modalInstance','header','msg',function($scope,$modalInstance,header,msg){
+	.controller('errorDialogCtrl',['$scope','$modalInstance','header','msg','defaultStrings',function($scope,$modalInstance,header,msg,defaultStrings){
 		//-- Variables -----//
 		
 		$scope.header = (angular.isDefined(header)) ? header : 'Error';
@@ -26,7 +26,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Wait Dialog Controller 
 	 */
-	.controller('waitDialogCtrl',['$scope','$modalInstance','$timeout','header','msg','progress',function($scope,$modalInstance,$timeout,header,msg,progress){
+	.controller('waitDialogCtrl',['$scope','$modalInstance','$timeout','header','msg','progress','defaultStrings',function($scope,$modalInstance,$timeout,header,msg,progress,defaultStrings){
 		//-- Variables -----//
 		
 		$scope.header = (angular.isDefined(header)) ? header : 'Please Wait...';
@@ -63,7 +63,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Notify Dialog Controller 
 	 */
-	.controller('notifyDialogCtrl',['$scope','$modalInstance','header','msg',function($scope,$modalInstance,header,msg){
+	.controller('notifyDialogCtrl',['$scope','$modalInstance','header','msg','defaultStrings',function($scope,$modalInstance,header,msg,defaultStrings){
 		//-- Variables -----//
 		
 		$scope.header = (angular.isDefined(header)) ? header : 'Notification';
@@ -80,7 +80,7 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Confirm Dialog Controller 
 	 */
-	.controller('confirmDialogCtrl',['$scope','$modalInstance','header','msg',function($scope,$modalInstance,header,msg){
+	.controller('confirmDialogCtrl',['$scope','$modalInstance','header','msg','defaultStrings',function($scope,$modalInstance,header,msg,defaultStrings){
 		//-- Variables -----//
 		
 		$scope.header = (angular.isDefined(header)) ? header : 'Confirmation';
@@ -95,6 +95,8 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 		$scope.yes = function(){
 			$modalInstance.close('yes');
 		}; // end yes
+
+    $scope.defaultStrings = defaultStrings;
 	}]); // end ConfirmDialogCtrl / dialogs.controllers
 	
 	
@@ -108,6 +110,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 	.factory('$dialogs',['$modal',function($modal){
 		return {
 			error : function(header,msg){
+        var defaultStrings = this.defaultStrings;
 				return $modal.open({
 					templateUrl : '/dialogs/error.html',
 					controller : 'errorDialogCtrl',
@@ -119,6 +122,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			}, // end error
 			
 			wait : function(header,msg,progress){
+        var defaultStrings = this.defaultStrings;
 				return $modal.open({
 					templateUrl : '/dialogs/wait.html',
 					controller : 'waitDialogCtrl',
@@ -131,6 +135,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			}, // end wait
 			
 			notify : function(header,msg){
+        var defaultStrings = this.defaultStrings;
 				return $modal.open({
 					templateUrl : '/dialogs/notify.html',
 					controller : 'notifyDialogCtrl',
@@ -142,6 +147,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			}, // end notify
 			
 			confirm : function(header,msg){
+        var defaultStrings = this.defaultStrings;
 				return $modal.open({
 					templateUrl : '/dialogs/confirm.html',
 					controller : 'confirmDialogCtrl',
@@ -178,10 +184,18 @@ angular.module('dialogs',['dialogs.services','ngSanitize']) // requires angular-
 
 	// Add default templates via $templateCache
 	.run(['$templateCache',function($templateCache){
-		$templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="glyphicon glyphicon-warning-sign"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">Close</button></div>');
-		$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> Please Wait</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">{{progress}}% Complete</span></div></div>');
-		$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="glyphicon glyphicon-info-sign"></span> {{header}}</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">OK</button></div>');
-		$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> {{header}}</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">Yes</button><button type="button" class="btn btn-primary" ng-click="no()">No</button></div>');
+		$templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="glyphicon glyphicon-warning-sign"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">{{defaultStrings.close}}</button></div>');
+		$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> {{defaultStrings.pleaseWait}}</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">{{progress}}{{defaultStrings.percentComplete}}</span></div></div>');
+		$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="glyphicon glyphicon-info-sign"></span> {{header}}</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">{{defaultStrings.ok}}</button></div>');
+		$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> {{header}}</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">{{defaultStrings.yes}}</button><button type="button" class="btn btn-primary" ng-click="no()">{{defaultStrings.no}}</button></div>');
 	}]); // end run / dialogs
-	
-	
+
+
+angular.module( "dialogs" ).value( "defaultStrings", {
+  close : "Close",
+  pleaseWait : "Please Wait",
+  percentComplete : "% Complete",
+  ok : "OK",
+  yes : "Yes",
+  no : "No"
+} );
