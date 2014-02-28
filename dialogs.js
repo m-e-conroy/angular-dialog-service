@@ -109,7 +109,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 	/**
 	 * Dialogs Service 
 	 */
-	.factory('$dialogs',['$modal',function($modal){
+	.factory('$dialogs',['$modal','defaultStrings',function($modal,defaultStrings){
 		return {
 			error : function(header,msg,static){
 				return $modal.open({
@@ -179,7 +179,11 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						data : function() { return angular.copy(data); }
 					}
 				}); // end modal.open
-			} // end confirm
+			}, // end create
+
+      translate : function(newStrings){
+        return angular.extend(defaultStrings,newStrings);
+      } // end translate
 		};
 	}]); // end $dialogs / dialogs.services
 	
