@@ -14,10 +14,10 @@ Release Versions:
 
 Predefined dialogs/modals include:
 
-1. $dialogs.error(header,msg)
-2. $dialogs.wait(header,msg,progess)
-3. $dialogs.notify(header,msg)
-4. $dialogs.confirm(header,msg)
+1. $dialogs.error(header,msg,[static])
+2. $dialogs.wait(header,msg,progess,[static])
+3. $dialogs.notify(header,msg,[static])
+4. $dialogs.confirm(header,msg,[static])
 5. $dialogs.create(url,ctrlr,data,opts)
 
 Dependencies:
