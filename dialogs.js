@@ -107,10 +107,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 	 */
 	.factory('$dialogs',['$modal',function($modal){
 		return {
-			error : function(header,msg){
+			error : function(header,msg,static){
 				return $modal.open({
 					templateUrl : '/dialogs/error.html',
 					controller : 'errorDialogCtrl',
+					backdrop: (static ? 'static' : true),
+					keyboard: (static ? false: true),
 					resolve : {
 						header : function() { return angular.copy(header); },
 						msg : function() { return angular.copy(msg); }
@@ -118,10 +120,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				}); // end modal.open
 			}, // end error
 			
-			wait : function(header,msg,progress){
+			wait : function(header,msg,progress,static){
 				return $modal.open({
 					templateUrl : '/dialogs/wait.html',
 					controller : 'waitDialogCtrl',
+					backdrop: (static ? 'static' : true),
+					keyboard: (static ? false: true),
 					resolve : {
 						header : function() { return angular.copy(header); },
 						msg : function() { return angular.copy(msg); },
@@ -130,10 +134,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				}); // end modal.open
 			}, // end wait
 			
-			notify : function(header,msg){
+			notify : function(header,msg,static){
 				return $modal.open({
 					templateUrl : '/dialogs/notify.html',
 					controller : 'notifyDialogCtrl',
+					backdrop: (static ? 'static' : true),
+					keyboard: (static ? false: true),
 					resolve : {
 						header : function() { return angular.copy(header); },
 						msg : function() { return angular.copy(msg); }
@@ -141,10 +147,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				}); // end modal.open
 			}, // end notify
 			
-			confirm : function(header,msg){
+			confirm : function(header,msg,static){
 				return $modal.open({
 					templateUrl : '/dialogs/confirm.html',
 					controller : 'confirmDialogCtrl',
+					backdrop: (static ? 'static' : true),
+					keyboard: (static ? false: true),
 					resolve : {
 						header : function() { return angular.copy(header); },
 						msg : function() { return angular.copy(msg); }
