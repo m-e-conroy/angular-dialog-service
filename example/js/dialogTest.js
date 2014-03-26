@@ -1,4 +1,9 @@
 angular.module('modalTest',['ui.bootstrap','dialogs'])
+	
+	.config(['$dialogsProvider', function($dialogProvider) {
+                $dialogProvider.confirmButtonLabel = 'Si';
+            }])
+
 	.controller('dialogServiceTest',function($scope,$rootScope,$timeout,$dialogs){
 		
 		//-- Variables --//
