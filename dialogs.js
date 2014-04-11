@@ -9,12 +9,13 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Error Dialog Controller 
 	 */
-	.controller('errorDialogCtrl',['$scope','$modalInstance','header','msg',function($scope,$modalInstance,header,msg){
+	.controller('errorDialogCtrl',['$scope','$modalInstance','header','msg','defaultStrings',function($scope,$modalInstance,header,msg,defaultStrings){
 		//-- Variables -----//
-		
-		$scope.header = (angular.isDefined(header)) ? header : 'Error';
-		$scope.msg = (angular.isDefined(msg)) ? msg : 'An unknown error has occurred.';
-		
+
+		$scope.header = (angular.isDefined(header)) ? header : defaultStrings.error;
+		$scope.msg = (angular.isDefined(msg)) ? msg : defaultStrings.errorMessage;
+		$scope.defaultStrings = defaultStrings;
+
 		//-- Methods -----//
 		
 		$scope.close = function(){
@@ -26,20 +27,21 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Wait Dialog Controller 
 	 */
-	.controller('waitDialogCtrl',['$scope','$modalInstance','$timeout','header','msg','progress',function($scope,$modalInstance,$timeout,header,msg,progress){
+	.controller('waitDialogCtrl',['$scope','$modalInstance','$timeout','header','msg','progress','defaultStrings',function($scope,$modalInstance,$timeout,header,msg,progress,defaultStrings){
 		//-- Variables -----//
-		
-		$scope.header = (angular.isDefined(header)) ? header : 'Please Wait...';
-		$scope.msg = (angular.isDefined(msg)) ? msg : 'Waiting on operation to complete.';
+
+		$scope.header = (angular.isDefined(header)) ? header : defaultStrings.pleaseWaitEllipsis;
+		$scope.msg = (angular.isDefined(msg)) ? msg : defaultStrings.pleaseWaitMessage;
 		$scope.progress = (angular.isDefined(progress)) ? progress : 100;
-		
+		$scope.defaultStrings = defaultStrings;
+
 		//-- Listeners -----//
 		
 		// Note: used $timeout instead of $scope.$apply() because I was getting a $$nextSibling error
 		
 		// close wait dialog
 		$scope.$on('dialogs.wait.complete',function(){
-			$timeout(function(){ $modalInstance.close(); $scope.$destroy();});
+			$timeout(function(){ $modalInstance.close(); $scope.$destroy(); });
 		}); // end on(dialogs.wait.complete)
 		
 		// update the dialog's message
@@ -63,12 +65,13 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Notify Dialog Controller 
 	 */
-	.controller('notifyDialogCtrl',['$scope','$modalInstance','header','msg',function($scope,$modalInstance,header,msg){
+	.controller('notifyDialogCtrl',['$scope','$modalInstance','header','msg','defaultStrings',function($scope,$modalInstance,header,msg,defaultStrings){
 		//-- Variables -----//
-		
-		$scope.header = (angular.isDefined(header)) ? header : 'Notification';
-		$scope.msg = (angular.isDefined(msg)) ? msg : 'Unknown application notification.';
-		
+
+		$scope.header = (angular.isDefined(header)) ? header : defaultStrings.notification;
+		$scope.msg = (angular.isDefined(msg)) ? msg : defaultString.notificationMessage;
+		$scope.defaultStrings = defaultStrings;
+
 		//-- Methods -----//
 		
 		$scope.close = function(){
@@ -80,12 +83,13 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Confirm Dialog Controller 
 	 */
-	.controller('confirmDialogCtrl',['$scope','$modalInstance','header','msg',function($scope,$modalInstance,header,msg){
+	.controller('confirmDialogCtrl',['$scope','$modalInstance','header','msg','defaultStrings',function($scope,$modalInstance,header,msg,defaultStrings){
 		//-- Variables -----//
-		
-		$scope.header = (angular.isDefined(header)) ? header : 'Confirmation';
-		$scope.msg = (angular.isDefined(msg)) ? msg : 'Confirmation required.';
-		
+
+		$scope.header = (angular.isDefined(header)) ? header : defaultStrings.confirmation;
+		$scope.msg = (angular.isDefined(msg)) ? msg : defaultStrings.confirmationMessage;
+		$scope.defaultStrings = defaultStrings;
+
 		//-- Methods -----//
 		
 		$scope.no = function(){
@@ -105,7 +109,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 	/**
 	 * Dialogs Service 
 	 */
-	.factory('$dialogs',['$modal',function($modal){
+	.factory('$dialogs',['$modal','defaultStrings',function($modal,defaultStrings){
 		return {
 			error : function(header,msg,static){
 				return $modal.open({
@@ -175,7 +179,11 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						data : function() { return angular.copy(data); }
 					}
 				}); // end modal.open
-			} // end confirm
+			}, // end create
+
+      translate : function(newStrings){
+        return angular.extend(defaultStrings,newStrings);
+      } // end translate
 		};
 	}]); // end $dialogs / dialogs.services
 	
@@ -190,10 +198,26 @@ angular.module('dialogs',['dialogs.services','ngSanitize']) // requires angular-
     var startSym = $interpolate.startSymbol();
     var endSym = $interpolate.endSymbol();
     
-		$templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="glyphicon glyphicon-warning-sign"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">Close</button></div>');
-		$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> Please Wait</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+'% Complete</span></div></div>');
-		$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="glyphicon glyphicon-info-sign"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">OK</button></div>');
-		$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">Yes</button><button type="button" class="btn btn-primary" ng-click="no()">No</button></div>');
+    $templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="glyphicon glyphicon-warning-sign"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">'+startSym+'defaultStrings.close'+endSym+'</button></div>');
+    $templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> '+startSym+'defaultStrings.pleaseWait'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'defaultStrings.percentComplete'+endSym+'</span></div></div>');
+    $templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="glyphicon glyphicon-info-sign"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">'+startSym+'defaultStrings.ok'+endSym+'</button></div>');
+    $templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">'+startSym+'defaultStrings.yes'+endSym+'</button><button type="button" class="btn btn-primary" ng-click="no()">'+startSym+'defaultStrings.no'+endSym+'</button></div>');
 	}]); // end run / dialogs
-	
-	
+
+
+angular.module("dialogs").value("defaultStrings",{
+	error: "Error",
+	errorMessage: "An unknown error has occurred.",
+	close: "Close",
+	pleaseWait: "Please Wait",
+	pleaseWaitEllipsis: "Please Wait...",
+	pleaseWaitMessage: "Waiting on operation to complete.",
+	percentComplete: "% Complete",
+	notification: "Notification",
+	notificationMessage: "Unknown application notification.",
+	confirmation: "Confirmation",
+	confirmationMessage: "Confirmation required.",
+	ok: "OK",
+	yes: "Yes",
+	no: "No"
+});
