@@ -4,7 +4,7 @@
   "dependencies": {
     "angular": "1.2.x",
     "angular-bootstrap": "0.10.x",
-    "bootstrap": "3.0.x",
+    "bootstrap": "3.x.x",
     "angular-sanitize": "1.2.x"
   },
   "main": [
