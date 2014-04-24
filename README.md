@@ -1,6 +1,8 @@
 angular-dialog-service
 ======================
 
+!! Please use one of the release versions rather than the Master Branch.  The Master Branch has untested merges and changes and is a work in progress.  I urge you to always use a release version rather than linking directly to the Master Branch.
+
 A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap and Twitter Bootstrap
 
 Demos 
