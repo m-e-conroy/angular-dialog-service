@@ -169,6 +169,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
 				var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
 				var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window
+				var breeze = (angular.isDefined(opts.breeze)) ? opts.breeze : false; //values: true, false (passed data is breeze entity)
 				return $modal.open({
 					templateUrl : url,
 					controller : ctrlr,
@@ -176,7 +177,14 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 					backdrop : b,
 					windowClass: w,
 					resolve : {
-						data : function() { return angular.copy(data); }
+						data : function() {
+							if(breeze)
+                                                        {
+                                                        	return data; //don't make a copy, use reject changes instead after cancellation (because of circular references)
+                                                        }else{
+								return angular.copy(data); 
+                                                        }
+						}
 					}
 				}); // end modal.open
 			}, // end create
