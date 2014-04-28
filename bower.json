@@ -1,14 +1,19 @@
 {
   "name": "angular-dialog-service",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "dependencies": {
     "angular": "1.2.x",
-    "angular-bootstrap": "0.10.x",
     "bootstrap": "3.x.x",
-    "angular-sanitize": "1.2.x"
+    "angular-sanitize": "1.2.x",
+    "angular-bootstrap": "0.10.x",
+    "angular-translate": "2.1.x"
   },
   "main": [
     "dialogs.css",
     "dialogs.js"
-  ]
+  ],
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/MIT"
+  }]
 }
