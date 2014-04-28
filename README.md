@@ -80,25 +80,25 @@ v4.0
 
 1.  Removed '$' from the '$dialogs' service as this is reserved for core AngularJS naming.  The service is now just 'dialogs.'
 2.  Changed 'dialogs' service from factory to provider, you can now use 'dialogsProvider' to set various options of the modals that were previously passed as parameters to the dialog's service methods.
-	a. dialogsProvider.useBackdrop([true,false,'static']) - True or false to use a backdrop for the modal, 'static' to use a backdrop and disallow closing on mouse click of the backdrop.
-	b. dialogsProvider.useEscClose([true,false]) - Whether or not to allow the use of the 'ESC' key to close the modal
-	c. dialogsProvider.useClass([string]) - Sets an additional CSS class to the modal window
+	1. dialogsProvider.useBackdrop([true,false,'static']) - True or false to use a backdrop for the modal, 'static' to use a backdrop and disallow closing on mouse click of the backdrop.
+	2. dialogsProvider.useEscClose([true,false]) - Whether or not to allow the use of the 'ESC' key to close the modal
+	3. dialogsProvider.useClass([string]) - Sets an additional CSS class to the modal window
 3.  Main module is no longer 'dialogs' as this would conflict with the new naming of the service.  It is now 'dialogs.main,' include that in your application's module definition to use this service.
 4.  Added i18n support via Angular-Translate (https://github.com/angular-translate), use the '$translateProvider' to set language specific defaults.  Default language is currently 'en-US.'  An example is provided in the example folder that will show you how to change the defaults from English to Spanish.  Translations can be set on the following:
-	a. DIALOGS_ERROR (modal header)
-	b. DIALOGS_ERROR_MSG
-	c. DIALOGS_CLOSE (modal button)
-	d. DIALOGS_PLEASE_WAIT (modal header)
-	e. DIALOGS_PLEASE_WAIT_ELIPS (modal header)
-	f. DIALOGS_PLEASE_WAIT_MSG
-	g. DIALOGS_PERCENT_COMPLETE (modal message partial)
-	h. DIALOGS_NOTIFICATION (modal header)
-	i. DIALOGS_NOTIFICATION_MSG
-	j. DIALOGS_CONFIRMATION (modal header)
-	k. DIALOGS_CONFIRMATION_MSG
-	l. DIALOGS_OK (modal button)
-	m. DIALOGS_YES (modal button)
-	n. DIALOGS_NO (modal button)
+	1. DIALOGS_ERROR (modal header)
+	2. DIALOGS_ERROR_MSG
+	3. DIALOGS_CLOSE (modal button)
+	4. DIALOGS_PLEASE_WAIT (modal header)
+	5. DIALOGS_PLEASE_WAIT_ELIPS (modal header)
+	6. DIALOGS_PLEASE_WAIT_MSG
+	7. DIALOGS_PERCENT_COMPLETE (modal message partial)
+	8. DIALOGS_NOTIFICATION (modal header)
+	9. DIALOGS_NOTIFICATION_MSG
+	10. DIALOGS_CONFIRMATION (modal header)
+	11. DIALOGS_CONFIRMATION_MSG
+	12. DIALOGS_OK (modal button)
+	13. DIALOGS_YES (modal button)
+	14. DIALOGS_NO (modal button)
 
 Notes:
 
