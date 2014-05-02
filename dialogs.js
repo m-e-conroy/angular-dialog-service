@@ -141,6 +141,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		var b = true; // backdrop
 		var k = true; // keyboard
 		var w = 'dialogs-default'; // windowClass
+		var copy = true; // controls use of angular.copy
 
 		/**
 		 * Use Backdrop
@@ -165,7 +166,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		 */
 		this.useEscClose = function(val){ // possible values : true, false
 			if(angular.isDefined(val))
-				k = val;
+				k = (!angular.equals(val,0) && !angular.equals(val,'false') && !angular.equals(val,'no') && !angular.equals(val,null) && !angular.equals(val,false)) ? true : false;
 		}; // end useESCClose
 
 		/**
@@ -179,6 +180,18 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			if(angular.isDefined(val))
 				w = val;
 		}; // end useClass
+
+		/**
+		 * Use Copy
+		 * 
+		 * Determines the use of angular.copy when sending data to the modal controller.
+		 *
+		 * @param	val 	boolean
+		 */
+		this.useCopy = function(val){
+			if(angular.isDefined(val))
+				copy = (!angular.equals(val,0) && !angular.equals(val,'false') && !angular.equals(val,'no') && !angular.equals(val,null) && !angular.equals(val,false)) ? true : false;
+		}; // end useCopy
 
 		this.$get = ['$modal',function ($modal){
 			return {
@@ -247,7 +260,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						backdrop : b,
 						windowClass: w,
 						resolve : {
-							data : function() { return angular.copy(data); }
+							data : function() { 
+								if(copy)
+									return angular.copy(data);
+								else
+									return data;
+							}
 						}
 					}); // end modal.open
 				} // end create

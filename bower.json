@@ -1,6 +1,6 @@
 {
   "name": "angular-dialog-service",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "dependencies": {
     "angular": "1.2.x",
     "bootstrap": "3.x.x",
@@ -10,7 +10,9 @@
   },
   "main": [
     "dialogs.css",
-    "dialogs.js"
+    "dialogs.js",
+    "dialogs.min.css",
+    "dialogs.min.js"
   ],
   "licenses": [{
     "type": "MIT",
