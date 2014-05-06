@@ -10,15 +10,24 @@ A complete AngularJS service with controllers and templates for generating appli
 Demos 
 - v1.0 : http://codepen.io/m-e-conroy/pen/ALsdF
 - v2.0 : http://codepen.io/m-e-conroy/pen/AmBpL
-- v4.0 : Coming Soon - for now refer to the example folder.
+- v4.0 - v4.2 : Coming Soon - for now refer to the example folder.
 
 Release Versions:
 - v1.0 : supports AngularJS 1.1.5 and below.
 - v2.0 : supports AngularJS 1.2 +
 - v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
-- v4.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
+- v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
+- v4.2.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
 
-Predefined dialogs/modals for v4.0.0 and up:
+Predefined dialogs/modals for v4.2.0
+
+1. dialogs.error(header,msg[,sz])
+2. dialogs.wait(header,msg,progress[,sz])
+3. dialogs.notify(header,msg[,sz])
+4. dialogs.confirm(header,msg[,sz])
+5. dialogs.create(url,ctrlr,data[,sz])
+
+Predefined dialogs/modals for v4.0.0 and v4.1.0:
 
 1. dialogs.error(header,msg)
 2. dialogs.wait(header,msg,progress)
@@ -76,7 +85,7 @@ v3.0
 2.  Added the ability to customize the header on the error and wait dialogs.
 3.  Added example files.
 
-v4.0
+v4.0.0 - v4.1.0
 
 1.  Removed '$' from the '$dialogs' service as this is reserved for core AngularJS naming.  The service is now just 'dialogs.'
 2.  Changed 'dialogs' service from factory to provider, you can now use 'dialogsProvider' to set various options of the modals that were previously passed as parameters to the dialog's service methods.
@@ -100,6 +109,13 @@ v4.0
 	12. DIALOGS_OK (modal button)
 	13. DIALOGS_YES (modal button)
 	14. DIALOGS_NO (modal button)
+
+v4.2.0
+
+Supports everything described above in v4.0.0 - v4.1.0 and added the following
+
+1. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the 'sz' parameter added to each dialog method call.
+
 
 Notes:
 
