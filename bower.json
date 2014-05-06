@@ -1,11 +1,11 @@
 {
   "name": "angular-dialog-service",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "dependencies": {
     "angular": "1.2.x",
-    "bootstrap": "3.x.x",
+    "bootstrap": "3.1.x",
     "angular-sanitize": "1.2.x",
-    "angular-bootstrap": "0.10.x",
+    "angular-bootstrap": "0.11.x",
     "angular-translate": "2.1.x"
   },
   "main": [
