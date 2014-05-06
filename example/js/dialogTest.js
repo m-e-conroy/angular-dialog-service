@@ -56,7 +56,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 					});
 					break;
 				case 'custom':
-					var dlg = dialogs.create('/dialogs/custom.html','customDialogCtrl',{});
+					var dlg = dialogs.create('/dialogs/custom.html','customDialogCtrl',{},'lg');
 					dlg.result.then(function(name){
 						$scope.name = name;
 					},function(){
@@ -65,7 +65,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 					});
 					break;
 				case 'custom2':
-					var dlg = dialogs.create('/dialogs/custom2.html','customDialogCtrl2',$scope.custom);
+					var dlg = dialogs.create('/dialogs/custom2.html','customDialogCtrl2',$scope.custom,'lg');
 					break;
 			}
 		}; // end launch
@@ -124,6 +124,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 		dialogsProvider.useBackdrop('static');
 		dialogsProvider.useEscClose(false);
 		dialogsProvider.useCopy(false);
+		dialogsProvider.setSize('sm');
 
 		$translateProvider.translations('es',{
 			DIALOGS_ERROR: "Error",

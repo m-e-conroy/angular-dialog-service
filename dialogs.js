@@ -142,6 +142,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		var k = true; // keyboard
 		var w = 'dialogs-default'; // windowClass
 		var copy = true; // controls use of angular.copy
+		var wTmpl = null; // window template
+		var wSize = 'lg'; // large modal window default
 
 		/**
 		 * Use Backdrop
@@ -193,15 +195,52 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				copy = (!angular.equals(val,0) && !angular.equals(val,'false') && !angular.equals(val,'no') && !angular.equals(val,null) && !angular.equals(val,false)) ? true : false;
 		}; // end useCopy
 
+		/**
+		 * Set Window Template
+		 *
+		 * Sets a path to a template to use overriding modal's window template.
+		 *
+		 * @param	val 	string
+		 */
+		this.setWindowTmpl = function(val){
+			if(angular.isDefined(val))
+				wTmpl = val;
+		}; // end setWindowTmpl
+
+		/**
+		 * Set Size
+		 *
+		 * Sets the modal size to use (sm,lg), requires Angular-ui-Bootstrap 0.11.0 and Bootstrap 3.1.0 + 
+		 *
+		 * @param	val 	string (sm,lg)
+		 */
+		this.setSize = function(val){
+			if(angular.isDefined(val))
+				wSize = (angular.equals(val,'sm') || angular.equals(val,'lg')) ? val : wSize;
+		}; // end setSize
+
 		this.$get = ['$modal',function ($modal){
+			
 			return {
-				error : function(header,msg){
+				/**
+				 * Error Dialog
+				 *
+				 * @param	header 	string
+				 * @param	msg 	string
+				 */
+				error : function(header,msg,sz){
+					if(angular.isDefined(sz))
+						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
+					else
+						sz = wSize;
+
 					return $modal.open({
 						templateUrl : '/dialogs/error.html',
 						controller : 'errorDialogCtrl',
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
+						size: sz,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); }
@@ -209,13 +248,26 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 					}); // end modal.open
 				}, // end error
 				
-				wait : function(header,msg,progress){
+				/**
+				 * Wait Dialog
+				 *
+				 * @param	header 		string
+				 * @param	msg 		string
+				 * @param	progress 	int
+				 */
+				wait : function(header,msg,progress,sz){
+					if(angular.isDefined(sz))
+						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
+					else
+						sz = wSize;
+
 					return $modal.open({
 						templateUrl : '/dialogs/wait.html',
 						controller : 'waitDialogCtrl',
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
+						size: sz,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); },
@@ -224,13 +276,25 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 					}); // end modal.open
 				}, // end wait
 				
-				notify : function(header,msg){
+				/**
+				 * Notify Dialog
+				 *
+				 * @param	header 		string
+				 * @param	msg 		string
+				 */
+				notify : function(header,msg,sz){
+					if(angular.isDefined(sz))
+						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
+					else
+						sz = wSize;
+
 					return $modal.open({
 						templateUrl : '/dialogs/notify.html',
 						controller : 'notifyDialogCtrl',
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
+						size: sz,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); }
@@ -238,13 +302,25 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 					}); // end modal.open
 				}, // end notify
 				
-				confirm : function(header,msg){
+				/**
+				 * Confirm Dialog
+				 *
+				 * @param	header 	string
+				 * @param	msg 	string
+				 */
+				confirm : function(header,msg,sz){
+					if(angular.isDefined(sz))
+						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
+					else
+						sz = wSize;
+
 					return $modal.open({
 						templateUrl : '/dialogs/confirm.html',
 						controller : 'confirmDialogCtrl',
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
+						size: sz,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); }
@@ -252,13 +328,26 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 					}); // end modal.open
 				}, // end confirm
 				
-				create : function(url,ctrlr,data){
+				/**
+				 * Create Custom Dialog
+				 *
+				 * @param	url 	string
+				 * @param	ctrlr 	string
+				 * @param	data 	object
+				 */
+				create : function(url,ctrlr,data,sz){
+					if(angular.isDefined(sz))
+						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
+					else
+						sz = wSize;
+
 					return $modal.open({
 						templateUrl : url,
 						controller : ctrlr,
 						keyboard : k,
 						backdrop : b,
 						windowClass: w,
+						size: sz,
 						resolve : {
 							data : function() { 
 								if(copy)
@@ -269,7 +358,9 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						}
 					}); // end modal.open
 				} // end create
+
 			}; // end return
+
 		}]; // end $get
 	}]); // end provider
 
