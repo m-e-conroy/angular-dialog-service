@@ -63,13 +63,20 @@ v3.0
 3.  Twitter Bootstrap CSS 3.0.3
 4.  AngularJS ngSanitize
 
-v4.0
+v4.0.0 - v4.1.0
 
 1. AngularJS 1.2 +
 2. Angular UI Bootstrap Modal 0.10.0, with templates (http://angular-ui.github.io/bootstrap/#/modal)
 3. Twitter Bootstrap CSS 3 + (includes 3.1.1)
 4. Angular ngSanitize
 5. Angular Translate (https://github.com/angular-translate)
+
+v4.2.0
+
+Same as v4.0.0 with the exception of the following:
+
+1. Angular UI Bootstrap Modal 0.11.0, with templates (http://angular-ui.github.io/bootstrap/#/modal)
+2. Twitter Bootstrap CSS 3.1.x (getbootstrap.com)
 
 CSS:
 
