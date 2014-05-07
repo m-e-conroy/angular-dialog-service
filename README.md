@@ -20,13 +20,21 @@ Release Versions:
 - v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
 - v4.2.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
 
-Predefined dialogs/modals for v4.2.0
+Predefined dialogs/modals for v5.0.0 - re-introduction of the [opts] parameter to dialogs methods:
 
 1. dialogs.error(header,msg[,opts])
 2. dialogs.wait(header,msg,progress[,opts])
 3. dialogs.notify(header,msg[,opts])
 4. dialogs.confirm(header,msg[,opts])
 5. dialogs.create(url,ctrlr,data[,opts])
+
+Predefined dialogs/modals for v4.2.0
+
+1. dialogs.error(header,msg[,sz])
+2. dialogs.wait(header,msg,progress[,sz])
+3. dialogs.notify(header,msg[,sz])
+4. dialogs.confirm(header,msg[,sz])
+5. dialogs.create(url,ctrlr,data[,sz])
 
 Predefined dialogs/modals for v4.0.0 and v4.1.0:
 
@@ -72,7 +80,7 @@ v4.0.0 - v4.1.0
 4. Angular ngSanitize
 5. Angular Translate (https://github.com/angular-translate)
 
-v4.2.0
+v4.2.0 & v5.0.0
 
 Same as v4.0.0 with the exception of the following:
 
@@ -123,16 +131,17 @@ v4.2.0
 Supports everything described above in v4.0.0 - v4.1.0 and added the following
 
 1. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the 'opts.wSize' parameter added to each dialog method call.
-2. Optionally pass in options object
-   Possible overrides:
+
+v5.0.0
+
+1. Optionally pass in options object, possible overrides:
 
    ```
    opts = {
         'keyboard': true or false
         'backdrop': 'static' or true or false
-        'wSize': 'sm' or 'lg' //small or large modal size
+        'size': 'sm' or 'lg' //small or large modal size
         'windowClass': 'dialogs-default' // additional CSS class(es) to be added to a modal window
-        'copy': true or false // controls use of angular.copy in custom dialogs
     }
     ```
 
