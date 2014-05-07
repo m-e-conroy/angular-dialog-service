@@ -227,7 +227,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		 */
 		this.setSize = function(val){
 			if(angular.isDefined(val))
-				_wSize = (angular.equals(val,'sm') || angular.equals(val,'lg')) ? val : wSize;
+				_wSize = (angular.equals(val,'sm') || angular.equals(val,'lg')) ? val : _wSize;
 		}; // end setSize
 
 
@@ -341,6 +341,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	opts	object
 				 */
 				create : function(url,ctrlr,data,opts){
+					var copy = (angular.isDefined(opts) && angular.isDefined(opts.copy)) ? opts.copy : _copy;
 					opts = _setOpts(opts);
 
 					return $modal.open({
@@ -352,7 +353,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						size: opts.ws,
 						resolve : {
 							data : function() { 
-								if(_copy)
+								if(copy)
 									return angular.copy(data);
 								else
 									return data;

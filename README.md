@@ -142,6 +142,7 @@ v5.0.0
         'backdrop': 'static' or true or false
         'size': 'sm' or 'lg' //small or large modal size
         'windowClass': 'dialogs-default' // additional CSS class(es) to be added to a modal window
+        'copy': true or false // used only with create custom dialog
     }
     ```
 
