@@ -228,11 +228,13 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	header 	string
 				 * @param	msg 	string
 				 */
-				error : function(header,msg,sz){
-					if(angular.isDefined(sz))
-						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
-					else
-						sz = wSize;
+				error : function(header,msg,opts){
+					opts = angular.isDefined(opts) ? opts : {};
+					var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
+					var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
+					var wSize = (angular.isDefined(opts.wSize) &&
+						(angular.equals(opts.wSize,'sm') || angular.equals(opts.wSize,'lg'))) ? opts.wSize : wSize; // values: 'sm', 'lg'
+					var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window
 
 					return $modal.open({
 						templateUrl : '/dialogs/error.html',
@@ -240,7 +242,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
-						size: sz,
+						size: wSize,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); }
@@ -255,11 +257,13 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	msg 		string
 				 * @param	progress 	int
 				 */
-				wait : function(header,msg,progress,sz){
-					if(angular.isDefined(sz))
-						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
-					else
-						sz = wSize;
+				wait : function(header,msg,progress,opts){
+					opts = angular.isDefined(opts) ? opts : {};
+					var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
+					var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
+					var wSize = (angular.isDefined(opts.wSize) &&
+						(angular.equals(opts.wSize,'sm') || angular.equals(opts.wSize,'lg'))) ? opts.wSize : wSize; // values: 'sm', 'lg'
+					var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window
 
 					return $modal.open({
 						templateUrl : '/dialogs/wait.html',
@@ -267,7 +271,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
-						size: sz,
+						size: wSize,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); },
@@ -282,11 +286,13 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	header 		string
 				 * @param	msg 		string
 				 */
-				notify : function(header,msg,sz){
-					if(angular.isDefined(sz))
-						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
-					else
-						sz = wSize;
+				notify : function(header,msg,opts){
+					opts = angular.isDefined(opts) ? opts : {};
+					var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
+					var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
+					var wSize = (angular.isDefined(opts.wSize) &&
+						(angular.equals(opts.wSize,'sm') || angular.equals(opts.wSize,'lg'))) ? opts.wSize : wSize; // values: 'sm', 'lg'
+					var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window
 
 					return $modal.open({
 						templateUrl : '/dialogs/notify.html',
@@ -294,7 +300,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
-						size: sz,
+						size: wSize,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); }
@@ -308,11 +314,13 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	header 	string
 				 * @param	msg 	string
 				 */
-				confirm : function(header,msg,sz){
-					if(angular.isDefined(sz))
-						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
-					else
-						sz = wSize;
+				confirm : function(header,msg,opts){
+					opts = angular.isDefined(opts) ? opts : {};
+					var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
+					var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
+					var wSize = (angular.isDefined(opts.wSize) &&
+						(angular.equals(opts.wSize,'sm') || angular.equals(opts.wSize,'lg'))) ? opts.wSize : wSize; // values: 'sm', 'lg'
+					var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window
 
 					return $modal.open({
 						templateUrl : '/dialogs/confirm.html',
@@ -320,7 +328,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						backdrop: b,
 						keyboard: k,
 						windowClass: w,
-						size: sz,
+						size: wSize,
 						resolve : {
 							header : function() { return angular.copy(header); },
 							msg : function() { return angular.copy(msg); }
@@ -335,11 +343,14 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	ctrlr 	string
 				 * @param	data 	object
 				 */
-				create : function(url,ctrlr,data,sz){
-					if(angular.isDefined(sz))
-						sz = (angular.equals(sz,'sm') || angular.equals(sz,'lg')) ? sz : wSize;
-					else
-						sz = wSize;
+				create : function(url,ctrlr,data,opts){
+					opts = angular.isDefined(opts) ? opts : {};
+					var k = (angular.isDefined(opts.keyboard)) ? opts.keyboard : true; // values: true,false
+					var b = (angular.isDefined(opts.backdrop)) ? opts.backdrop : true; // values: 'static',true,false
+					var copy = (angular.isDefined(opts.copy)) ? opts.copy : true; // values: true,false
+					var wSize = (angular.isDefined(opts.wSize) &&
+						(angular.equals(opts.wSize,'sm') || angular.equals(opts.wSize,'lg'))) ? opts.wSize : wSize; // values: 'sm', 'lg'
+					var w = (angular.isDefined(opts.windowClass)) ? opts.windowClass : 'dialogs-default'; // additional CSS class(es) to be added to a modal window
 
 					return $modal.open({
 						templateUrl : url,
@@ -347,7 +358,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						keyboard : k,
 						backdrop : b,
 						windowClass: w,
-						size: sz,
+						size: wSize,
 						resolve : {
 							data : function() { 
 								if(copy)

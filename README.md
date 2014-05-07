@@ -22,11 +22,11 @@ Release Versions:
 
 Predefined dialogs/modals for v4.2.0
 
-1. dialogs.error(header,msg[,sz])
-2. dialogs.wait(header,msg,progress[,sz])
-3. dialogs.notify(header,msg[,sz])
-4. dialogs.confirm(header,msg[,sz])
-5. dialogs.create(url,ctrlr,data[,sz])
+1. dialogs.error(header,msg[,opts])
+2. dialogs.wait(header,msg,progress[,opts])
+3. dialogs.notify(header,msg[,opts])
+4. dialogs.confirm(header,msg[,opts])
+5. dialogs.create(url,ctrlr,data[,opts])
 
 Predefined dialogs/modals for v4.0.0 and v4.1.0:
 
@@ -122,8 +122,19 @@ v4.2.0
 
 Supports everything described above in v4.0.0 - v4.1.0 and added the following
 
-1. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the 'sz' parameter added to each dialog method call.
+1. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the 'opts.wSize' parameter added to each dialog method call.
+2. Optionally pass in options object
+   Possible overrides:
 
+   ```
+   opts = {
+        'keyboard': true or false
+        'backdrop': 'static' or true or false
+        'wSize': 'sm' or 'lg' //small or large modal size
+        'windowClass': 'dialogs-default' // additional CSS class(es) to be added to a modal window
+        'copy': true or false // controls use of angular.copy in custom dialogs
+    }
+    ```
 
 Notes:
 

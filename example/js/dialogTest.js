@@ -56,7 +56,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 					});
 					break;
 				case 'custom':
-					var dlg = dialogs.create('/dialogs/custom.html','customDialogCtrl',{},'lg');
+					var dlg = dialogs.create('/dialogs/custom.html','customDialogCtrl',{},{wSize:'lg'});
 					dlg.result.then(function(name){
 						$scope.name = name;
 					},function(){
@@ -65,7 +65,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 					});
 					break;
 				case 'custom2':
-					var dlg = dialogs.create('/dialogs/custom2.html','customDialogCtrl2',$scope.custom,'lg');
+					var dlg = dialogs.create('/dialogs/custom2.html','customDialogCtrl2',$scope.custom,{wSize:'lg'});
 					break;
 			}
 		}; // end launch
