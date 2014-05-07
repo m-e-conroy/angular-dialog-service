@@ -11,6 +11,7 @@ Demos
 - v1.0 : http://codepen.io/m-e-conroy/pen/ALsdF
 - v2.0 : http://codepen.io/m-e-conroy/pen/AmBpL
 - v4.0 - v4.2 : Coming Soon - for now refer to the example folder.
+- v4.2 with UI-Bootstrap Date Picker directive : http://codepen.io/m-e-conroy/pen/DAxzs
 
 Release Versions:
 - v1.0 : supports AngularJS 1.1.5 and below.
