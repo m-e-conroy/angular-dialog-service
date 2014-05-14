@@ -56,27 +56,30 @@ v1.0 - v3.1.0
 -------------
 Predefined dialogs/modals.
 
-1. \$dialogs.error(header,msg,[static])
-2. \$dialogs.wait(header,msg,progess,[static])
-3. \$dialogs.notify(header,msg,[static])
-4. \$dialogs.confirm(header,msg,[static])
-5. \$dialogs.create(url,ctrlr,data,opts)
+1. $dialogs.error(header,msg,[static])
+2. $dialogs.wait(header,msg,progess,[static])
+3. $dialogs.notify(header,msg,[static])
+4. $dialogs.confirm(header,msg,[static])
+5. $dialogs.create(url,ctrlr,data,opts)
 
 Dependencies
 ------------
 
 v1.0
+----
 
-1.  Angular JS - www.angularjs.org (version 1.1.5 and less) 
-2.  Angular UI Bootstrap - http://angular-ui.github.io/bootstrap/#/modal (version <= 0.6.0, Non-Bootstrap 3 Branch) with embedded templates.
-3.  Twitter Bootstrap CSS (2+)
+1.  [Angular JS](http://www.angularjs.org) (version 1.1.5 and less) 
+2.  [Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/#/modal) (version <= 0.6.0, Non-Bootstrap 3 Branch) with embedded templates.
+3.  [Twitter Bootstrap CSS](http://getbootstrap.com) (version 2)
 
 v2.0 Additional Dependencies
-
-1.  Angular JS ngSanitize - http://code.angularjs.org/1.2.1/angular-sanitize.min.js
-	- ngSanitize: http://docs.angularjs.org/api/ngSanitize (needed for ng-bind-html)
+----------------------------
+1.  All version 1.0 dependencies.
+2.  [Angular JS ngSanitize](http://code.angularjs.org/1.2.1/angular-sanitize.min.js)
+	- [ngSanitize](http://docs.angularjs.org/api/ngSanitize) (needed for ng-bind-html)
 
 v3.0
+----
 
 1.  AngularJS 1.2 +
 2.  Angular UI Bootstrap 0.10.0
@@ -84,25 +87,26 @@ v3.0
 4.  AngularJS ngSanitize
 
 v4.0.0 - v4.1.0
+---------------
 
 1. AngularJS 1.2 +
-2. Angular UI Bootstrap Modal 0.10.0, with templates (http://angular-ui.github.io/bootstrap/#/modal)
+2. [Angular UI Bootstrap Modal 0.10.0, with templates](http://angular-ui.github.io/bootstrap/#/modal)
 3. Twitter Bootstrap CSS 3 + (includes 3.1.1)
 4. Angular ngSanitize
-5. Angular Translate (https://github.com/angular-translate)
+5. [Angular Translate](https://github.com/angular-translate)
 
 v4.2.0 & v5.0.0
-
+---------------
 Same as v4.0.0 with the exception of the following:
 
-1. Angular UI Bootstrap Modal 0.11.0, with templates (http://angular-ui.github.io/bootstrap/#/modal)
-2. Twitter Bootstrap CSS 3.1.x (getbootstrap.com)
+1. [Angular UI Bootstrap Modal 0.11.0, with templates](http://angular-ui.github.io/bootstrap/#/modal)
+2. [Twitter Bootstrap CSS 3.1.x](http://getbootstrap.com)
 
-CSS:
-
+CSS
+---
 Included a css file that has a .modal class fix for Bootstrap and also has some predefined styles for the various modals described in the service.
 
-v3.0 css file has the .modal class removed that had been a fix for a Bootstrap 3 display problem.  This has since been rectified by Angular UI and Bootstrap.
+**v3.0 css file has the .modal class removed that had been a fix for a Bootstrap 3 display problem.  This has since been rectified by Angular UI and Bootstrap.**
 
 Changes:
 
