@@ -1,19 +1,21 @@
-angular-dialog-service
+Angular Dialog Service
 ======================
 
-!! Please use one of the release versions rather than the Master Branch.  The Master Branch has untested merges and changes and is a work in progress.  I urge you to always use a release version rather than linking directly to the Master Branch, as the Master Branch may change and may not always be backward compatible.
+>**Please use one of the release versions rather than the Master Branch**.  The Master Branch has untested merges and changes and is a work in progress.  I urge you to always use a release version rather than linking directly to the Master Branch, as the Master Branch may change and may not always be backward compatible.
 
-!! v4.x.x + is not backward compatible with versions 1,2,3,3.1  Please refer to the changes section to view what is different in v4.0
+**v4.x.x + is not backward compatible with versions 1,2,3,3.1  Please refer to the changes section to view what is different in v4.0**
 
 A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap and Twitter Bootstrap.  Supports, i18n, language translations for dialog headers, messages and buttons via angular-translate.
 
-Demos 
-- v1.0 : http://codepen.io/m-e-conroy/pen/ALsdF
-- v2.0 : http://codepen.io/m-e-conroy/pen/AmBpL
-- v4.2 : http://codepen.io/m-e-conroy/pen/rkIqv
-- v4.2 with UI-Bootstrap Date Picker directive : http://codepen.io/m-e-conroy/pen/DAxzs 
+Demos
+-----
+ - v1.0 : [Codepen: http://codepen.io/m-e-conroy/pen/ALsdF](http://codepen.io/m-e-conroy/pen/ALsdF)
+ - v2.0 : [Codepen: http://codepen.io/m-e-conroy/pen/AmBpL](http://codepen.io/m-e-conroy/pen/AmBpL)
+ - v4.2 : [Codepen: http://codepen.io/m-e-conroy/pen/rkIqv](http://codepen.io/m-e-conroy/pen/rkIqv)
+ - v4.2 : [Codepen: with UI-Bootstrap Date Picker directive](http://codepen.io/m-e-conroy/pen/DAxzs) 
 
-Release Versions:
+Release Versions
+----------------
 - v1.0 : supports AngularJS 1.1.5 and below.
 - v2.0 : supports AngularJS 1.2 +
 - v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
@@ -152,3 +154,6 @@ Notes:
 - Bootstrap 3: (v3.0 of this service no longer requires this fix) There's a problem with the actual modal being displayed even though it appears in the HTML code to be present.  I found that adding a "display: block" to Bootstrap 3's .modal class solved the problem.  
 - It should not rely on including the Bootstrap JS.
 - For version 2.0 + of this service module do not forget to include the ngSanitize Angular module.
+
+
+> Written with [StackEdit](https://stackedit.io/).
