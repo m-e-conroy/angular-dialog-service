@@ -20,9 +20,11 @@ Release Versions
 - v2.0 : supports AngularJS 1.2 +
 - v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
 - v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
-- v4.2.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
+- v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
 
-Predefined dialogs/modals for v5.0.0 - re-introduction of the [opts] parameter to dialogs methods:
+v5.0.0
+------
+Re-introduction of the [opts] parameter to dialogs methods.  I had many complaints about removing method level options in favor of wholly using the provider instead.
 
 1. dialogs.error(header,msg[,opts])
 2. dialogs.wait(header,msg,progress[,opts])
@@ -30,13 +32,16 @@ Predefined dialogs/modals for v5.0.0 - re-introduction of the [opts] parameter t
 4. dialogs.confirm(header,msg[,opts])
 5. dialogs.create(url,ctrlr,data[,opts])
 
-Predefined dialogs/modals for v4.2.0
+v4.2.0
+------
+Bootstrap 3.1.1 / Angular UI Bootstrap 0.11.0 introduced a size property for dialogs.  This can be controlled via the provider or by the *sz* parameter to the dialog methods.
 
 1. dialogs.error(header,msg[,sz])
 2. dialogs.wait(header,msg,progress[,sz])
 3. dialogs.notify(header,msg[,sz])
 4. dialogs.confirm(header,msg[,sz])
 5. dialogs.create(url,ctrlr,data[,sz])
+
 
 Predefined dialogs/modals for v4.0.0 and v4.1.0:
 
