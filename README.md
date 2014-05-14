@@ -34,7 +34,7 @@ Re-introduction of the [opts] parameter to dialogs methods.  I had many complain
 
 v4.2.0
 ------
-Bootstrap 3.1.1 / Angular UI Bootstrap 0.11.0 introduced a size property for dialogs.  This can be controlled via the provider or by the *sz* parameter to the dialog methods.
+Bootstrap 3.1.1 / Angular UI Bootstrap 0.11.0 introduced a size property for dialogs.  This can be controlled via the provider or by the optional *sz* parameter to the dialog methods.
 
 1. dialogs.error(header,msg[,sz])
 2. dialogs.wait(header,msg,progress[,sz])
@@ -42,8 +42,9 @@ Bootstrap 3.1.1 / Angular UI Bootstrap 0.11.0 introduced a size property for dia
 4. dialogs.confirm(header,msg[,sz])
 5. dialogs.create(url,ctrlr,data[,sz])
 
-
-Predefined dialogs/modals for v4.0.0 and v4.1.0:
+v4.0.0 - 4.1.0
+--------------
+Removed *opts* and *static* parameters from dialog methods in favor of provider settings.  The dialogs service is now longer **$dialogs**, the *\$* has be removed as this is reserved for Angular core services.
 
 1. dialogs.error(header,msg)
 2. dialogs.wait(header,msg,progress)
@@ -51,15 +52,18 @@ Predefined dialogs/modals for v4.0.0 and v4.1.0:
 4. dialogs.confirm(header,msg)
 5. dialogs.create(url,ctrlr,data)
 
-Predefined dialogs/modals for v3.1.0 and below:
+v1.0 - v3.1.0
+-------------
+Predefined dialogs/modals.
 
-1. $dialogs.error(header,msg,[static])
-2. $dialogs.wait(header,msg,progess,[static])
-3. $dialogs.notify(header,msg,[static])
-4. $dialogs.confirm(header,msg,[static])
-5. $dialogs.create(url,ctrlr,data,opts)
+1. \$dialogs.error(header,msg,[static])
+2. \$dialogs.wait(header,msg,progess,[static])
+3. \$dialogs.notify(header,msg,[static])
+4. \$dialogs.confirm(header,msg,[static])
+5. \$dialogs.create(url,ctrlr,data,opts)
 
-Dependencies:
+Dependencies
+------------
 
 v1.0
 
