@@ -108,22 +108,23 @@ Included a css file that has a .modal class fix for Bootstrap and also has some 
 
 **v3.0 css file has the .modal class removed that had been a fix for a Bootstrap 3 display problem.  This has since been rectified by Angular UI and Bootstrap.**
 
-Changes:
+Changes
+-------
 
-v3.0
+- v3.0
 
 1.  Added support for Angular UI Bootstrap 0.10.0.
 2.  Added the ability to customize the header on the error and wait dialogs.
 3.  Added example files.
 
-v4.0.0 - v4.1.0
+- v4.0.0 - v4.1.0
 
-1.  Removed '$' from the '$dialogs' service as this is reserved for core AngularJS naming.  The service is now just 'dialogs.'
-2.  Changed 'dialogs' service from factory to provider, you can now use 'dialogsProvider' to set various options of the modals that were previously passed as parameters to the dialog's service methods.
-	1. dialogsProvider.useBackdrop([true,false,'static']) - True or false to use a backdrop for the modal, 'static' to use a backdrop and disallow closing on mouse click of the backdrop.
-	2. dialogsProvider.useEscClose([true,false]) - Whether or not to allow the use of the 'ESC' key to close the modal
-	3. dialogsProvider.useClass([string]) - Sets an additional CSS class to the modal window
-	4. dialogsProvider.useCopy([true,false]) - Determines whether to use angular.copy or not when passing a data object to the custom dialog service.  Setting this to false will allow the modal to retain the two-way binding with the calling controller - thus changing data in the modal will automatically change it in the calling controller's scope.  The default is setting is true, so if you want the two-way binding you need to set this to false. 
+1.  Removed *\$* from the *\$dialogs* service as this is reserved for core AngularJS naming.  The service is now just *dialogs.*  Include **dialogs.main** in your application module in order to use the the *dialogs* service
+2.  Changed *dialogs* service from factory to provider, you can now use **dialogsProvider** to set various options of the modals that were previously passed as parameters to the dialogs' service methods.
+	- **dialogsProvider.useBackdrop([true,false,'static'])** - True or false to use a backdrop for the modal, 'static' to use a backdrop and disallow closing on mouse click of the backdrop.
+	- **dialogsProvider.useEscClose([true,false])** - Whether or not to allow the use of the 'ESC' key to close the modal
+	- **dialogsProvider.useClass([string])** - Sets an additional CSS class to the modal window
+	- **dialogsProvider.useCopy([true,false])** - Determines whether to use angular.copy or not when passing a data object to the custom dialog service.  Setting this to false will allow the modal to retain the two-way binding with the calling controller - thus changing data in the modal will automatically change it in the calling controller's scope.  The default is setting is true, so if you want the two-way binding you need to set this to false. 
 3.  Main module is no longer 'dialogs' as this would conflict with the new naming of the service.  It is now 'dialogs.main,' include that in your application's module definition to use this service.
 4.  Added i18n support via Angular-Translate (https://github.com/angular-translate), use the '$translateProvider' to set language specific defaults.  Default language is currently 'en-US.'  An example is provided in the example folder that will show you how to change the defaults from English to Spanish.  Translations can be set on the following:
 	1. DIALOGS_ERROR (modal header)
