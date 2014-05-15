@@ -125,32 +125,32 @@ Changes
 	- **dialogsProvider.useEscClose([true,false])** - Whether or not to allow the use of the 'ESC' key to close the modal
 	- **dialogsProvider.useClass([string])** - Sets an additional CSS class to the modal window
 	- **dialogsProvider.useCopy([true,false])** - Determines whether to use angular.copy or not when passing a data object to the custom dialog service.  Setting this to false will allow the modal to retain the two-way binding with the calling controller - thus changing data in the modal will automatically change it in the calling controller's scope.  The default is setting is true, so if you want the two-way binding you need to set this to false. 
-3.  Main module is no longer 'dialogs' as this would conflict with the new naming of the service.  It is now 'dialogs.main,' include that in your application's module definition to use this service.
-4.  Added i18n support via Angular-Translate (https://github.com/angular-translate), use the '$translateProvider' to set language specific defaults.  Default language is currently 'en-US.'  An example is provided in the example folder that will show you how to change the defaults from English to Spanish.  Translations can be set on the following:
-	1. DIALOGS_ERROR (modal header)
-	2. DIALOGS_ERROR_MSG
-	3. DIALOGS_CLOSE (modal button)
-	4. DIALOGS_PLEASE_WAIT (modal header)
-	5. DIALOGS_PLEASE_WAIT_ELIPS (modal header)
-	6. DIALOGS_PLEASE_WAIT_MSG
-	7. DIALOGS_PERCENT_COMPLETE (modal message partial)
-	8. DIALOGS_NOTIFICATION (modal header)
-	9. DIALOGS_NOTIFICATION_MSG
-	10. DIALOGS_CONFIRMATION (modal header)
-	11. DIALOGS_CONFIRMATION_MSG
-	12. DIALOGS_OK (modal button)
-	13. DIALOGS_YES (modal button)
-	14. DIALOGS_NO (modal button)
+3.  Main module is no longer *dialogs* as this would conflict with the new naming of the service.  It is now *dialogs.main,* include that in your application's module definition to use the *dialogs* service.
+4.  Added i18n support via [Angular-Translate](https://github.com/angular-translate), use the *$translateProvider* to set language specific defaults.  Default language is currently *en-US.*  An example is provided in the example folder that will show you how to change the defaults from English to Spanish.  Translations can be set on the following:
+	- DIALOGS_ERROR (modal header)
+	- DIALOGS_ERROR_MSG
+	- DIALOGS_CLOSE (modal button)
+	- DIALOGS_PLEASE_WAIT (modal header)
+	- DIALOGS_PLEASE_WAIT_ELIPS (modal header)
+	- DIALOGS_PLEASE_WAIT_MSG
+	- DIALOGS_PERCENT_COMPLETE (modal message partial)
+	- DIALOGS_NOTIFICATION (modal header)
+	- DIALOGS_NOTIFICATION_MSG
+	- DIALOGS_CONFIRMATION (modal header)
+	- DIALOGS_CONFIRMATION_MSG
+	- DIALOGS_OK (modal button)
+	- DIALOGS_YES (modal button)
+	- DIALOGS_NO (modal button)
 
-v4.2.0
+- v4.2.0
 
-Supports everything described above in v4.0.0 - v4.1.0 and added the following
+1. Supports everything described above in v4.0.0 - v4.1.0 and added the following
 
-1. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the 'opts.wSize' parameter added to each dialog method call.
+2. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the *sz* parameter added to each dialog method call.
 
-v5.0.0
+- v5.0.0
 
-1. Optionally pass in options object, possible overrides:
+1. Optionally pass in options object, possible overrides are as follows
 
    ```
    opts = {
@@ -162,12 +162,13 @@ v5.0.0
     }
     ```
 
-Notes:
+Notes
+-----
 
-- Angular Translate: v4.0 requires angular-translate be included.
-- Bootstrap 3: (v3.0 of this service no longer requires this fix) There's a problem with the actual modal being displayed even though it appears in the HTML code to be present.  I found that adding a "display: block" to Bootstrap 3's .modal class solved the problem.  
+- Angular Translate: v4.0 requires [Angular-Translate](https://github.com/angular-translate) be included.
+- Bootstrap 3: There's a problem with the actual modal being displayed even though it appears in the HTML code to be present.  I found that adding a "display: block" to Bootstrap 3's .modal class solved the problem. *(v3.0 of this service no longer requires this fix)*
 - It should not rely on including the Bootstrap JS.
-- For version 2.0 + of this service module do not forget to include the ngSanitize Angular module.
+- For version 2.0 + of this service module do not forget to include the *ngSanitize* Angular module.
 
 
 > Written with [StackEdit](https://stackedit.io/).
