@@ -4,43 +4,44 @@
  *      2. This version requires angular-translate for i18n support
  */
 
+//== Translations =============================================================//
+
+ angular.module('dialogs.default-translations',['pascalprecht.translate'])
+ /**
+     * Default translations in English.
+     * 
+     * Use angular-translate's $translateProvider to provide translations in an
+     * alternate language.
+     *
+     * $translateProvider.translations('[lang]',{[translations]});
+     * To use alternate translations set the preferred language to your desired
+     * language.
+     * $translateProvider.preferredLanguage('[lang]');
+     */
+    .config(['$translateProvider',function($translateProvider){
+        $translateProvider.translations('en-US',{
+            DIALOGS_ERROR: "Error",
+            DIALOGS_ERROR_MSG: "An unknown error has occurred.",
+            DIALOGS_CLOSE: "Close",
+            DIALOGS_PLEASE_WAIT: "Please Wait",
+            DIALOGS_PLEASE_WAIT_ELIPS: "Please Wait...",
+            DIALOGS_PLEASE_WAIT_MSG: "Waiting on operation to complete.",
+            DIALOGS_PERCENT_COMPLETE: "% Complete",
+            DIALOGS_NOTIFICATION: "Notification",
+            DIALOGS_NOTIFICATION_MSG: "Unknown application notification.",
+            DIALOGS_CONFIRMATION: "Confirmation",
+            DIALOGS_CONFIRMATION_MSG: "Confirmation required.",
+            DIALOGS_OK: "OK",
+            DIALOGS_YES: "Yes",
+            DIALOGS_NO: "No"
+        });
+
+        $translateProvider.preferredLanguage('en-US');
+    }]) // end config
+
 //== Controllers =============================================================//
 
-angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate'])
-
-	/**
-	 * Default translations in English.
-	 * 
-	 * Use angular-translate's $translateProvider to provide translations in an
-	 * alternate language.
-	 *
-	 * $translateProvider.translations('[lang]',{[translations]});
-	 * To use alternate translations set the preferred language to your desired
-	 * language.
-	 * $translateProvider.preferredLanguage('[lang]');
-	 */
-	.config(['$translateProvider',function($translateProvider){
-		$translateProvider.translations('en-US',{
-			DIALOGS_ERROR: "Error",
-			DIALOGS_ERROR_MSG: "An unknown error has occurred.",
-			DIALOGS_CLOSE: "Close",
-			DIALOGS_PLEASE_WAIT: "Please Wait",
-			DIALOGS_PLEASE_WAIT_ELIPS: "Please Wait...",
-			DIALOGS_PLEASE_WAIT_MSG: "Waiting on operation to complete.",
-			DIALOGS_PERCENT_COMPLETE: "% Complete",
-			DIALOGS_NOTIFICATION: "Notification",
-			DIALOGS_NOTIFICATION_MSG: "Unknown application notification.",
-			DIALOGS_CONFIRMATION: "Confirmation",
-			DIALOGS_CONFIRMATION_MSG: "Confirmation required.",
-			DIALOGS_OK: "OK",
-			DIALOGS_YES: "Yes",
-			DIALOGS_NO: "No"
-		});
-
-		$translateProvider.preferredLanguage('en-US');
-	}]) // end config
-
-
+angular.module('dialogs.controllers',['ui.bootstrap.modal'])
 	/**
 	 * Error Dialog Controller 
 	 */
