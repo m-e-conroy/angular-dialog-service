@@ -10,9 +10,7 @@
   },
   "main": [
     "dialogs.css",
-    "dialogs.js",
-    "dialogs.min.css",
-    "dialogs.min.js"
+    "dialogs.js"
   ],
   "licenses": [{
     "type": "MIT",
