@@ -102,7 +102,7 @@ v4.0.0 - v4.1.0
 4. Angular ngSanitize
 5. [Angular Translate](https://github.com/angular-translate)
 
-v4.2.0 & v5.0.0
+v4.2.0 & v5.x.x
 ---------------
 Same as v4.0.0 with the exception of the following:
 
