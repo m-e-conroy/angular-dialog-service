@@ -169,6 +169,10 @@ Changes
     }
     ```
 
+- v5.1.0
+
+1. Separated out the default translations into their own module: **dialogs-default-translations.js**  Include this or the "min" version in your application if you are not already using $translationProvider elsewhere, otherwise just copy the translation list within the module to your translation list for 'en-US.'
+
 Notes
 -----
 
