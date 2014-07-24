@@ -7,40 +7,6 @@
 //== Controllers =============================================================//
 
 angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate'])
-
-	/**
-	 * Default translations in English.
-	 * 
-	 * Use angular-translate's $translateProvider to provide translations in an
-	 * alternate language.
-	 *
-	 * $translateProvider.translations('[lang]',{[translations]});
-	 * To use alternate translations set the preferred language to your desired
-	 * language.
-	 * $translateProvider.preferredLanguage('[lang]');
-	 */
-	.config(['$translateProvider',function($translateProvider){
-		$translateProvider.translations('en-US',{
-			DIALOGS_ERROR: "Error",
-			DIALOGS_ERROR_MSG: "An unknown error has occurred.",
-			DIALOGS_CLOSE: "Close",
-			DIALOGS_PLEASE_WAIT: "Please Wait",
-			DIALOGS_PLEASE_WAIT_ELIPS: "Please Wait...",
-			DIALOGS_PLEASE_WAIT_MSG: "Waiting on operation to complete.",
-			DIALOGS_PERCENT_COMPLETE: "% Complete",
-			DIALOGS_NOTIFICATION: "Notification",
-			DIALOGS_NOTIFICATION_MSG: "Unknown application notification.",
-			DIALOGS_CONFIRMATION: "Confirmation",
-			DIALOGS_CONFIRMATION_MSG: "Confirmation required.",
-			DIALOGS_OK: "OK",
-			DIALOGS_YES: "Yes",
-			DIALOGS_NO: "No"
-		});
-
-		$translateProvider.preferredLanguage('en-US');
-	}]) // end config
-
-
 	/**
 	 * Error Dialog Controller 
 	 */
@@ -379,7 +345,7 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
     	var endSym = $interpolate.endSymbol();
     
     	$templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="glyphicon glyphicon-warning-sign"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">'+startSym+'"DIALOGS_CLOSE" | translate'+endSym+'</button></div>');
-    	$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> '+startSym+'"DIALOGS_PLEASE_WAIT" | translate'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'"DIALOGS_PERCENT_COMPLETE" | translate'+endSym+'</span></div></div>');
+    	$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'"DIALOGS_PERCENT_COMPLETE" | translate'+endSym+'</span></div></div>');
     	$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="glyphicon glyphicon-info-sign"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">'+startSym+'"DIALOGS_OK" | translate'+endSym+'</button></div>');
     	$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">'+startSym+'"DIALOGS_YES" | translate'+endSym+'</button><button type="button" class="btn btn-primary" ng-click="no()">'+startSym+'"DIALOGS_NO" | translate'+endSym+'</button></div>');
 	}]); // end run / dialogs

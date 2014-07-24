@@ -22,6 +22,13 @@ Release Versions
 - v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
 - v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
 
+v5.1.0
+------
+1. Fixed Wait dialog template, header should now display a passed parameter header to the wait service.  Prior to this it would all display the default header whether or not a passed header parameter was used or not.
+2. Default translations have been removed from the dialogs.main module to their own module, in order to support applications that were already using Angular-Translate and had already defined translation lists for 'en-US.'  Previously including dialogs.main would have overwritten those translation lists supplied elsewhere in an application.  To use the default translations:
+	- Include the dialogs-default-translations.min.js file in your HTML file and add 'dialogs.default-translations' to your application's dependency list along with 'dialogs.main'
+	- If you already had a translation list setup elsewhere in your application just copy the $translationProvider translation list in the dialogs-default-translations module to where-ever it is that you have your list configured
+
 v5.0.0
 ------
 Re-introduction of the [opts] parameter to dialogs methods.  I had many complaints about removing method level options in favor of wholly using the provider instead.

@@ -5,10 +5,11 @@
 		<script src="//code.angularjs.org/1.2.16/angular-sanitize.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.0.1/angular-translate.min.js"></script>
 		<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+		<script src="js/dialogs-default-translations.js"></script>
 		<script src="js/dialogs.js"></script>
 		<script src="js/dialogTest.js"></script>
 	
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/dialogs.css">
 		
 		<style>
@@ -33,6 +34,7 @@
 			<div class="col-md-12">
 				<button class="btn btn-danger" ng-click="launch('error')">Error Dialog</button>
 				<button class="btn btn-primary" ng-click="launch('wait')">Wait Dialog</button>
+				<button class="btn btn-primary" ng-click="launch('customwait')">"Custom" Wait Dialog</button>
 				<button class="btn btn-default" ng-click="launch('notify')">Notify Dialog</button>
 				<button class="btn btn-success" ng-click="launch('confirm')">Confirm Dialog</button>
         		<button class="btn btn-warning" ng-click="launch('custom')">Custom Dialog</button>

@@ -8,6 +8,12 @@ module.exports = function(grunt) {
         dest: 'dist/dialogs.min.js'
       }
     },
+    ngmin: {
+      build: {
+        src: ['dialogs-default-translations.js'],
+        dest: 'dist/dialogs-default-translations.min.js'
+      }
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
@@ -16,6 +22,9 @@ module.exports = function(grunt) {
         files: [{
           src: 'dist/dialogs.min.js',
           dest: 'dist/dialogs.min.js'
+        },{
+          src: 'dist/dialogs-default-translations.min.js',
+          dest: 'dist/dialogs-default-translations.min.js'
         }]
       }
     },
@@ -41,7 +50,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['dialogs.js', 'dialogs.css'],
+      files: ['dialogs.js','dialogs-default-translations.js','dialogs.css'],
       tasks: ['clean', 'jshint', 'ngmin', 'uglify', 'cssmin']
     }
   });

@@ -1,4 +1,11 @@
-angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translate'])
+/**
+ * !!! You need to include the "dialogs.default-translations" module if you are not using 
+ * angular-translate (pascalprecht.translate) elsewhere in your application.  It was separated
+ * out from the dialog service because it interferes with already provided translations elsewhere.
+ * If you are already using angular-translate then just add the translations found in "dialogs.default-translations"
+ * module to your translations and then there's no need to include the default module.
+ */
+angular.module('modalTest',['ui.bootstrap','dialogs.main','dialogs.default-translations','pascalprecht.translate'])
 	.controller('dialogServiceTest',function($scope,$rootScope,$timeout,$translate,dialogs){
 		
 		//-- Variables --//
@@ -42,6 +49,10 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 					break;
 				case 'wait':
 					var dlg = dialogs.wait(undefined,undefined,_progress);
+					_fakeWaitProgress();
+					break;
+				case 'customwait':
+					var dlg = dialogs.wait('Custom Wait Header','Custom Wait Message',_progress);
 					_fakeWaitProgress();
 					break;
 				case 'notify':
