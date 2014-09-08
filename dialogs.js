@@ -113,7 +113,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		var _setOpts = function(opts){
 			var _opts = {};
-			opts = angular.isDefined(opts) ? opts : {};
+			opts = opts || {};
 			_opts.kb = (angular.isDefined(opts.keyboard)) ? opts.keyboard : _k; // values: true,false
 			_opts.bd = (angular.isDefined(opts.backdrop)) ? opts.backdrop : _b; // values: 'static',true,false
 			_opts.ws = (angular.isDefined(opts.size) && (angular.equals(opts.size,'sm') || angular.equals(opts.size,'lg') || angular.equals(opts.size,'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
@@ -307,7 +307,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	opts	object
 				 */
 				create : function(url,ctrlr,data,opts){
-					var copy = (angular.isDefined(opts) && angular.isDefined(opts.copy)) ? opts.copy : _copy;
+					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
 					opts = _setOpts(opts);
 
 					return $modal.open({
