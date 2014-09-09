@@ -10,11 +10,11 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.transla
 	/**
 	 * Error Dialog Controller 
 	 */
-	.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','header','msg',function($scope,$modalInstance,$translate,header,msg){
+	.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
 		//-- Variables -----//
 
-		$scope.header = (angular.isDefined(header)) ? header : $translate.instant('DIALOGS_ERROR');
-		$scope.msg = (angular.isDefined(msg)) ? msg : $translate.instant('DIALOGS_ERROR_MSG');
+		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_ERROR');
+		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_ERROR_MSG');
 
 		//-- Methods -----//
 		
@@ -27,12 +27,12 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.transla
 	/**
 	 * Wait Dialog Controller 
 	 */
-	.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$timeout','header','msg','progress',function($scope,$modalInstance,$translate,$timeout,header,msg,progress){
+	.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$timeout','data',function($scope,$modalInstance,$translate,$timeout,data){
 		//-- Variables -----//
 
-		$scope.header = (angular.isDefined(header)) ? header : $translate.instant('DIALOGS_PLEASE_WAIT_ELIPS');
-		$scope.msg = (angular.isDefined(msg)) ? msg : $translate.instant('DIALOGS_PLEASE_WAIT_MSG');
-		$scope.progress = (angular.isDefined(progress)) ? progress : 100;
+		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_PLEASE_WAIT_ELIPS');
+		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_PLEASE_WAIT_MSG');
+		$scope.progress = (angular.isDefined(data.progress)) ? data.progress : 100;
 
 		//-- Listeners -----//
 		
@@ -64,11 +64,11 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.transla
 	/**
 	 * Notify Dialog Controller 
 	 */
-	.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','header','msg',function($scope,$modalInstance,$translate,header,msg){
+	.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
 		//-- Variables -----//
 
-		$scope.header = (angular.isDefined(header)) ? header : $translate.instant('DIALOGS_NOTIFICATION');
-		$scope.msg = (angular.isDefined(msg)) ? msg : $translate.instant('DIALOGS_NOTIFICATION_MSG');
+		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_NOTIFICATION');
+		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_NOTIFICATION_MSG');
 
 		//-- Methods -----//
 		
@@ -81,11 +81,11 @@ angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.transla
 	/**
 	 * Confirm Dialog Controller 
 	 */
-	.controller('confirmDialogCtrl',['$scope','$modalInstance','$translate','header','msg',function($scope,$modalInstance,$translate,header,msg){
+	.controller('confirmDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
 		//-- Variables -----//
 
-		$scope.header = (angular.isDefined(header)) ? header : $translate.instant('DIALOGS_CONFIRMATION');
-		$scope.msg = (angular.isDefined(msg)) ? msg : $translate.instant('DIALOGS_CONFIRMATION_MSG');
+		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_CONFIRMATION');
+		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_CONFIRMATION_MSG');
 
 		//-- Methods -----//
 		
@@ -113,10 +113,10 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		var _setOpts = function(opts){
 			var _opts = {};
-			opts = angular.isDefined(opts) ? opts : {};
+			opts = opts || {};
 			_opts.kb = (angular.isDefined(opts.keyboard)) ? opts.keyboard : _k; // values: true,false
 			_opts.bd = (angular.isDefined(opts.backdrop)) ? opts.backdrop : _b; // values: 'static',true,false
-			_opts.ws = (angular.isDefined(opts.size) && (angular.equals(opts.size,'sm') || angular.equals(opts.size,'lg'))) ? opts.size : _wSize; // values: 'sm', 'lg'
+			_opts.ws = (angular.isDefined(opts.size) && (angular.equals(opts.size,'sm') || angular.equals(opts.size,'lg') || angular.equals(opts.size,'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
 			_opts.wc = (angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; // additional CSS class(es) to be added to a modal window
 
 			return _opts;
@@ -187,13 +187,13 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		/**
 		 * Set Size
 		 *
-		 * Sets the modal size to use (sm,lg), requires Angular-ui-Bootstrap 0.11.0 and Bootstrap 3.1.0 + 
+		 * Sets the modal size to use (sm,lg,md), requires Angular-ui-Bootstrap 0.11.0 and Bootstrap 3.1.0 + 
 		 *
-		 * @param	val 	string (sm,lg)
+		 * @param	val 	string (sm,lg,md)
 		 */
 		this.setSize = function(val){
 			if(angular.isDefined(val))
-				_wSize = (angular.equals(val,'sm') || angular.equals(val,'lg')) ? val : _wSize;
+				_wSize = (angular.equals(val,'sm') || angular.equals(val,'lg') || angular.equals(val,'md')) ? val : _wSize;
 		}; // end setSize
 
 
@@ -218,8 +218,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						windowClass: opts.wc,
 						size: opts.ws,
 						resolve : {
-							header : function() { return angular.copy(header); },
-							msg : function() { return angular.copy(msg); }
+							data : function(){
+								return {
+									header : angular.copy(header),
+									msg : angular.copy(msg)
+								};
+							}
 						}
 					}); // end modal.open
 				}, // end error
@@ -243,9 +247,13 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						windowClass: opts.wc,
 						size: opts.ws,
 						resolve : {
-							header : function() { return angular.copy(header); },
-							msg : function() { return angular.copy(msg); },
-							progress : function() { return angular.copy(progress); }
+							datad : function(){
+								return {
+									header : angular.copy(header),
+									msg : angular.copy(msg),
+									progress : angular.copy(progress)
+								};
+							}
 						}
 					}); // end modal.open
 				}, // end wait
@@ -268,8 +276,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						windowClass: opts.wc,
 						size: opts.ws,
 						resolve : {
-							header : function() { return angular.copy(header); },
-							msg : function() { return angular.copy(msg); }
+							data : function(){
+								return {
+									header : angular.copy(header),
+									msg : angular.copy(msg)
+								};
+							}
 						}
 					}); // end modal.open
 				}, // end notify
@@ -292,8 +304,12 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						windowClass: opts.wc,
 						size: opts.ws,
 						resolve : {
-							header : function() { return angular.copy(header); },
-							msg : function() { return angular.copy(msg); }
+							data : function(){
+								return {
+									header : angular.copy(header),
+									msg : angular.copy(msg)
+								};
+							}
 						}
 					}); // end modal.open
 				}, // end confirm
@@ -307,7 +323,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	opts	object
 				 */
 				create : function(url,ctrlr,data,opts){
-					var copy = (angular.isDefined(opts) && angular.isDefined(opts.copy)) ? opts.copy : _copy;
+					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
 					opts = _setOpts(opts);
 
 					return $modal.open({
