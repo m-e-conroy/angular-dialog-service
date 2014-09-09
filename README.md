@@ -22,6 +22,11 @@ Release Versions
 - v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
 - v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
 
+v5.1.2
+------
+1. Bug fix for _setOpts (issue #61).
+2. Changed the way resolved *header* and *msg* data is passed to the controller, so it would be easier to **decorate** each service if one so desires (issue #60).
+
 v5.1.0
 ------
 1. Fixed Wait dialog template, header should now display a passed parameter header to the wait service.  Prior to this it would always display the default header whether or not a passed header parameter was used or not.
