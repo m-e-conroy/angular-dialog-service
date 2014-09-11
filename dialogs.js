@@ -247,7 +247,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						windowClass: opts.wc,
 						size: opts.ws,
 						resolve : {
-							datad : function(){
+							data : function(){
 								return {
 									header : angular.copy(header),
 									msg : angular.copy(msg),
