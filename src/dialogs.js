@@ -1,104 +1,176 @@
+(function(){
+"use strict";
+//== Translate Substitute Module =============================================//
+
 /**
- * Note:
- * 		1. This version requires Angular UI Bootstrap >= v0.10.0 with templates
- *      2. This version requires angular-translate for i18n support
+ * For those not using Angular-Translate (pascalprecht.translate), this will sub
+ * in for it so we don't have to include Angular-Translate if we don't want to.
  */
 
+var translateSubMod = angular.module('translate.sub',[]);
+
+	/**
+	 * $translate Service
+	 * Sets up a $translateProvider service to use in your module's config
+	 * function.  $translate.Provider syntax is the same as Angular-Translate,
+	 * use $translate.Provider.translations(lang,obj) to change the defaults
+	 * for modal button, header and message text.
+	 */
+	translateSubMod.provider('$translate',[function(){
+		var _translations = []; // object of key/value translation pairs
+		var _current = 'en-US'; // default language
+
+		/**
+		 * Translations
+		 * Set the internal object of translation key/value pairs.
+		 */
+		this.translations = function(lang,obj){
+			if(angular.isDefined(lang) && angular.isDefined(obj)){
+				_translations[lang] = angular.copy(obj);
+				_current = lang;
+			}
+		}; // end translations
+
+		this.$get = [function(){
+			return {
+				/**
+				 * Instant
+				 * Retrieve the translation for the given key, if key not found
+				 * return an empty string.
+				 * Example: $translate.instant('DIALOGS_OK');
+				 */
+				instant : function(what){
+					if(angular.isDefined(what) && angular.isDefined(_translations[_current][what]))
+						return _translations[_current][what];
+					else
+						return '';
+				} // end instant
+			}; // end return 
+		}]; // end $get
+
+	}]); // end $translate
+
+	/**
+	 * Translate Filter
+	 * For use in an Angular template.  
+	 * Example: {{"DIALOGS_CLOSE" | translate}}
+	 */
+	translateSubMod.filter('translate',['$translate',function($translate){
+		return function(what){
+			return $translate.instant(what);
+		};
+	}]); // end translate / translate.sub
 //== Controllers =============================================================//
 
-angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate'])
-	/**
-	 * Error Dialog Controller 
-	 */
-	.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
-		//-- Variables -----//
+var ctrlrs; // will be dialogs.controllers module
 
-		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_ERROR');
-		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_ERROR_MSG');
-
-		//-- Methods -----//
-		
-		$scope.close = function(){
-			$modalInstance.close();
-			$scope.$destroy();
-		}; // end close
-	}]) // end ErrorDialogCtrl
+// determine if Angular-Translate is available, if not use the substitute
+try{
+	angular.module('pascalprecht.translate'); // throws error if module not loaded
+	console.log('Angular-Translate: OK');
 	
-	/**
-	 * Wait Dialog Controller 
-	 */
-	.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$timeout','data',function($scope,$modalInstance,$translate,$timeout,data){
-		//-- Variables -----//
+	// dialogs.controllers: module declaration
+	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate']);
+}catch(err){
+	console.log('Angular-Translate: ' + err.message);
+	console.log('Attempting to use translate.sub module.');
 
-		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_PLEASE_WAIT_ELIPS');
-		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_PLEASE_WAIT_MSG');
-		$scope.progress = (angular.isDefined(data.progress)) ? data.progress : 100;
+	// dialogs.controllers: module declaration
+	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','translate.sub']);
+} // end try/catch
 
-		//-- Listeners -----//
-		
-		// Note: used $timeout instead of $scope.$apply() because I was getting a $$nextSibling error
-		
-		// close wait dialog
-		$scope.$on('dialogs.wait.complete',function(){
-			$timeout(function(){ $modalInstance.close(); $scope.$destroy(); });
-		}); // end on(dialogs.wait.complete)
-		
-		// update the dialog's message
-		$scope.$on('dialogs.wait.message',function(evt,args){
-			$scope.msg = (angular.isDefined(args.msg)) ? args.msg : $scope.msg;
-		}); // end on(dialogs.wait.message)
-		
-		// update the dialog's progress (bar) and/or message
-		$scope.$on('dialogs.wait.progress',function(evt,args){
-			$scope.msg = (angular.isDefined(args.msg)) ? args.msg : $scope.msg;
-			$scope.progress = (angular.isDefined(args.progress)) ? args.progress : $scope.progress;
-		}); // end on(dialogs.wait.progress)
-		
-		//-- Methods -----//
-		
-		$scope.getProgress = function(){
-			return {'width': $scope.progress + '%'};
-		}; // end getProgress
-	}]) // end WaitDialogCtrl
+// angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate'])
+
+/**
+ * Error Dialog Controller 
+ */
+ctrlrs.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+	//-- Variables -----//
+
+	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_ERROR');
+	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_ERROR_MSG');
+
+	//-- Methods -----//
 	
-	/**
-	 * Notify Dialog Controller 
-	 */
-	.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
-		//-- Variables -----//
-
-		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_NOTIFICATION');
-		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_NOTIFICATION_MSG');
-
-		//-- Methods -----//
-		
-		$scope.close = function(){
-			$modalInstance.close();
-			$scope.$destroy();
-		}; // end close
-	}]) // end WaitDialogCtrl
+	$scope.close = function(){
+		$modalInstance.close();
+		$scope.$destroy();
+	}; // end close
+}]); // end ErrorDialogCtrl
 	
-	/**
-	 * Confirm Dialog Controller 
-	 */
-	.controller('confirmDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
-		//-- Variables -----//
+/**
+ * Wait Dialog Controller 
+ */
+ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$timeout','data',function($scope,$modalInstance,$translate,$timeout,data){
+	//-- Variables -----//
 
-		$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_CONFIRMATION');
-		$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_CONFIRMATION_MSG');
+	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_PLEASE_WAIT_ELIPS');
+	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_PLEASE_WAIT_MSG');
+	$scope.progress = (angular.isDefined(data.progress)) ? data.progress : 100;
 
-		//-- Methods -----//
-		
-		$scope.no = function(){
-			$modalInstance.dismiss('no');
-		}; // end close
-		
-		$scope.yes = function(){
-			$modalInstance.close('yes');
-		}; // end yes
-	}]); // end ConfirmDialogCtrl / dialogs.controllers
+	//-- Listeners -----//
 	
+	// Note: used $timeout instead of $scope.$apply() because I was getting a $$nextSibling error
 	
+	// close wait dialog
+	$scope.$on('dialogs.wait.complete',function(){
+		$timeout(function(){ $modalInstance.close(); $scope.$destroy(); });
+	}); // end on(dialogs.wait.complete)
+	
+	// update the dialog's message
+	$scope.$on('dialogs.wait.message',function(evt,args){
+		$scope.msg = (angular.isDefined(args.msg)) ? args.msg : $scope.msg;
+	}); // end on(dialogs.wait.message)
+	
+	// update the dialog's progress (bar) and/or message
+	$scope.$on('dialogs.wait.progress',function(evt,args){
+		$scope.msg = (angular.isDefined(args.msg)) ? args.msg : $scope.msg;
+		$scope.progress = (angular.isDefined(args.progress)) ? args.progress : $scope.progress;
+	}); // end on(dialogs.wait.progress)
+	
+	//-- Methods -----//
+	
+	$scope.getProgress = function(){
+		return {'width': $scope.progress + '%'};
+	}; // end getProgress
+}]); // end WaitDialogCtrl
+
+/**
+ * Notify Dialog Controller 
+ */
+ctrlrs.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+	//-- Variables -----//
+
+	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_NOTIFICATION');
+	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_NOTIFICATION_MSG');
+
+	//-- Methods -----//
+	
+	$scope.close = function(){
+		$modalInstance.close();
+		$scope.$destroy();
+	}; // end close
+}]); // end WaitDialogCtrl
+
+/**
+ * Confirm Dialog Controller 
+ */
+ctrlrs.controller('confirmDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+	//-- Variables -----//
+
+	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_CONFIRMATION');
+	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_CONFIRMATION_MSG');
+
+	//-- Methods -----//
+	
+	$scope.no = function(){
+		$modalInstance.dismiss('no');
+	}; // end close
+	
+	$scope.yes = function(){
+		$modalInstance.close('yes');
+	}; // end yes
+}]); // end ConfirmDialogCtrl / dialogs.controllers
 //== Services ================================================================//
 
 angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
@@ -120,7 +192,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			_opts.wc = (angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; // additional CSS class(es) to be added to a modal window
 
 			return _opts;
-		} // end _setOpts
+		}; // end _setOpts
 
 		/**
 		 * Use Backdrop
@@ -347,12 +419,47 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			}; // end return
 
 		}]; // end $get
-	}]); // end provider
+	}]); // end provider dialogs
+//== Dialogs.Main Module =====================================================//
 
-//== Module ==================================================================//
+/**
+ * Include this module 'dialogs.main' in your module's dependency list where you
+ * intend to use it.  Then inject the 'dialogs' service in your controllers that
+ * need it.
+ */
 
 angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires angular-sanitize.min.js (ngSanitize) //code.angularjs.org/1.2.1/angular-sanitize.min.js
-	
+		
+	.config(['$translateProvider',function($translateProvider){
+		/** 
+		 * if Angular-Translate is not loaded, use the translate substitute
+		 * module and create default translations to use as default modal texts
+		 */
+		try{
+			angular.module('pascalprecht.translate');
+		}catch(err){
+			console.log('Creating default translations for use without Angular-Translate.');
+
+			// This will set default modal buttons, header and message text
+			$translateProvider.translations('en-US',{
+	            DIALOGS_ERROR: "Error",
+	            DIALOGS_ERROR_MSG: "An unknown error has occurred.",
+	            DIALOGS_CLOSE: "Close",
+	            DIALOGS_PLEASE_WAIT: "Please Wait",
+	            DIALOGS_PLEASE_WAIT_ELIPS: "Please Wait...",
+	            DIALOGS_PLEASE_WAIT_MSG: "Waiting on operation to complete.",
+	            DIALOGS_PERCENT_COMPLETE: "% Complete",
+	            DIALOGS_NOTIFICATION: "Notification",
+	            DIALOGS_NOTIFICATION_MSG: "Unknown application notification.",
+	            DIALOGS_CONFIRMATION: "Confirmation",
+	            DIALOGS_CONFIRMATION_MSG: "Confirmation required.",
+	            DIALOGS_OK: "OK",
+	            DIALOGS_YES: "Yes",
+	            DIALOGS_NO: "No"
+        	});
+		} // end try/catch
+	}]) // end config
+
 	// Add default templates via $templateCache
 	.run(['$templateCache','$interpolate',function($templateCache,$interpolate){
     
@@ -364,4 +471,5 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
     	$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'"DIALOGS_PERCENT_COMPLETE" | translate'+endSym+'</span></div></div>');
     	$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="glyphicon glyphicon-info-sign"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">'+startSym+'"DIALOGS_OK" | translate'+endSym+'</button></div>');
     	$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">'+startSym+'"DIALOGS_YES" | translate'+endSym+'</button><button type="button" class="btn btn-primary" ng-click="no()">'+startSym+'"DIALOGS_NO" | translate'+endSym+'</button></div>');
-	}]); // end run / dialogs
+	}]); // end run / dialogs.main
+})();
