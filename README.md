@@ -21,6 +21,7 @@ Release Versions
 - v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
 - v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
 - v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
+- v5.2.x : Angular-Translate made optional
 - v5.2.1 : supports Font-Awesome
  
 
