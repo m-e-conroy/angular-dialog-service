@@ -130,6 +130,17 @@ Same as v4.0.0 with the exception of the following:
 1. [Angular UI Bootstrap Modal 0.11.0, with templates](http://angular-ui.github.io/bootstrap/#/modal)
 2. [Twitter Bootstrap CSS 3.1.x](http://getbootstrap.com)
 
+v5.2.x +
+--------
+
+1. [Angular Translate](https://github.com/angular-translate) is now optional.
+ 
+v5.2.1 +
+--------
+
+1. [Font-Awesome](http://fortawesome.github.io/Font-Awesome/) is now an optional CSS inclusion.
+
+
 CSS
 ---
 Included a css file that has a .modal class fix for Bootstrap and also has some predefined styles for the various modals described in the service.
@@ -193,6 +204,15 @@ Changes
 - v5.1.0
 
 1. Separated out the default translations into their own module: **dialogs-default-translations.js**  Include this or the "min" version in your application if you are not already using $translationProvider elsewhere, otherwise just copy the translation list within the module to your translation list for 'en-US.'
+ 
+- v5.2.x
+
+1. Angular-Translate is now optional, however in order to keep support for Angular-Translate and be able to switch it on and off easily without having to add lines of code to your modules I created a substitute module that is automatically included and used when Angular-Translate is not found.  This subsitute (*translate-substitution.js : translate.sub*) is a provider service (*$translateProvider*) with the same *translations* method as the Angular-Translate provider service does.  The provider service is also named *$translate* and has its own *instant* method.  I did this such that, if in the future you do decide to use Angular-Translate all you will have to do is load the module before the dialog's service is loaded.
+2. The *dialogs-default-translations.js* file is also now an optional dependency.
+ 
+- v5.2.1
+
+1. If you use Font-Awesome, support is now provided for the icons used in the headers of each predefined dialog.  The dialog service will automatically detect whether you have Font-Awesome loaded or not and use FA icons or the Bootstrap's glyphicons accordingly.  If for some reason the detection doesn't work correctly you can force the use of FA icons by injecting *$dialogsProvider* into your module's config function and calling *$dialogsProvider.useFontAwesome().*
 
 Notes
 -----
