@@ -5,7 +5,7 @@ Angular Dialog Service
 
 **v4.x.x + is not backward compatible with versions 1,2,3,3.1  Please refer to the changes section to view what is different in v4.0**
 
-A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap and Twitter Bootstrap.  Supports, i18n, language translations for dialog headers, messages and buttons via angular-translate.
+A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap, Twitter Bootstrap and Font-Awesome.  Supports, i18n, language translations for dialog headers, messages and buttons via angular-translate.
 
 Demos
 -----
