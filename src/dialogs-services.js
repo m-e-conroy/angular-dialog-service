@@ -10,6 +10,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		var _wTmpl = null; // window template
 		var _wSize = 'lg'; // large modal window default
 
+		var _fa = false; // fontawesome flag
+
 		var _setOpts = function(opts){
 			var _opts = {};
 			opts = opts || {};
@@ -95,6 +97,16 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				_wSize = (angular.equals(val,'sm') || angular.equals(val,'lg') || angular.equals(val,'md')) ? val : _wSize;
 		}; // end setSize
 
+		/**
+		 * Use Font-Awesome.
+		 *
+		 * Sets Font-Awesome flag to true and substitutes font-awesome icons for
+		 * Bootstrap's glyphicons.
+		 */
+		this.useFontAwesome = function(){
+			_fa = true;
+		}; // end useFontAwesome
+
 
 		this.$get = ['$modal',function ($modal){
 			
@@ -120,7 +132,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 							data : function(){
 								return {
 									header : angular.copy(header),
-									msg : angular.copy(msg)
+									msg : angular.copy(msg),
+									fa : _fa
 								};
 							}
 						}
@@ -150,7 +163,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 								return {
 									header : angular.copy(header),
 									msg : angular.copy(msg),
-									progress : angular.copy(progress)
+									progress : angular.copy(progress),
+									fa : _fa
 								};
 							}
 						}
@@ -178,7 +192,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 							data : function(){
 								return {
 									header : angular.copy(header),
-									msg : angular.copy(msg)
+									msg : angular.copy(msg),
+									fa : _fa
 								};
 							}
 						}
@@ -206,7 +221,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 							data : function(){
 								return {
 									header : angular.copy(header),
-									msg : angular.copy(msg)
+									msg : angular.copy(msg),
+									fa : _fa
 								};
 							}
 						}
