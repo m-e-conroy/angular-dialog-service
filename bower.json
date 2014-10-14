@@ -1,7 +1,7 @@
 {
   "name": "angular-dialog-service",
   "description": "A service to handle common dialog types in a web application.  Built on top of Angular-Bootstrap's modal",
-  "version": "5.2.0",
+  "version": "5.2.2",
   "keywords": ["angular","dialog","modal","service"],
   "authors": [
     {
@@ -11,11 +11,11 @@
     }
   ],
   "dependencies": {
-    "angular": "1.2.x",
-    "bootstrap": "3.1.x",
-    "angular-sanitize": "1.2.x",
-    "angular-bootstrap": "0.11.x",
-    "angular-translate": "2.1.x"
+    "angular": ">=1.2",
+    "bootstrap": ">=3.1",
+    "angular-sanitize": ">=1.2",
+    "angular-bootstrap": ">=0.11",
+    "angular-translate": ">=2.1"
   },
   "overrides": {
     "bootstrap": {
