@@ -67,13 +67,13 @@ var ctrlrs; // will be dialogs.controllers module
 // determine if Angular-Translate is available, if not use the substitute
 try{
 	angular.module('pascalprecht.translate'); // throws error if module not loaded
-	console.log('Dialogs (Angular-Translate): OK');
+	// console.log('Dialogs (Angular-Translate): OK');
 	
 	// dialogs.controllers: module declaration
 	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate']);
 }catch(err){
-	console.log('Dialogs: (Angular-Translate): ' + err.message);
-	console.log('Dialogs: Attempting to use translate.sub module.');
+	// console.log('Dialogs: (Angular-Translate): ' + err.message);
+	// console.log('Dialogs: Attempting to use translate.sub module.');
 
 	// dialogs.controllers: module declaration
 	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','translate.sub']);
@@ -458,7 +458,7 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 		try{
 			angular.module('pascalprecht.translate');
 		}catch(err){
-			console.log('Dialogs: Creating default translations for use without Angular-Translate.');
+			// console.log('Dialogs: Creating default translations for use without Angular-Translate.');
 
 			// This will set default modal buttons, header and message text
 			$translateProvider.translations('en-US',{
@@ -496,12 +496,12 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 		 			_matches = _sheet.href.match(/font\-*awesome/);
 
 		 		if(!_sheet.disabled && angular.isArray(_matches)){
-		 			console.log('Dialogs: Using Font-Awesome Icons');
+		 			// console.log('Dialogs: Using Font-Awesome Icons');
 		 			dialogsProvider.useFontAwesome();
 		 		}
 		 	});
 		 }catch(err){
-		 	console.log('Error Message: ' + err);
+		 	// console.log('Error Message: ' + err);
 		 }
 	}]) // end config
 

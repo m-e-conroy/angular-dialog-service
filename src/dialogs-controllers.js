@@ -5,13 +5,13 @@ var ctrlrs; // will be dialogs.controllers module
 // determine if Angular-Translate is available, if not use the substitute
 try{
 	angular.module('pascalprecht.translate'); // throws error if module not loaded
-	console.log('Dialogs (Angular-Translate): OK');
+	// console.log('Dialogs (Angular-Translate): OK');
 	
 	// dialogs.controllers: module declaration
 	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate']);
 }catch(err){
-	console.log('Dialogs: (Angular-Translate): ' + err.message);
-	console.log('Dialogs: Attempting to use translate.sub module.');
+	// console.log('Dialogs: (Angular-Translate): ' + err.message);
+	// console.log('Dialogs: Attempting to use translate.sub module.');
 
 	// dialogs.controllers: module declaration
 	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','translate.sub']);
