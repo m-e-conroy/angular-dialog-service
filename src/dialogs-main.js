@@ -47,17 +47,15 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 		 */
 		 try{
 		 	var _sheets = document.styleSheets;
-		 	var _matches = undefined;
-		 	var _rules = undefined;
 
 		 	sheetLoop:
 		 	for(var i = (_sheets.length - 1);i >= 0;i--){
-		 		_matches = null;
-		 		_rules = null;
+		 		var _matches = null;
+		 		var _rules = null;
 
 		 		if(!_sheets[i].disabled){
 			 		// check href of style sheet first
-			 		if(_sheets[i].href != null)
+			 		if(_sheets[i].href !== null)
 			 			_matches = _sheets[i].match(/font\-*awesome/i);
 
 			 		if(angular.isArray(_matches)){
