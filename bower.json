@@ -18,14 +18,14 @@
     "bootstrap": "~3.1",
     "angular": "~1.2",
     "angular-sanitize": "~1.2",
-    "angular-ui-bootstrap": "~0.11",
+    "angular-bootstrap": "~0.11",
     "angular-translate": "~2.1"
   },
   "resolutions": {
     "bootstrap": "3.2.0",
     "angular": "1.2.26",
     "angular-sanitize": "1.2.26",
-    "angular-ui-boostrap": "0.11.0",
+    "angular-boostrap": "0.11.0",
     "angular-translate": "2.1.0"
   },
   "overrides": {
