@@ -47,7 +47,36 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 		 */
 		 try{
 		 	var _sheets = document.styleSheets;
+		 	var _matches = undefined;
+		 	var _rules = undefined;
 
+		 	sheetLoop:
+		 	for(var i = (_sheets.length - 1);i >= 0;i--){
+		 		_matches = null;
+		 		_rules = null;
+
+		 		if(!_sheets[i].disabled){
+			 		// check href of style sheet first
+			 		if(_sheets[i].href != null)
+			 			_matches = _sheets[i].match(/font\-*awesome/i);
+
+			 		if(angular.isArray(_matches)){
+			 			dialogsProvider.useFontAwesome();
+			 			break; // done, leave the style sheet for loop
+			 		}else{
+			 			// try to find css rule .fa, in case style sheet has been concatenated
+			 			_rules = _sheets[i].cssRules;
+			 			for(var x = (_rules.length - 1);x >= 0;x--){
+			 				if(_rules[x].selectorText.toLowerCase() == '.fa'){
+			 					dialogsProvider.useFontAwesome();
+			 					break sheetLoop; // done, exit both for loops
+			 				}
+			 			}
+			 		}
+			 	} // end if(disabled)
+		 	} // end for
+
+		 	/* Removed in favor of above, will delete this permanently after more testing
 		 	angular.forEach(_sheets,function(_sheet,key){
 		 		var _matches = null;
 		 		if(!angular.equals(_sheet.href,null))
@@ -58,6 +87,7 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 		 			dialogsProvider.useFontAwesome();
 		 		}
 		 	});
+			*/
 		 }catch(err){
 		 	// console.log('Error Message: ' + err);
 		 }
@@ -71,7 +101,7 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
     	var endSym = $interpolate.endSymbol();
     
     	$templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="'+startSym+'icon'+endSym+'"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">'+startSym+'"DIALOGS_CLOSE" | translate'+endSym+'</button></div>');
-    	$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="'+startSym+'icon'+endSym+'"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'"DIALOGS_PERCENT_COMPLETE" | translate'+endSym+'</span></div></div>');
+    	$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="'+startSym+'icon'+endSym+'"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="width:'+startSym+'progress'+endSym+'px"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'"DIALOGS_PERCENT_COMPLETE" | translate'+endSym+'</span></div></div>');
     	$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="'+startSym+'icon'+endSym+'"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">'+startSym+'"DIALOGS_OK" | translate'+endSym+'</button></div>');
     	$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="'+startSym+'icon'+endSym+'"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">'+startSym+'"DIALOGS_YES" | translate'+endSym+'</button><button type="button" class="btn btn-primary" ng-click="no()">'+startSym+'"DIALOGS_NO" | translate'+endSym+'</button></div>');
 	}]); // end run / dialogs.main
