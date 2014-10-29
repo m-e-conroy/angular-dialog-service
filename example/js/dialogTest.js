@@ -45,7 +45,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 					_fakeWaitProgress();
 					break;
 				case 'customwait':
-					var dlg = dialogs.wait('Custom Wait Header','Custome Wait Message',_progress);
+					var dlg = dialogs.wait('Custom Wait Header','Custom Wait Message',_progress);
 					_fakeWaitProgress();
 					break;
 				case 'notify':
@@ -82,6 +82,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 					_fakeWaitProgress();
 				}else{
 					$rootScope.$broadcast('dialogs.wait.complete');
+					_progress = 0;
 				}
 			},1000);
 		};

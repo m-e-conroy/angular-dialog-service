@@ -69,11 +69,11 @@ ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$tim
 	}); // end on(dialogs.wait.progress)
 	
 	//-- Methods -----//
-	/* Removed from template... wasn't updating
+
 	$scope.getProgress = function(){
 		return {'width': $scope.progress + '%'};
 	}; // end getProgress
-	*/
+	
 }]); // end WaitDialogCtrl
 
 /**
