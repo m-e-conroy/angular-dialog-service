@@ -8,6 +8,7 @@
     "gulp-jshint": "^1.8.4",
     "gulp-rename": "^1.2.0",
     "gulp-concat": "^2.4.1",
-    "gulp-wrap": "^0.3.0"
+    "gulp-wrap": "^0.3.0",
+    "gulp-header": "^1.2.2"
   }
 }

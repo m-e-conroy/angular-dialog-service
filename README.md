@@ -23,6 +23,8 @@ Release Versions
 - v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
 - v5.2.x : Angular-Translate made optional
 - v5.2.1 : supports Font-Awesome
+- v5.2.2 - v5.2.4 : small bugs fixes
+- v5.2.5 : Better detection of Font-Awesome if style sheet has been concatentated.  Tested against Angular 1.3.0 & Angular-Bootstrap 0.11.2
  
 
 v5.2.1

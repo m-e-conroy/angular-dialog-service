@@ -5,6 +5,7 @@ var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var wrap = require('gulp-wrap');
+var header = require('gulp-header');
 
 gulp.task('lint',function(){
 	return gulp.src('src/*.js')
@@ -21,8 +22,18 @@ gulp.task('concat-js',function(){
 }); // end concat-js
 
 gulp.task('compress-js',['concat-js'],function(){
+	var bower = require('./bower.json');
+	var banner = ['/**',
+		' * <%= bower.name %> - <%= bower.description %>',
+		' * @version v<%= bower.version %>',
+		' * @author <%= bower.authors[0].name %>, <%= bower.authors[0].email %>',
+		' * @license <%= bower.licenses[0].type %>, <%= bower.licenses[0].url %>',
+		' */',
+		''].join('\n');
+
 	gulp.src(['src/dialogs.js','src/dialogs-default-translations.js'])
 		.pipe(minify({}))
+		.pipe(header(banner, {bower : bower}))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('dist'));
 }); // end comrpess-js
