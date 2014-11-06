@@ -5,7 +5,7 @@ Angular Dialog Service
 
 **v4.x.x + is not backward compatible with versions 1,2,3,3.1  Please refer to the changes section to view what is different in v4.0**
 
-A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap and Twitter Bootstrap.  Supports, i18n, language translations for dialog headers, messages and buttons via angular-translate.
+A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap, Twitter Bootstrap and Font-Awesome.  Supports, i18n, language translations for dialog headers, messages and buttons via angular-translate.
 
 Demos
 -----
@@ -21,7 +21,22 @@ Release Versions
 - v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
 - v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
 - v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
+- v5.2.x : Angular-Translate made optional
+- v5.2.1 : supports Font-Awesome
+- v5.2.2 - v5.2.4 : small bugs fixes
+- v5.2.5 : Better detection of Font-Awesome if style sheet has been concatentated.  Tested against Angular 1.3.0 & Angular-Bootstrap 0.11.2
  
+
+v5.2.1
+------
+1. Added support for Font-Awesome.
+2. Added Example/faChk.html to show font-awesome inclusion.
+
+v5.2.0
+------
+1. Made Angular-Translate dependency optional.
+2. Added Example/index2.html to show dialog service working without including Angular-Translate.
+
 v5.1.3
 ------
 1. Bug fixes with regards to v5.1.2 #2 (issue #64)
@@ -118,6 +133,17 @@ Same as v4.0.0 with the exception of the following:
 1. [Angular UI Bootstrap Modal 0.11.0, with templates](http://angular-ui.github.io/bootstrap/#/modal)
 2. [Twitter Bootstrap CSS 3.1.x](http://getbootstrap.com)
 
+v5.2.x +
+--------
+
+1. [Angular Translate](https://github.com/angular-translate) is now optional.
+ 
+v5.2.1 +
+--------
+
+1. [Font-Awesome](http://fortawesome.github.io/Font-Awesome/) is now an optional CSS inclusion.
+
+
 CSS
 ---
 Included a css file that has a .modal class fix for Bootstrap and also has some predefined styles for the various modals described in the service.
@@ -181,6 +207,15 @@ Changes
 - v5.1.0
 
 1. Separated out the default translations into their own module: **dialogs-default-translations.js**  Include this or the "min" version in your application if you are not already using $translationProvider elsewhere, otherwise just copy the translation list within the module to your translation list for 'en-US.'
+ 
+- v5.2.x
+
+1. Angular-Translate is now optional, however in order to keep support for Angular-Translate and be able to switch it on and off easily without having to add lines of code to your modules I created a substitute module that is automatically included and used when Angular-Translate is not found.  This subsitute (*translate-substitution.js : translate.sub*) is a provider service (*$translateProvider*) with the same *translations* method as the Angular-Translate provider service does.  The provider service is also named *$translate* and has its own *instant* method.  I did this such that, if in the future you do decide to use Angular-Translate all you will have to do is load the module before the dialog's service is loaded.
+2. The *dialogs-default-translations.js* file is also now an optional dependency.
+ 
+- v5.2.1
+
+1. If you use Font-Awesome, support is now provided for the icons used in the headers of each predefined dialog.  The dialog service will automatically detect whether you have Font-Awesome loaded or not and use FA icons or the Bootstrap's glyphicons accordingly.  If for some reason the detection doesn't work correctly you can force the use of FA icons by injecting *$dialogsProvider* into your module's config function and calling **$dialogsProvider.useFontAwesome()**.
 
 Notes
 -----

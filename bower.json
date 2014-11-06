@@ -1,7 +1,7 @@
 {
   "name": "angular-dialog-service",
   "description": "A service to handle common dialog types in a web application.  Built on top of Angular-Bootstrap's modal",
-  "version": "5.1.3",
+  "version": "5.2.5",
   "keywords": ["angular","dialog","modal","service"],
   "authors": [
     {
@@ -10,12 +10,23 @@
       "homepage": "http://michaeleconroy.blogspot.com/"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/m-e-conroy/angular-dialog-service"
+  },
   "dependencies": {
-    "angular": "1.2.x",
-    "bootstrap": "3.1.x",
-    "angular-sanitize": "1.2.x",
-    "angular-bootstrap": "0.11.x",
-    "angular-translate": "2.1.x"
+    "bootstrap": "^3.x",
+    "angular": "^1.2.x",
+    "angular-sanitize": "~1.2",
+    "angular-bootstrap": "~0.11",
+    "angular-translate": "~2.1"
+  },
+  "resolutions": {
+    "bootstrap": "3.2.0",
+    "angular": "1.3.0",
+    "angular-sanitize": "1.3.0",
+    "angular-boostrap": "0.11.2",
+    "angular-translate": "2.1.0"
   },
   "overrides": {
     "bootstrap": {
@@ -23,9 +34,9 @@
     }
   },
   "main": [
-    "dialogs.min.css",
-    "dialogs.min.js",
-    "dialogs-default-translations.min.js"
+    "dist/dialogs.min.css",
+    "dist/dialogs.min.js",
+    "dist/dialogs-default-translations.min.js"
   ],
   "licenses": [{
     "type": "MIT",
