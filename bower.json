@@ -18,9 +18,13 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "example",
     "backup",
-    "src"
+    "src",
+    ".gitignore",
+    "bower.json",
+    "gulpfile.js",
+    "package.json",
+    "README.md"
   ],
   "dependencies": {
     "bootstrap": "^3.x",
