@@ -1,7 +1,7 @@
 {
   "name": "angular-dialog-service",
   "description": "A service to handle common dialog types in a web application.  Built on top of Angular-Bootstrap's modal",
-  "version": "5.2.5",
+  "version": "5.2.6",
   "keywords": ["angular","dialog","modal","service"],
   "authors": [
     {
@@ -14,24 +14,31 @@
     "type": "git",
     "url": "git://github.com/m-e-conroy/angular-dialog-service"
   },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "backup",
+    "src",
+    ".gitignore",
+    "bower.json",
+    "gulpfile.js",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "bootstrap": "^3.x",
-    "angular": "^1.2.x",
-    "angular-sanitize": "~1.2",
+    "angular": "^1.2",
+    "angular-sanitize": "^1.2",
     "angular-bootstrap": "~0.11",
     "angular-translate": "~2.1"
   },
   "resolutions": {
     "bootstrap": "3.2.0",
-    "angular": "1.3.0",
-    "angular-sanitize": "1.3.0",
+    "angular": "1.3.2",
+    "angular-sanitize": "1.3.2",
     "angular-boostrap": "0.11.2",
     "angular-translate": "2.1.0"
-  },
-  "overrides": {
-    "bootstrap": {
-      "main": []
-    }
   },
   "main": [
     "dist/dialogs.min.css",
