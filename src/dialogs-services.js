@@ -9,6 +9,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		var _copy = true; // controls use of angular.copy
 		var _wTmpl = null; // window template
 		var _wSize = 'lg'; // large modal window default
+		var _c = null; //in case if you don't want to save data in to $scope
 
 		var _fa = false; // fontawesome flag
 
@@ -19,6 +20,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			_opts.bd = (angular.isDefined(opts.backdrop)) ? opts.backdrop : _b; // values: 'static',true,false
 			_opts.ws = (angular.isDefined(opts.size) && (angular.equals(opts.size,'sm') || angular.equals(opts.size,'lg') || angular.equals(opts.size,'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
 			_opts.wc = (angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; // additional CSS class(es) to be added to a modal window
+			_opts.ctrlAs = (angular.isDefined(opts.controllerAs)) ? opts.controllerAs : _c; // controllerAs name
 
 			return _opts;
 		}; // end _setOpts
@@ -106,6 +108,19 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		this.useFontAwesome = function(){
 			_fa = true;
 		}; // end useFontAwesome
+
+
+		/**
+		 * Set controllerAs
+		 *
+		 * Sets controllerAs name for passing it into ui.bootstrap.modal
+		 *
+		 * @param	val 	string
+		 */
+		this.setControllerAs = function(val){
+			if(angular.isDefined(val))
+				_c = val;
+		}; // end setControllerAs
 
 
 		this.$get = ['$modal',function ($modal){
@@ -248,6 +263,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						backdrop : opts.bd,
 						windowClass: opts.wc,
 						size: opts.ws,
+						controllerAs: opts.ctrlAs,
 						resolve : {
 							data : function() { 
 								if(copy)

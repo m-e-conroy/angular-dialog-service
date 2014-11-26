@@ -71,6 +71,9 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 				case 'custom2':
 					var dlg = dialogs.create('/dialogs/custom2.html','customDialogCtrl2',$scope.custom,{size:'lg'});
 					break;
+				case 'custom3':
+					var dlg = dialogs.create('/dialogs/custom3.html','customDialogCtrl3',$scope.custom,{size:'lg', controllerAs: 'vm'});
+					break;
 			}
 		}; // end launch
 		
@@ -120,9 +123,28 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 		}; // end done
 		
 		$scope.hitEnter = function(evt){
-			if(angular.equals(evt.keyCode,13) && !(angular.equals($scope.user.name,null) || angular.equals($scope.user.name,'')))
+			if(angular.equals(evt.keyCode,13) && !(angular.equals($scope.val,null) || angular.equals($scope.val,'')))
 				$scope.done();
 		};
+	})
+
+	//approach based on recommendation of John Papa's Styleguide (https://github.com/johnpapa/angularjs-styleguide)
+	.controller('customDialogCtrl3',function($modalInstance, data){
+		var vm = this;
+
+		vm.data = data;
+		vm.done = done;
+        vm.hitEnter = hitEnter;
+
+		//-- Methods --//
+		function done(){
+			$modalInstance.close(vm.data);
+		} // end done
+
+		function hitEnter (evt){
+			if(angular.equals(evt.keyCode,13) && !(angular.equals(vm.data.val,null) || angular.equals(vm.data.val,'')))
+				done();
+		}
 	})
 	
 	.config(['dialogsProvider','$translateProvider',function(dialogsProvider,$translateProvider){
@@ -153,5 +175,6 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 
 	.run(['$templateCache',function($templateCache){
   		$templateCache.put('/dialogs/custom.html','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> User\'s Name</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="course">Name:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.name" ng-keyup="hitEnter($event)" required><span class="help-block">Enter your full name, first &amp; last.</span></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div>');
-  		$templateCache.put('/dialogs/custom2.html','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> Custom Dialog 2</h4></div><div class="modal-body"><label class="control-label" for="customValue">Custom Value:</label><input type="text" class="form-control" id="customValue" ng-model="data.val" ng-keyup="hitEnter($event)"><span class="help-block">Using "dialogsProvider.useCopy(false)" in your applications config function will allow data passed to a custom dialog to retain its two-way binding with the scope of the calling controller.</span></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="done()">Done</button></div>')
-	}]); 
+  		$templateCache.put('/dialogs/custom2.html','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> Custom Dialog 2</h4></div><div class="modal-body"><label class="control-label" for="customValue">Custom Value:</label><input type="text" class="form-control" id="customValue" ng-model="data.val" ng-keyup="hitEnter($event)"><span class="help-block">Using "dialogsProvider.useCopy(false)" in your applications config function will allow data passed to a custom dialog to retain its two-way binding with the scope of the calling controller.</span></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="done()">Done</button></div>');
+		$templateCache.put('/dialogs/custom3.html','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> Custom Dialog 3</h4></div><div class="modal-body"><label class="control-label" for="customValue">Value:</label><input type="text" class="form-control" id="customValue" ng-model="vm.data.val" ng-keyup="vm.hitEnter($event)"><span class="help-block">Custom dialog with "controlerAs" parameter</span></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="vm.done()">Done</button></div>')
+	}]);
