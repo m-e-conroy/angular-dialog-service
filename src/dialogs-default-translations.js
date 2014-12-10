@@ -46,5 +46,22 @@
             DIALOGS_NO: "No"
         });
 
+        $translateProvider.translations('es',{
+          DIALOGS_ERROR: "Error",
+          DIALOGS_ERROR_MSG: "Se ha producido un error.",
+          DIALOGS_CLOSE: "Cerrar",
+          DIALOGS_PLEASE_WAIT: "Espere por favor",
+          DIALOGS_PLEASE_WAIT_ELIPS: "Espere por favor...",
+          DIALOGS_PLEASE_WAIT_MSG: "Completando operación.",
+          DIALOGS_PERCENT_COMPLETE: "% Completado",
+          DIALOGS_NOTIFICATION: "Notificación",
+          DIALOGS_NOTIFICATION_MSG: "Notificación de una aplicación desconocida.",
+          DIALOGS_CONFIRMATION: "Confirmación",
+          DIALOGS_CONFIRMATION_MSG: "Se requiere confirmacion.",
+          DIALOGS_OK: "Aceptar",
+          DIALOGS_YES: "Sí",
+          DIALOGS_NO: "No"
+        });
+
         $translateProvider.preferredLanguage('en-US');
     }]); // end config
