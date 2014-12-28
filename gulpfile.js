@@ -32,17 +32,23 @@ gulp.task('compress-js',['concat-js'],function(){
 		''].join('\n');
 
 	gulp.src(['src/dialogs.js','src/dialogs-default-translations.js'])
-		.pipe(minify({}))
 		.pipe(header(banner, {bower : bower}))
+		.pipe(gulp.dest('dist'))
+		.pipe(minify({}))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('dist'));
+			
 }); // end comrpess-js
 
 gulp.task('compress-css',function(){
 	gulp.src('src/*.css')
+		.pipe(concat('dialogs.css'))
+		.pipe(gulp.dest('dist'))
 		.pipe(minifyCSS({}))
+		.pipe(concat('dialogs.css'))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('dist'));
+	
 }); // end compress-css
 
 gulp.task('default',['lint','compress-js','compress-css']);
