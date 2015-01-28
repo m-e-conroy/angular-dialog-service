@@ -215,7 +215,7 @@ Changes
  
 - v5.2.1
 
-1. If you use Font-Awesome, support is now provided for the icons used in the headers of each predefined dialog.  The dialog service will automatically detect whether you have Font-Awesome loaded or not and use FA icons or the Bootstrap's glyphicons accordingly.  If for some reason the detection doesn't work correctly you can force the use of FA icons by injecting *$dialogsProvider* into your module's config function and calling **$dialogsProvider.useFontAwesome()**.
+1. If you use Font-Awesome, support is now provided for the icons used in the headers of each predefined dialog.  The dialog service will automatically detect whether you have Font-Awesome loaded or not and use FA icons or the Bootstrap's glyphicons accordingly.  If for some reason the detection doesn't work correctly you can force the use of FA icons by injecting *dialogsProvider* into your module's config function and calling **dialogsProvider.useFontAwesome()**.
 
 Notes
 -----
