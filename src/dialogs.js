@@ -499,7 +499,7 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 		 		if(!_sheets[i].disabled){
 			 		// check href of style sheet first
 			 		if(_sheets[i].href !== null)
-			 			_matches = _sheets[i].match(/font\-*awesome/i);
+			 			_matches = _sheets[i].href.match(/font\-*awesome/i);
 
 			 		if(angular.isArray(_matches)){
 			 			dialogsProvider.useFontAwesome();
