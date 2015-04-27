@@ -7,6 +7,10 @@ Angular Dialog Service
 
 A complete AngularJS service with controllers and templates for generating application modals and dialogs for use with Angular-UI-Bootstrap, Twitter Bootstrap and Font-Awesome.  Supports, i18n, language translations for dialog headers, messages and buttons via angular-translate.
 
+Installation
+-----
+```bower install angular-dialog-service --save```
+
 Demos
 -----
  - v1.0 : [Codepen: http://codepen.io/m-e-conroy/pen/ALsdF](http://codepen.io/m-e-conroy/pen/ALsdF)
