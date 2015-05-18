@@ -16,8 +16,7 @@
   },
   "main": [
     "dist/dialogs.min.css",
-    "dist/dialogs.min.js",
-    "dist/dialogs-default-translations.min.js"
+    "index.js"
   ],
   "devDependencies": {
     "gulp": "^3.8.8",
