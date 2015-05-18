@@ -1,3 +1,3 @@
-require('./dialogs.min.js');
+require('./dist/dialogs.min.js');
 module.exports = 'dialogs.main';
 
