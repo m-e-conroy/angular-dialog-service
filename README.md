@@ -9,22 +9,22 @@ A complete AngularJS service with controllers and templates for generating appli
 
 Demos
 -----
- - v1.0 : [Codepen: http://codepen.io/m-e-conroy/pen/ALsdF](http://codepen.io/m-e-conroy/pen/ALsdF)
- - v2.0 : [Codepen: http://codepen.io/m-e-conroy/pen/AmBpL](http://codepen.io/m-e-conroy/pen/AmBpL)
- - v4.2 : [Codepen: http://codepen.io/m-e-conroy/pen/rkIqv](http://codepen.io/m-e-conroy/pen/rkIqv)
- - v4.2 : [Codepen: with UI-Bootstrap Date Picker directive](http://codepen.io/m-e-conroy/pen/DAxzs) 
+- v4.2 : [Codepen: http://codepen.io/m-e-conroy/pen/rkIqv](http://codepen.io/m-e-conroy/pen/rkIqv)
+- v4.2 : [Codepen: with UI-Bootstrap Date Picker directive](http://codepen.io/m-e-conroy/pen/DAxzs) 
+- v2.0 : [Codepen: http://codepen.io/m-e-conroy/pen/AmBpL](http://codepen.io/m-e-conroy/pen/AmBpL)
+- v1.0 : [Codepen: http://codepen.io/m-e-conroy/pen/ALsdF](http://codepen.io/m-e-conroy/pen/ALsdF)
 
 Release Versions
 ----------------
-- v1.0 : supports AngularJS 1.1.5 and below.
-- v2.0 : supports AngularJS 1.2 +
-- v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
-- v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
-- v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
-- v5.2.x : Angular-Translate made optional
-- v5.2.1 : supports Font-Awesome
-- v5.2.2 - v5.2.4 : small bugs fixes
 - v5.2.5 : Better detection of Font-Awesome if style sheet has been concatentated.  Tested against Angular 1.3.0 & Angular-Bootstrap 0.11.2
+- v5.2.2 - v5.2.4 : small bugs fixes
+- v5.2.1 : supports Font-Awesome
+- v5.2.x : Angular-Translate made optional
+- v4.2.0 - v5.x.x+ : supports AngularJS 1.2 +, Angular UI Bootstrap 0.11.0, Bootstrap 3.1 +
+- v4.0.0 - v4.1.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0, Bootstrap 3 +
+- v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
+- v2.0 : supports AngularJS 1.2 +
+- v1.0 : supports AngularJS 1.1.5 and below.
  
 
 v5.2.1
@@ -96,36 +96,14 @@ Predefined dialogs/modals.
 Dependencies
 ------------
 
-v1.0
-----
+v5.2.1 +
+--------
+1. [Font-Awesome](http://fortawesome.github.io/Font-Awesome/) is now an optional CSS inclusion.
 
-1.  [Angular JS](http://www.angularjs.org) (version 1.1.5 and less) 
-2.  [Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/#/modal) (version <= 0.6.0, Non-Bootstrap 3 Branch) with embedded templates.
-3.  [Twitter Bootstrap CSS](http://getbootstrap.com) (version 2)
-
-v2.0 Additional Dependencies
-----------------------------
-1.  All version 1.0 dependencies.
-2.  [Angular JS ngSanitize](http://code.angularjs.org/1.2.1/angular-sanitize.min.js)
-	- [ngSanitize](http://docs.angularjs.org/api/ngSanitize) (needed for ng-bind-html)
-
-v3.0
-----
-
-1.  AngularJS 1.2 +
-2.  Angular UI Bootstrap 0.10.0
-3.  Twitter Bootstrap CSS 3.0.3
-4.  AngularJS ngSanitize
-
-v4.0.0 - v4.1.0
----------------
-
-1. AngularJS 1.2 +
-2. [Angular UI Bootstrap Modal 0.10.0, with templates](http://angular-ui.github.io/bootstrap/#/modal)
-3. Twitter Bootstrap CSS 3 + (includes 3.1.1)
-4. Angular ngSanitize
-5. [Angular Translate](https://github.com/angular-translate)
-
+v5.2.x +
+--------
+1. [Angular Translate](https://github.com/angular-translate) is now optional.
+ 
 v4.2.0 & v5.x.x
 ---------------
 Same as v4.0.0 with the exception of the following:
@@ -133,15 +111,32 @@ Same as v4.0.0 with the exception of the following:
 1. [Angular UI Bootstrap Modal 0.11.0, with templates](http://angular-ui.github.io/bootstrap/#/modal)
 2. [Twitter Bootstrap CSS 3.1.x](http://getbootstrap.com)
 
-v5.2.x +
---------
+v4.0.0 - v4.1.0
+---------------
+1. AngularJS 1.2 +
+2. [Angular UI Bootstrap Modal 0.10.0, with templates](http://angular-ui.github.io/bootstrap/#/modal)
+3. Twitter Bootstrap CSS 3 + (includes 3.1.1)
+4. Angular ngSanitize
+5. [Angular Translate](https://github.com/angular-translate)
 
-1. [Angular Translate](https://github.com/angular-translate) is now optional.
- 
-v5.2.1 +
---------
+v3.0
+----
+1.  AngularJS 1.2 +
+2.  Angular UI Bootstrap 0.10.0
+3.  Twitter Bootstrap CSS 3.0.3
+4.  AngularJS ngSanitize
 
-1. [Font-Awesome](http://fortawesome.github.io/Font-Awesome/) is now an optional CSS inclusion.
+v2.0 Additional Dependencies
+----------------------------
+1.  All version 1.0 dependencies.
+2.  [Angular JS ngSanitize](http://code.angularjs.org/1.2.1/angular-sanitize.min.js)
+	- [ngSanitize](http://docs.angularjs.org/api/ngSanitize) (needed for ng-bind-html)
+
+v1.0
+----
+1.  [Angular JS](http://www.angularjs.org) (version 1.1.5 and less) 
+2.  [Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/#/modal) (version <= 0.6.0, Non-Bootstrap 3 Branch) with embedded templates.
+3.  [Twitter Bootstrap CSS](http://getbootstrap.com) (version 2)
 
 
 CSS
@@ -153,14 +148,35 @@ Included a css file that has a .modal class fix for Bootstrap and also has some 
 Changes
 -------
 
-- v3.0
+- v5.2.1
+1. If you use Font-Awesome, support is now provided for the icons used in the headers of each predefined dialog.  The dialog service will automatically detect whether you have Font-Awesome loaded or not and use FA icons or the Bootstrap's glyphicons accordingly.  If for some reason the detection doesn't work correctly you can force the use of FA icons by injecting *dialogsProvider* into your module's config function and calling **dialogsProvider.useFontAwesome()**.
 
-1.  Added support for Angular UI Bootstrap 0.10.0.
-2.  Added the ability to customize the header on the error and wait dialogs.
-3.  Added example files.
+- v5.2.x
+1. Angular-Translate is now optional, however in order to keep support for Angular-Translate and be able to switch it on and off easily without having to add lines of code to your modules I created a substitute module that is automatically included and used when Angular-Translate is not found.  This subsitute (*translate-substitution.js : translate.sub*) is a provider service (*$translateProvider*) with the same *translations* method as the Angular-Translate provider service does.  The provider service is also named *$translate* and has its own *instant* method.  I did this such that, if in the future you do decide to use Angular-Translate all you will have to do is load the module before the dialog's service is loaded.
+2. The *dialogs-default-translations.js* file is also now an optional dependency.
+ 
+- v5.1.0
+1. Separated out the default translations into their own module: **dialogs-default-translations.js**  Include this or the "min" version in your application if you are not already using $translationProvider elsewhere, otherwise just copy the translation list within the module to your translation list for 'en-US.'
+ 
+- v5.0.0
+1. Optionally pass in options object, possible overrides are as follows
+
+   ```
+   opts = {
+        'keyboard': true or false
+        'backdrop': 'static' or true or false
+        'size': 'sm' or 'lg' //small or large modal size
+        'windowClass': 'dialogs-default' // additional CSS class(es) to be added to a modal window
+        'copy': true or false // used only with create custom dialog
+    }
+    ```
+
+- v4.2.0
+1. Supports everything described above in v4.0.0 - v4.1.0 and added the following
+
+2. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the *sz* parameter added to each dialog method call.
 
 - v4.0.0 - v4.1.0
-
 1.  Removed *\$* from the *\$dialogs* service as this is reserved for core AngularJS naming.  The service is now just *dialogs.*  Include **dialogs.main** in your application module in order to use the the *dialogs* service
 2.  Changed *dialogs* service from factory to provider, you can now use **dialogsProvider** to set various options of the modals that were previously passed as parameters to the dialogs' service methods.
 	- **dialogsProvider.useBackdrop([true,false,'static'])** - True or false to use a backdrop for the modal, 'static' to use a backdrop and disallow closing on mouse click of the backdrop.
@@ -184,38 +200,10 @@ Changes
 	- DIALOGS_YES (modal button)
 	- DIALOGS_NO (modal button)
 
-- v4.2.0
-
-1. Supports everything described above in v4.0.0 - v4.1.0 and added the following
-
-2. dialogsProvider.setSize(['sm','lg']) - This will set modal size application wide, but can be overridden using the *sz* parameter added to each dialog method call.
-
-- v5.0.0
-
-1. Optionally pass in options object, possible overrides are as follows
-
-   ```
-   opts = {
-        'keyboard': true or false
-        'backdrop': 'static' or true or false
-        'size': 'sm' or 'lg' //small or large modal size
-        'windowClass': 'dialogs-default' // additional CSS class(es) to be added to a modal window
-        'copy': true or false // used only with create custom dialog
-    }
-    ```
-
-- v5.1.0
-
-1. Separated out the default translations into their own module: **dialogs-default-translations.js**  Include this or the "min" version in your application if you are not already using $translationProvider elsewhere, otherwise just copy the translation list within the module to your translation list for 'en-US.'
- 
-- v5.2.x
-
-1. Angular-Translate is now optional, however in order to keep support for Angular-Translate and be able to switch it on and off easily without having to add lines of code to your modules I created a substitute module that is automatically included and used when Angular-Translate is not found.  This subsitute (*translate-substitution.js : translate.sub*) is a provider service (*$translateProvider*) with the same *translations* method as the Angular-Translate provider service does.  The provider service is also named *$translate* and has its own *instant* method.  I did this such that, if in the future you do decide to use Angular-Translate all you will have to do is load the module before the dialog's service is loaded.
-2. The *dialogs-default-translations.js* file is also now an optional dependency.
- 
-- v5.2.1
-
-1. If you use Font-Awesome, support is now provided for the icons used in the headers of each predefined dialog.  The dialog service will automatically detect whether you have Font-Awesome loaded or not and use FA icons or the Bootstrap's glyphicons accordingly.  If for some reason the detection doesn't work correctly you can force the use of FA icons by injecting *dialogsProvider* into your module's config function and calling **dialogsProvider.useFontAwesome()**.
+- v3.0
+1.  Added support for Angular UI Bootstrap 0.10.0.
+2.  Added the ability to customize the header on the error and wait dialogs.
+3.  Added example files.
 
 Notes
 -----
