@@ -30,7 +30,7 @@
     "bootstrap": "^3.x",
     "angular": "^1.2",
     "angular-sanitize": "^1.2",
-    "angular-bootstrap": "^0.11",
+    "angular-bootstrap": "^0.12",
     "angular-translate": "^2.1"
   },
   "resolutions": {
