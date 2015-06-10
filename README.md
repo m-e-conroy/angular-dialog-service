@@ -11,6 +11,15 @@ Installation
 -----
 ```bower install angular-dialog-service --save```
 
+Usage
+-----
+```dialogs.error('Error','An unknown error occurred preventing the completion of the requested action.');```
+```dialogs.wait('Creating User','Please wait while we attempt to create user "Michael Conroy."<br><br>This should only take a moment.',50);```
+```dialogs.notify('Something Happened','Something happened at this point in the application that I wish to let you know about');```
+```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{});```
+
+TODO: Add more usage explanations.
+
 Demos
 -----
 - v4.2 : [Codepen: http://codepen.io/m-e-conroy/pen/rkIqv](http://codepen.io/m-e-conroy/pen/rkIqv)
@@ -20,6 +29,7 @@ Demos
 
 Release Versions
 ----------------
+- v5.2.8 : Patched problem with animations when ngAnimate is available and using Angular-Bootstrap 0.13.0 [(issue #117)](https://github.com/m-e-conroy/angular-dialog-service/issues/117)
 - v5.2.5 : Better detection of Font-Awesome if style sheet has been concatentated.  Tested against Angular 1.3.0 & Angular-Bootstrap 0.11.2
 - v5.2.2 - v5.2.4 : small bugs fixes
 - v5.2.1 : supports Font-Awesome
@@ -30,6 +40,10 @@ Release Versions
 - v2.0 : supports AngularJS 1.2 +
 - v1.0 : supports AngularJS 1.1.5 and below.
  
+
+v5.2.8
+------
+1. Added support for these options: animation & backdropClass - because there is a problem when using Angular-Bootstrap 0.13.0's modal with ngAnimate (Angular v1.4) animation is turned off by default (https://github.com/angular-ui/bootstrap/issues/3633)
 
 v5.2.1
 ------

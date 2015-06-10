@@ -73,19 +73,6 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 			 		}
 			 	} // end if(disabled)
 		 	} // end for
-
-		 	/* Removed in favor of above, will delete this permanently after more testing
-		 	angular.forEach(_sheets,function(_sheet,key){
-		 		var _matches = null;
-		 		if(!angular.equals(_sheet.href,null))
-		 			_matches = _sheet.href.match(/font\-*awesome/);
-
-		 		if(!_sheet.disabled && angular.isArray(_matches)){
-		 			// console.log('Dialogs: Using Font-Awesome Icons');
-		 			dialogsProvider.useFontAwesome();
-		 		}
-		 	});
-			*/
 		 }catch(err){
 		 	// console.log('Error Message: ' + err);
 		 }
