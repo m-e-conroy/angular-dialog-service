@@ -6,20 +6,23 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		var _b = true; // backdrop
 		var _k = true; // keyboard
 		var _w = 'dialogs-default'; // windowClass
+		var _bdc = 'dialogs-backdrop-default'; // backdropClass
 		var _copy = true; // controls use of angular.copy
 		var _wTmpl = null; // window template
 		var _wSize = 'lg'; // large modal window default
+		var _animation = false; // true/false to use animation
 
 		var _fa = false; // fontawesome flag
 
 		var _setOpts = function(opts){
 			var _opts = {};
 			opts = opts || {};
-			_opts.kb = (angular.isDefined(opts.keyboard)) ? opts.keyboard : _k; // values: true,false
+			_opts.kb = (angular.isDefined(opts.keyboard)) ? !!opts.keyboard : _k; // values: true,false
 			_opts.bd = (angular.isDefined(opts.backdrop)) ? opts.backdrop : _b; // values: 'static',true,false
-			_opts.ws = (angular.isDefined(opts.size) && (angular.equals(opts.size,'sm') || angular.equals(opts.size,'lg') || angular.equals(opts.size,'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
+			_opts.bdc = (angular.isDefined(opts.backdropClass)) ? opts.backdropClass : _bdc; // additional CSS class(es) to be added to the modal backdrop
+			_opts.ws = (angular.isDefined(opts.size) && ((opts.size === 'sm') || (opts.size === 'lg') || (opts.size === 'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
 			_opts.wc = (angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; // additional CSS class(es) to be added to a modal window
-
+			_opts.anim = (angular.isDefined(opts.animation)) ? !!opts.animation : _animation; // values: true,false
 			return _opts;
 		}; // end _setOpts
 
@@ -98,6 +101,15 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		}; // end setSize
 
 		/**
+		 * Use Animations
+		 *
+		 * Sets the use of animations to true
+		 */
+		 this.useAnimation = function(){
+		 	_animation = true;
+		 }; // end useAnimation
+
+		/**
 		 * Use Font-Awesome.
 		 *
 		 * Sets Font-Awesome flag to true and substitutes font-awesome icons for
@@ -125,9 +137,11 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						templateUrl : '/dialogs/error.html',
 						controller : 'errorDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
@@ -155,9 +169,11 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						templateUrl : '/dialogs/wait.html',
 						controller : 'waitDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
@@ -185,9 +201,11 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						templateUrl : '/dialogs/notify.html',
 						controller : 'notifyDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
@@ -214,9 +232,11 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						templateUrl : '/dialogs/confirm.html',
 						controller : 'confirmDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
@@ -246,8 +266,10 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						controller : ctrlr,
 						keyboard : opts.kb,
 						backdrop : opts.bd,
+						backdropClass: opts.bdc,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function() { 
 								if(copy)

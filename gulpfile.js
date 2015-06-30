@@ -6,6 +6,8 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var wrap = require('gulp-wrap');
 var header = require('gulp-header');
+var bump = require('gulp-bump');
+var util = require('gulp-util');
 
 gulp.task('lint',function(){
 	return gulp.src('src/*.js')
@@ -52,3 +54,27 @@ gulp.task('compress-css',function(){
 }); // end compress-css
 
 gulp.task('default',['lint','compress-js','compress-css']);
+
+/***********************************************************************************************************************
+ * VERSIONING - Bump Versions
+ **********************************************************************************************************************/
+
+/**
+ * Bumps project version based on given command line type.
+ */
+gulp.task('bump',function(){
+    util.log('Starting bump task.');
+
+    // gulp bump --type [major|minor|patch]
+    var type = util.env.type;
+    if((type === 'major') || (type === 'minor') || (type === 'patch')) {
+        util.log('Bumping ' + type + ' Version');
+        return gulp.src(['./bower.json', './package.json'])
+            .pipe(bump({
+                type: type
+            }))
+            .pipe(gulp.dest('./'));
+    }
+
+    return;
+}); // end bump
