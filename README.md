@@ -19,14 +19,14 @@ Usage
 
 ```dialogs.notify('Something Happened','Something happened at this point in the application that I wish to let you know about');```
 
-```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{});```
+```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{},{paramToResolve : function (){return 'value'}});```
 
 TODO: Add more usage explanations.
 
 Demos
 -----
 - v4.2 : [Codepen: http://codepen.io/m-e-conroy/pen/rkIqv](http://codepen.io/m-e-conroy/pen/rkIqv)
-- v4.2 : [Codepen: with UI-Bootstrap Date Picker directive](http://codepen.io/m-e-conroy/pen/DAxzs) 
+- v4.2 : [Codepen: with UI-Bootstrap Date Picker directive](http://codepen.io/m-e-conroy/pen/DAxzs)
 - v2.0 : [Codepen: http://codepen.io/m-e-conroy/pen/AmBpL](http://codepen.io/m-e-conroy/pen/AmBpL)
 - v1.0 : [Codepen: http://codepen.io/m-e-conroy/pen/ALsdF](http://codepen.io/m-e-conroy/pen/ALsdF)
 
@@ -42,7 +42,7 @@ Release Versions
 - v3.0 : supports AngularJS 1.2 +, Angular UI Bootstrap 0.10.0
 - v2.0 : supports AngularJS 1.2 +
 - v1.0 : supports AngularJS 1.1.5 and below.
- 
+
 
 v5.2.8
 ------
@@ -124,7 +124,7 @@ v5.2.1 +
 v5.2.x +
 --------
 1. [Angular Translate](https://github.com/angular-translate) is now optional.
- 
+
 v4.2.0 & v5.x.x
 ---------------
 Same as v4.0.0 with the exception of the following:
@@ -155,7 +155,7 @@ v2.0 Additional Dependencies
 
 v1.0
 ----
-1.  [Angular JS](http://www.angularjs.org) (version 1.1.5 and less) 
+1.  [Angular JS](http://www.angularjs.org) (version 1.1.5 and less)
 2.  [Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/#/modal) (version <= 0.6.0, Non-Bootstrap 3 Branch) with embedded templates.
 3.  [Twitter Bootstrap CSS](http://getbootstrap.com) (version 2)
 
@@ -175,10 +175,10 @@ Changes
 - v5.2.x
 1. Angular-Translate is now optional, however in order to keep support for Angular-Translate and be able to switch it on and off easily without having to add lines of code to your modules I created a substitute module that is automatically included and used when Angular-Translate is not found.  This subsitute (*translate-substitution.js : translate.sub*) is a provider service (*$translateProvider*) with the same *translations* method as the Angular-Translate provider service does.  The provider service is also named *$translate* and has its own *instant* method.  I did this such that, if in the future you do decide to use Angular-Translate all you will have to do is load the module before the dialog's service is loaded.
 2. The *dialogs-default-translations.js* file is also now an optional dependency.
- 
+
 - v5.1.0
 1. Separated out the default translations into their own module: **dialogs-default-translations.js**  Include this or the "min" version in your application if you are not already using $translationProvider elsewhere, otherwise just copy the translation list within the module to your translation list for 'en-US.'
- 
+
 - v5.0.0
 1. Optionally pass in options object, possible overrides are as follows
 
@@ -203,7 +203,7 @@ Changes
 	- **dialogsProvider.useBackdrop([true,false,'static'])** - True or false to use a backdrop for the modal, 'static' to use a backdrop and disallow closing on mouse click of the backdrop.
 	- **dialogsProvider.useEscClose([true,false])** - Whether or not to allow the use of the 'ESC' key to close the modal
 	- **dialogsProvider.useClass([string])** - Sets an additional CSS class to the modal window
-	- **dialogsProvider.useCopy([true,false])** - Determines whether to use angular.copy or not when passing a data object to the custom dialog service.  Setting this to false will allow the modal to retain the two-way binding with the calling controller - thus changing data in the modal will automatically change it in the calling controller's scope.  The default is setting is true, so if you want the two-way binding you need to set this to false. 
+	- **dialogsProvider.useCopy([true,false])** - Determines whether to use angular.copy or not when passing a data object to the custom dialog service.  Setting this to false will allow the modal to retain the two-way binding with the calling controller - thus changing data in the modal will automatically change it in the calling controller's scope.  The default is setting is true, so if you want the two-way binding you need to set this to false.
 3.  Main module is no longer *dialogs* as this would conflict with the new naming of the service.  It is now *dialogs.main,* include that in your application's module definition to use the *dialogs* service.
 4.  Added i18n support via [Angular-Translate](https://github.com/angular-translate), use the *$translateProvider* to set language specific defaults.  Default language is currently *en-US.*  An example is provided in the example folder that will show you how to change the defaults from English to Spanish.  Translations can be set on the following:
 	- DIALOGS_ERROR (modal header)

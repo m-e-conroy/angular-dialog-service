@@ -212,9 +212,9 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		/**
 		 * Use Backdrop
-		 * 
+		 *
 		 * Sets the use of the modal backdrop.  Either to have one or not and
-		 * whether or not it responds to mouse clicks ('static' sets the 
+		 * whether or not it responds to mouse clicks ('static' sets the
 		 * backdrop to true and does not respond to mouse clicks).
 		 *
 		 * @param	val 	mixed	(true, false, 'static')
@@ -226,7 +226,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		/**
 		 * Use ESC Close
-		 * 
+		 *
 		 * Sets the use of the ESC (escape) key to close modal windows.
 		 *
 		 * @param	val 	boolean
@@ -250,7 +250,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		/**
 		 * Use Copy
-		 * 
+		 *
 		 * Determines the use of angular.copy when sending data to the modal controller.
 		 *
 		 * @param	val 	boolean
@@ -275,7 +275,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		/**
 		 * Set Size
 		 *
-		 * Sets the modal size to use (sm,lg,md), requires Angular-ui-Bootstrap 0.11.0 and Bootstrap 3.1.0 + 
+		 * Sets the modal size to use (sm,lg,md), requires Angular-ui-Bootstrap 0.11.0 and Bootstrap 3.1.0 +
 		 *
 		 * @param	val 	string (sm,lg,md)
 		 */
@@ -305,7 +305,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 
 		this.$get = ['$modal',function ($modal){
-			
+
 			return {
 				/**
 				 * Error Dialog
@@ -337,7 +337,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						}
 					}); // end modal.open
 				}, // end error
-				
+
 				/**
 				 * Wait Dialog
 				 *
@@ -370,7 +370,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						}
 					}); // end modal.open
 				}, // end wait
-				
+
 				/**
 				 * Notify Dialog
 				 *
@@ -401,7 +401,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						}
 					}); // end modal.open
 				}, // end notify
-				
+
 				/**
 				 * Confirm Dialog
 				 *
@@ -432,7 +432,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						}
 					}); // end modal.open
 				}, // end confirm
-				
+
 				/**
 				 * Create Custom Dialog
 				 *
@@ -441,9 +441,17 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	data 	object
 				 * @param	opts	object
 				 */
-				create : function(url,ctrlr,data,opts){
+				create : function(url,ctrlr,data,opts,resolve){
 					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
 					opts = _setOpts(opts);
+					if(!resolve)
+						resolve = {};
+					resolve.data = function() {
+						if(copy)
+							return angular.copy(data);
+						else
+							return data;
+					};
 
 					return $modal.open({
 						templateUrl : url,
@@ -454,14 +462,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 						windowClass: opts.wc,
 						size: opts.ws,
 						animation: opts.anim,
-						resolve : {
-							data : function() { 
-								if(copy)
-									return angular.copy(data);
-								else
-									return data;
-							}
-						}
+						resolve : resolve
 					}); // end modal.open
 				} // end create
 
@@ -469,6 +470,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		}]; // end $get
 	}]); // end provider dialogs
+
 //== Dialogs.Main Module =====================================================//
 
 /**
