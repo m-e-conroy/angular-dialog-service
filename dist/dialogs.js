@@ -443,7 +443,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 */
 				create : function(url,ctrlr,data,opts){
 					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
-					var resolve = (opts.resolve)?opts.resolve:{};
+					var resolve = (opts && angular.isDefined(opts.resolve))? opts.resolve : {};
 					opts = _setOpts(opts);
 					resolve.data = function() {
 						if(copy)
