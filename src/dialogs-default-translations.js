@@ -2,9 +2,9 @@
  * Dialog Default Translations.
  *
  * Include this module if you're not already using angular-translate in your application, and
- * add it to your application module's dependency list in order to get default header and 
+ * add it to your application module's dependency list in order to get default header and
  * dialog messages to appear.
- * 
+ *
  * Ex: var myApp = angular.module('myApplication',['dialogs.main','dialogs.default-translations']);
  *
  * It was necessary to separate this out for those already using angular-translate because this would
@@ -19,7 +19,7 @@
  angular.module('dialogs.default-translations',['pascalprecht.translate'])
  /**
      * Default translations in English.
-     * 
+     *
      * Use angular-translate's $translateProvider to provide translations in an
      * alternate language.
      *
@@ -79,7 +79,7 @@
           DIALOGS_YES: "Sí",
           DIALOGS_NO: "No"
         });
-        
+
         $translateProvider.translations("fr-FR", {
           DIALOGS_ERROR: "Erreur",
           DIALOGS_ERROR_MSG: "Une erreur inconnue s'est produite.",
@@ -95,6 +95,23 @@
           DIALOGS_OK: "OK",
           DIALOGS_YES: "Oui",
           DIALOGS_NO: "Non"
+        });
+
+        $translateProvider.translations('pt-BR',{
+            DIALOGS_ERROR: "Erro",
+            DIALOGS_ERROR_MSG: "Ocorreu um erro inesperado.",
+            DIALOGS_CLOSE: "Fechar",
+            DIALOGS_PLEASE_WAIT: "Por favor aguarde",
+            DIALOGS_PLEASE_WAIT_ELIPS: "Por favor aguarde...",
+            DIALOGS_PLEASE_WAIT_MSG: "Aguardando que a operação termine.",
+            DIALOGS_PERCENT_COMPLETE: "% Completados",
+            DIALOGS_NOTIFICATION: "Notificação",
+            DIALOGS_NOTIFICATION_MSG: "Notificação de aplicação desconhecida.",
+            DIALOGS_CONFIRMATION: "Confirmação",
+            DIALOGS_CONFIRMATION_MSG: "Confirmação requerida.",
+            DIALOGS_OK: "OK",
+            DIALOGS_YES: "Sim",
+            DIALOGS_NO: "Não"
         });
 
         $translateProvider.preferredLanguage('en-US');
