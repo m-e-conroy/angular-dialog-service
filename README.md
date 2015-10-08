@@ -30,6 +30,59 @@ app.controller("MyCtrl", function(dialogs){
 
 ```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{});```
 
+### API
+
+All Dialogs return a object with property `result` which is a promise `OK/Yes` resolves the promise `Close/Reject/No` rejects the promise
+
+#### dialogs.error, dialogs.notify, dialogs.confirm
+
+```dialogs.error(header, msg, opts)```
+
+```dialogs.notify(header, msg, opts)```
+
+```dialogs.confirm(header, msg, opts)```
+
+| Name | Type | Description |
+|---|---|---|
+| header | `string` | Dialog header text. |
+| msg | `string` | Dialog body text. |
+| opts | `object<IDialogOptions>` | Options for the dialog |
+
+#### dialogs.wait
+
+```dialogs.wait(header, msg, progress, opts)```
+
+| Name | Type | Description |
+|---|---|---|
+| header | `string` | Dialog header text. |
+| msg | `string` | Dialog body text. |
+| progress | `int` | progress in percentage |
+| opts | `object<IDialogOptions>` | Options for the dialog |
+
+#### dialogs.create
+
+```dialogs.create(url, ctrlr, data, opts)```
+
+| Name | Type | Description |
+|---|---|---|
+| url | `string` | Template Url |
+| ctrlr | `string` | Dialog Controller |
+| data | `object` | data available as a "data" service in the controller |
+| opts | `object<IDialogOptions>` | Options for the dialog with the addition of `copy: false|true` which will copy the data instead of passing reference |
+
+#### IDialogOptions Properties
+
+Note: All properties are optional
+
+| Name | Type | Description |
+| --- | --- | --- |
+| animation | `boolean` | Set to false to disable animations on new modal/backdrop. Does not toggle animations for modals/backdrops that are already displayed. |
+| backdrop | `boolean|string` | controls the presence of a backdrop Allowed values: - true (default) - false (no backdrop) - 'static' backdrop is present but modal window is not closed when clicking outside of the modal window |
+| keyboard | `boolean` | indicates whether the dialog should be closable by hitting the ESC key |
+| backdropClass | `string` | additional CSS class(es) to be added to a modal backdrop template |
+| windowClass | `string` | additional CSS class(es) to be added to a modal window template |
+| size | `string` | Optional suffix of modal window class. The value used is appended to the `modal-` class, i.e. a value of `sm` gives `modal-sm`. |
+
 TODO: Add more usage explanations.
 
 Demos
