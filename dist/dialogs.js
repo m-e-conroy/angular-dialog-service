@@ -101,7 +101,6 @@ ctrlrs.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','dat
 	
 	$scope.close = function(){
 		$modalInstance.close();
-		$scope.$destroy();
 	}; // end close
 }]); // end ErrorDialogCtrl
 	
@@ -122,7 +121,9 @@ ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$tim
 	
 	// close wait dialog
 	$scope.$on('dialogs.wait.complete',function(){
-		$timeout(function(){ $modalInstance.close(); $scope.$destroy(); });
+		$timeout(function(){
+			$modalInstance.close();
+		});
 	}); // end on(dialogs.wait.complete)
 	
 	// update the dialog's message
@@ -158,7 +159,6 @@ ctrlrs.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','da
 	
 	$scope.close = function(){
 		$modalInstance.close();
-		$scope.$destroy();
 	}; // end close
 }]); // end WaitDialogCtrl
 
