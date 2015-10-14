@@ -8,6 +8,7 @@ var wrap = require('gulp-wrap');
 var header = require('gulp-header');
 var bump = require('gulp-bump');
 var util = require('gulp-util');
+var connect = require('gulp-connect');
 
 gulp.task('lint',function(){
 	return gulp.src('src/*.js')
@@ -36,24 +37,42 @@ gulp.task('compress-js',['concat-js'],function(){
 	gulp.src(['src/dialogs.js','src/dialogs-default-translations.js'])
 		.pipe(header(banner, {bower : bower}))
 		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('example/js'))
 		.pipe(minify({}))
 		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('dist'));
-			
+		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('example/js'));
+
 }); // end comrpess-js
 
 gulp.task('compress-css',function(){
 	gulp.src('src/*.css')
 		.pipe(concat('dialogs.css'))
 		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('example/css'))
 		.pipe(minifyCSS({}))
 		.pipe(concat('dialogs.css'))
 		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('dist'));
-	
+		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('example/css'));
+
 }); // end compress-css
 
+gulp.task('connect', function(){
+	connect.server({
+    root: './example',
+    port: 8000
+  });
+});
+
+gulp.task('watch_files', function(){
+	gulp.watch(['src/*.js'], ['lint', 'compress-js']);
+	gulp.watch(['src/*.css'], ['compress-css']);
+});
+
 gulp.task('default',['lint','compress-js','compress-css']);
+
+gulp.task('watch', ['default', 'connect', 'watch_files']);
 
 /***********************************************************************************************************************
  * VERSIONING - Bump Versions
