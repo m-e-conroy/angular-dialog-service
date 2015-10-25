@@ -296,5 +296,20 @@ Notes
 - It should not rely on including the Bootstrap JS.
 - For version 2.0 + of this service module do not forget to include the *ngSanitize* Angular module.
 
+Contributing
+------------
+
+Install Dependencies
+
+```
+npm install --dev
+bower install
+```
+
+For Browser Testing `gulp watch`
+
+For Unit Testing `karma start karma.conf.js`
+
+
 
 > Written with [StackEdit](https://stackedit.io/).
