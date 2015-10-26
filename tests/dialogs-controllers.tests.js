@@ -51,7 +51,6 @@ describe('Module dialogs.controllers', function(){
 
         spyOn($modalInstance, 'close');
         spyOn($scope, '$destroy');
-        // spyOn(modalInstance, 'dismiss');
 
       });
     });
@@ -138,7 +137,6 @@ describe('Module dialogs.controllers', function(){
 
         spyOn($modalInstance, 'close');
         spyOn($scope, '$destroy');
-        // spyOn(modalInstance, 'dismiss');
 
       });
     });
@@ -316,7 +314,6 @@ describe('Module dialogs.controllers', function(){
 
         spyOn($modalInstance, 'close');
         spyOn($scope, '$destroy');
-        // spyOn($modalInstance, 'dismiss');
 
       });
     });
@@ -330,34 +327,6 @@ describe('Module dialogs.controllers', function(){
           data: {}
         });
       });
-
-      // it('should close when receiving event (dialogs.wait.complete) ', function(){
-      //   $rootScope.$broadcast('dialogs.wait.complete');
-      //
-      //   expect($modalInstance.close).toHaveBeenCalled();
-      //   expect($scope.$destroy).toHaveBeenCalled();
-      //
-      // });
-      //
-      // it('should update msg when receiving event (dialogs.wait.message) ', function(){
-      //   $rootScope.$broadcast('dialogs.wait.complete', {
-      //     msg: 'NewMessage'
-      //   });
-      //
-      //   expect($scope.msg).toBe('NewMessage');
-      //
-      // });
-      //
-      // it('should update msg & progress when receiving event (dialogs.wait.progress) ', function(){
-      //   $rootScope.$broadcast('dialogs.wait.complete', {
-      //     msg: 'NewMessage',
-      //     progress: 50
-      //   });
-      //
-      //   expect($scope.msg).toBe('NewMessage');
-      //   expect($scope.progress).toBe(50);
-      //
-      // });
 
       it('should get css for progress width', function(){
         $scope.progress = 50;
