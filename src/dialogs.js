@@ -84,7 +84,7 @@ try{
 /**
  * Error Dialog Controller 
  */
-ctrlrs.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+ctrlrs.controller('errorDialogCtrl',['$scope','$uibModalInstance','$translate','data',function($scope,$uibModalInstance,$translate,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_ERROR');
@@ -94,7 +94,7 @@ ctrlrs.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','dat
 	//-- Methods -----//
 	
 	$scope.close = function(){
-		$modalInstance.close();
+		$uibModalInstance.close();
 		$scope.$destroy();
 	}; // end close
 }]); // end ErrorDialogCtrl
@@ -102,7 +102,7 @@ ctrlrs.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','dat
 /**
  * Wait Dialog Controller 
  */
-ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$timeout','data',function($scope,$modalInstance,$translate,$timeout,data){
+ctrlrs.controller('waitDialogCtrl',['$scope','$uibModalInstance','$translate','$timeout','data',function($scope,$uibModalInstance,$translate,$timeout,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_PLEASE_WAIT_ELIPS');
@@ -116,7 +116,7 @@ ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$tim
 	
 	// close wait dialog
 	$scope.$on('dialogs.wait.complete',function(){
-		$timeout(function(){ $modalInstance.close(); $scope.$destroy(); });
+		$timeout(function(){ $uibModalInstance.close(); $scope.$destroy(); });
 	}); // end on(dialogs.wait.complete)
 	
 	// update the dialog's message
@@ -141,7 +141,7 @@ ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$tim
 /**
  * Notify Dialog Controller 
  */
-ctrlrs.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+ctrlrs.controller('notifyDialogCtrl',['$scope','$uibModalInstance','$translate','data',function($scope,$uibModalInstance,$translate,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_NOTIFICATION');
@@ -151,7 +151,7 @@ ctrlrs.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','da
 	//-- Methods -----//
 	
 	$scope.close = function(){
-		$modalInstance.close();
+		$uibModalInstance.close();
 		$scope.$destroy();
 	}; // end close
 }]); // end WaitDialogCtrl
@@ -159,7 +159,7 @@ ctrlrs.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','da
 /**
  * Confirm Dialog Controller 
  */
-ctrlrs.controller('confirmDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+ctrlrs.controller('confirmDialogCtrl',['$scope','$uibModalInstance','$translate','data',function($scope,$uibModalInstance,$translate,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_CONFIRMATION');
@@ -169,11 +169,11 @@ ctrlrs.controller('confirmDialogCtrl',['$scope','$modalInstance','$translate','d
 	//-- Methods -----//
 	
 	$scope.no = function(){
-		$modalInstance.dismiss('no');
+		$uibModalInstance.dismiss('no');
 	}; // end close
 	
 	$scope.yes = function(){
-		$modalInstance.close('yes');
+		$uibModalInstance.close('yes');
 	}; // end yes
 }]); // end ConfirmDialogCtrl / dialogs.controllers
 //== Services ================================================================//
@@ -298,7 +298,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		}; // end useFontAwesome
 
 
-		this.$get = ['$modal',function ($modal){
+		this.$get = ['$uibModal',function ($uibModal){
 			
 			return {
 				/**
@@ -311,7 +311,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				error : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/error.html',
 						controller : 'errorDialogCtrl',
 						backdrop: opts.bd,
@@ -343,7 +343,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				wait : function(header,msg,progress,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/wait.html',
 						controller : 'waitDialogCtrl',
 						backdrop: opts.bd,
@@ -375,7 +375,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				notify : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/notify.html',
 						controller : 'notifyDialogCtrl',
 						backdrop: opts.bd,
@@ -406,7 +406,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				confirm : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/confirm.html',
 						controller : 'confirmDialogCtrl',
 						backdrop: opts.bd,
@@ -439,7 +439,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : url,
 						controller : ctrlr,
 						keyboard : opts.kb,

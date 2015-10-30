@@ -120,7 +120,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		}; // end useFontAwesome
 
 
-		this.$get = ['$modal',function ($modal){
+		this.$get = ['$uibModal',function ($uibModal){
 			
 			return {
 				/**
@@ -133,7 +133,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				error : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/error.html',
 						controller : 'errorDialogCtrl',
 						backdrop: opts.bd,
@@ -165,7 +165,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				wait : function(header,msg,progress,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/wait.html',
 						controller : 'waitDialogCtrl',
 						backdrop: opts.bd,
@@ -197,7 +197,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				notify : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/notify.html',
 						controller : 'notifyDialogCtrl',
 						backdrop: opts.bd,
@@ -228,7 +228,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				confirm : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/confirm.html',
 						controller : 'confirmDialogCtrl',
 						backdrop: opts.bd,
@@ -261,7 +261,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : url,
 						controller : ctrlr,
 						keyboard : opts.kb,

@@ -88,7 +88,7 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 		};
 	}) // end controller(dialogsServiceTest)
 	
-	.controller('customDialogCtrl',function($scope,$modalInstance,data){
+	.controller('customDialogCtrl',function($scope,$uibModalInstance,data){
 		//-- Variables --//
 
 		$scope.user = {name : ''};
@@ -96,11 +96,11 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 		//-- Methods --//
 		
 		$scope.cancel = function(){
-			$modalInstance.dismiss('Canceled');
+			$uibModalInstance.dismiss('Canceled');
 		}; // end cancel
 		
 		$scope.save = function(){
-			$modalInstance.close($scope.user.name);
+			$uibModalInstance.close($scope.user.name);
 		}; // end save
 		
 		$scope.hitEnter = function(evt){
@@ -109,14 +109,14 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main','pascalprecht.translat
 		};
 	}) // end controller(customDialogCtrl)
 	
-	.controller('customDialogCtrl2',function($scope,$modalInstance,data){
+	.controller('customDialogCtrl2',function($scope,$uibModalInstance,data){
 		
 		$scope.data = data;
 		
 		//-- Methods --//
 		
 		$scope.done = function(){
-			$modalInstance.close($scope.data);
+			$uibModalInstance.close($scope.data);
 		}; // end done
 		
 		$scope.hitEnter = function(evt){
