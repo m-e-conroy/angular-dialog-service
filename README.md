@@ -308,7 +308,7 @@ bower install
 
 For Browser Testing `gulp watch`
 
-For Unit Testing `karma start karma.conf.js`
+For Unit Testing `npm test`
 
 
 
