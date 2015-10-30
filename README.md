@@ -28,7 +28,7 @@ app.controller("MyCtrl", function(dialogs){
 
 ```dialogs.notify('Something Happened','Something happened at this point in the application that I wish to let you know about');```
 
-```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{});```
+```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{resolve :{paramToResolve : function (){return 'value'}}});```
 
 ### API
 
