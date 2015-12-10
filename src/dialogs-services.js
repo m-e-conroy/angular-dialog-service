@@ -91,7 +91,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		/**
 		 * Set Size
 		 *
-		 * Sets the modal size to use (sm,lg,md), requires Angular-ui-Bootstrap 0.11.0 and Bootstrap 3.1.0 +
+		 * Sets the modal size to use (sm,lg,md)
 		 *
 		 * @param	val 	string (sm,lg,md)
 		 */
