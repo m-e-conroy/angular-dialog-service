@@ -47,10 +47,8 @@
     "angular-translate": "2.8.1"
   },
   "main": [
-    "dist/dialogs.min.css",
-    "dist/dialogs.min.js",
+    "dist/dialogs.css",
     "dist/dialogs.js",
-    "dist/dialogs-default-translations.min.js",
     "dist/dialogs-default-translations.js"
   ],
   "licenses": [
