@@ -81,7 +81,7 @@ describe('Module dialogs.services', function(){
       );
 
       expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(createModalOptions);
+      expect($modal.open).toHaveBeenCalledWith(jasmine.objectContaining(createModalOptions));
     }));
 
     it('should open modal with backdrop value from useBackdrop config', inject(function($modal){

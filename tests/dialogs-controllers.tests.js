@@ -1,12 +1,12 @@
 describe('Module dialogs.controllers', function(){
 
-  var $modalInstance;
+  var $uibModalInstance;
   var $translate;
 
   beforeEach(function(){
     module('dialogs.controllers');
 
-    $modalInstance = {
+    $uibModalInstance = {
       close: function(arg){},
       dismiss: function(arg){}
     };
@@ -49,7 +49,7 @@ describe('Module dialogs.controllers', function(){
         $scope = $rootScope.$new();
         $rootScope = $rootScope;
 
-        spyOn($modalInstance, 'close');
+        spyOn($uibModalInstance, 'close');
         spyOn($scope, '$destroy');
 
       });
@@ -61,15 +61,15 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('errorDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
       });
 
-      it('should close modalInstance when close method executed', function(){
+      it('should close uibModalInstance when close method executed', function(){
         $scope.close();
-        expect($modalInstance.close).toHaveBeenCalled();
+        expect($uibModalInstance.close).toHaveBeenCalled();
         expect($scope.$destroy).toHaveBeenCalled();
       });
 
@@ -99,7 +99,7 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('errorDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
@@ -135,7 +135,7 @@ describe('Module dialogs.controllers', function(){
         $scope = $rootScope.$new();
         $rootScope = $rootScope;
 
-        spyOn($modalInstance, 'close');
+        spyOn($uibModalInstance, 'close');
         spyOn($scope, '$destroy');
 
       });
@@ -147,15 +147,15 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('notifyDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
       });
 
-      it('should close modalInstance when close method executed', function(){
+      it('should close uibModalInstance when close method executed', function(){
         $scope.close();
-        expect($modalInstance.close).toHaveBeenCalled();
+        expect($uibModalInstance.close).toHaveBeenCalled();
         expect($scope.$destroy).toHaveBeenCalled();
       });
 
@@ -185,7 +185,7 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('notifyDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
@@ -221,9 +221,9 @@ describe('Module dialogs.controllers', function(){
         $scope = $rootScope.$new();
         $rootScope = $rootScope;
 
-        spyOn($modalInstance, 'close');
+        spyOn($uibModalInstance, 'close');
         spyOn($scope, '$destroy');
-        spyOn($modalInstance, 'dismiss');
+        spyOn($uibModalInstance, 'dismiss');
 
       });
     });
@@ -234,20 +234,20 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('confirmDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
       });
 
-      it('should dismiss modalInstance when no method executed', function(){
+      it('should dismiss uibModalInstance when no method executed', function(){
         $scope.no();
-        expect($modalInstance.dismiss).toHaveBeenCalledWith('no');
+        expect($uibModalInstance.dismiss).toHaveBeenCalledWith('no');
       });
 
-      it('should close modalInstance when yes method executed', function(){
+      it('should close uibModalInstance when yes method executed', function(){
         $scope.yes();
-        expect($modalInstance.close).toHaveBeenCalledWith('yes');
+        expect($uibModalInstance.close).toHaveBeenCalledWith('yes');
       });
 
       it('should have default values for header', function(){
@@ -276,7 +276,7 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('confirmDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
@@ -312,7 +312,7 @@ describe('Module dialogs.controllers', function(){
         $scope = _$rootScope_.$new();
         $rootScope = _$rootScope_;
 
-        spyOn($modalInstance, 'close');
+        spyOn($uibModalInstance, 'close');
         spyOn($scope, '$destroy');
 
       });
@@ -322,7 +322,7 @@ describe('Module dialogs.controllers', function(){
       beforeEach(function(){
         $ctrlr('waitDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: {}
         });
@@ -342,7 +342,7 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('waitDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
@@ -374,7 +374,7 @@ describe('Module dialogs.controllers', function(){
 
         $ctrlr('waitDialogCtrl', {
           $scope: $scope,
-          $modalInstance: $modalInstance,
+          $uibModalInstance: $uibModalInstance,
           $translate: $translate,
           data: data
         });
