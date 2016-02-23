@@ -19,10 +19,7 @@
     "type": "git",
     "url": "git://github.com/m-e-conroy/angular-dialog-service"
   },
-  "main": [
-    "./dist/dialogs.min.css",
-    "./index.js"
-  ],
+  "main": "index.js",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-bump": "^0.3.1",
