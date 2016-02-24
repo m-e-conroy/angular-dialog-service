@@ -33,11 +33,11 @@
     "README.md"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.5",
-    "angular": "^1.5",
-    "angular-sanitize": "^1.5",
+    "bootstrap": "~3.3.6",
+    "angular": "^1.5.0",
+    "angular-sanitize": "^1.5.0",
     "angular-bootstrap": "^1.1.2",
-    "angular-translate": "^2.4"
+    "angular-translate": "^2.9.2"
   },
   "main": [
     "dist/dialogs.css",

@@ -537,7 +537,7 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 			 			// try to find css rule .fa, in case style sheet has been concatenated
 			 			_rules = _sheets[i].cssRules;
 			 			for(var x = (_rules.length - 1);x >= 0;x--){
-			 				if(_rules[x].selectorText.toLowerCase() == '.fa'){
+			 				if(typeof(_rules[x].selectorText) === 'string' && _rules[x].selectorText.toLowerCase() === '.fa'){
 			 					dialogsProvider.useFontAwesome();
 			 					break sheetLoop; // done, exit both for loops
 			 				}
