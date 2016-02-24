@@ -1,3 +1,9 @@
+/**
+ * angular-dialog-service - A service to handle common dialog types in a web application.  Built on top of Angular-Bootstrap's modal
+ * @version v5.3.0
+ * @author Michael Conroy, michael.e.conroy@gmail.com
+ * @license MIT, http://www.opensource.org/licenses/MIT
+ */
 (function(){
 "use strict";
 //== Translate Substitute Module =============================================//
@@ -67,13 +73,13 @@ var ctrlrs; // will be dialogs.controllers module
 // determine if Angular-Translate is available, if not use the substitute
 try{
 	angular.module('pascalprecht.translate'); // throws error if module not loaded
-	console.log('Angular-Translate: OK');
+	// console.log('Dialogs (Angular-Translate): OK');
 	
 	// dialogs.controllers: module declaration
 	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','pascalprecht.translate']);
 }catch(err){
-	console.log('Angular-Translate: ' + err.message);
-	console.log('Attempting to use translate.sub module.');
+	// console.log('Dialogs: (Angular-Translate): ' + err.message);
+	// console.log('Dialogs: Attempting to use translate.sub module.');
 
 	// dialogs.controllers: module declaration
 	ctrlrs = angular.module('dialogs.controllers',['ui.bootstrap.modal','translate.sub']);
@@ -84,16 +90,17 @@ try{
 /**
  * Error Dialog Controller 
  */
-ctrlrs.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+ctrlrs.controller('errorDialogCtrl',['$scope','$uibModalInstance','$translate','data',function($scope,$uibModalInstance,$translate,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_ERROR');
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_ERROR_MSG');
+	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-warning' : 'glyphicon glyphicon-warning-sign';
 
 	//-- Methods -----//
 	
 	$scope.close = function(){
-		$modalInstance.close();
+		$uibModalInstance.close();
 		$scope.$destroy();
 	}; // end close
 }]); // end ErrorDialogCtrl
@@ -101,12 +108,13 @@ ctrlrs.controller('errorDialogCtrl',['$scope','$modalInstance','$translate','dat
 /**
  * Wait Dialog Controller 
  */
-ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$timeout','data',function($scope,$modalInstance,$translate,$timeout,data){
+ctrlrs.controller('waitDialogCtrl',['$scope','$uibModalInstance','$translate','$timeout','data',function($scope,$uibModalInstance,$translate,$timeout,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_PLEASE_WAIT_ELIPS');
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_PLEASE_WAIT_MSG');
 	$scope.progress = (angular.isDefined(data.progress)) ? data.progress : 100;
+	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-clock-o' : 'glyphicon glyphicon-time';
 
 	//-- Listeners -----//
 	
@@ -114,7 +122,7 @@ ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$tim
 	
 	// close wait dialog
 	$scope.$on('dialogs.wait.complete',function(){
-		$timeout(function(){ $modalInstance.close(); $scope.$destroy(); });
+		$timeout(function(){ $uibModalInstance.close(); $scope.$destroy(); });
 	}); // end on(dialogs.wait.complete)
 	
 	// update the dialog's message
@@ -129,25 +137,27 @@ ctrlrs.controller('waitDialogCtrl',['$scope','$modalInstance','$translate','$tim
 	}); // end on(dialogs.wait.progress)
 	
 	//-- Methods -----//
-	
+
 	$scope.getProgress = function(){
 		return {'width': $scope.progress + '%'};
 	}; // end getProgress
+	
 }]); // end WaitDialogCtrl
 
 /**
  * Notify Dialog Controller 
  */
-ctrlrs.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+ctrlrs.controller('notifyDialogCtrl',['$scope','$uibModalInstance','$translate','data',function($scope,$uibModalInstance,$translate,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_NOTIFICATION');
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_NOTIFICATION_MSG');
+	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-info' : 'glyphicon glyphicon-info-sign';
 
 	//-- Methods -----//
 	
 	$scope.close = function(){
-		$modalInstance.close();
+		$uibModalInstance.close();
 		$scope.$destroy();
 	}; // end close
 }]); // end WaitDialogCtrl
@@ -155,20 +165,25 @@ ctrlrs.controller('notifyDialogCtrl',['$scope','$modalInstance','$translate','da
 /**
  * Confirm Dialog Controller 
  */
-ctrlrs.controller('confirmDialogCtrl',['$scope','$modalInstance','$translate','data',function($scope,$modalInstance,$translate,data){
+ctrlrs.controller('confirmDialogCtrl',['$scope','$uibModalInstance','$translate','data',function($scope,$uibModalInstance,$translate,data){
 	//-- Variables -----//
 
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_CONFIRMATION');
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_CONFIRMATION_MSG');
+	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-check' : 'glyphicon glyphicon-check';
 
 	//-- Methods -----//
 	
 	$scope.no = function(){
-		$modalInstance.dismiss('no');
-	}; // end close
+		$uibModalInstance.dismiss('no');
+	}; // end reject
+
+	$scope.close = function(){
+		$uibModalInstance.dismiss('cancel');
+	};// end close
 	
 	$scope.yes = function(){
-		$modalInstance.close('yes');
+		$uibModalInstance.close('yes');
 	}; // end yes
 }]); // end ConfirmDialogCtrl / dialogs.controllers
 //== Services ================================================================//
@@ -179,26 +194,31 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		var _b = true; // backdrop
 		var _k = true; // keyboard
 		var _w = 'dialogs-default'; // windowClass
+		var _bdc = 'dialogs-backdrop-default'; // backdropClass
 		var _copy = true; // controls use of angular.copy
 		var _wTmpl = null; // window template
 		var _wSize = 'lg'; // large modal window default
+		var _animation = false; // true/false to use animation
+
+		var _fa = false; // fontawesome flag
 
 		var _setOpts = function(opts){
 			var _opts = {};
 			opts = opts || {};
-			_opts.kb = (angular.isDefined(opts.keyboard)) ? opts.keyboard : _k; // values: true,false
+			_opts.kb = (angular.isDefined(opts.keyboard)) ? !!opts.keyboard : _k; // values: true,false
 			_opts.bd = (angular.isDefined(opts.backdrop)) ? opts.backdrop : _b; // values: 'static',true,false
-			_opts.ws = (angular.isDefined(opts.size) && (angular.equals(opts.size,'sm') || angular.equals(opts.size,'lg') || angular.equals(opts.size,'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
+			_opts.bdc = (angular.isDefined(opts.backdropClass)) ? opts.backdropClass : _bdc; // additional CSS class(es) to be added to the modal backdrop
+			_opts.ws = (angular.isDefined(opts.size) && ((opts.size === 'sm') || (opts.size === 'lg') || (opts.size === 'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
 			_opts.wc = (angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; // additional CSS class(es) to be added to a modal window
-
+			_opts.anim = (angular.isDefined(opts.animation)) ? !!opts.animation : _animation; // values: true,false
 			return _opts;
 		}; // end _setOpts
 
 		/**
 		 * Use Backdrop
-		 * 
+		 *
 		 * Sets the use of the modal backdrop.  Either to have one or not and
-		 * whether or not it responds to mouse clicks ('static' sets the 
+		 * whether or not it responds to mouse clicks ('static' sets the
 		 * backdrop to true and does not respond to mouse clicks).
 		 *
 		 * @param	val 	mixed	(true, false, 'static')
@@ -210,7 +230,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		/**
 		 * Use ESC Close
-		 * 
+		 *
 		 * Sets the use of the ESC (escape) key to close modal windows.
 		 *
 		 * @param	val 	boolean
@@ -234,7 +254,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 		/**
 		 * Use Copy
-		 * 
+		 *
 		 * Determines the use of angular.copy when sending data to the modal controller.
 		 *
 		 * @param	val 	boolean
@@ -259,7 +279,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 		/**
 		 * Set Size
 		 *
-		 * Sets the modal size to use (sm,lg,md), requires Angular-ui-Bootstrap 0.11.0 and Bootstrap 3.1.0 + 
+		 * Sets the modal size to use (sm,lg,md)
 		 *
 		 * @param	val 	string (sm,lg,md)
 		 */
@@ -268,9 +288,28 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				_wSize = (angular.equals(val,'sm') || angular.equals(val,'lg') || angular.equals(val,'md')) ? val : _wSize;
 		}; // end setSize
 
+		/**
+		 * Use Animations
+		 *
+		 * Sets the use of animations to true
+		 */
+		 this.useAnimation = function(){
+		 	_animation = true;
+		 }; // end useAnimation
 
-		this.$get = ['$modal',function ($modal){
-			
+		/**
+		 * Use Font-Awesome.
+		 *
+		 * Sets Font-Awesome flag to true and substitutes font-awesome icons for
+		 * Bootstrap's glyphicons.
+		 */
+		this.useFontAwesome = function(){
+			_fa = true;
+		}; // end useFontAwesome
+
+
+		this.$get = ['$uibModal',function ($uibModal){
+
 			return {
 				/**
 				 * Error Dialog
@@ -282,24 +321,27 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				error : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/error.html',
 						controller : 'errorDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
 									header : angular.copy(header),
-									msg : angular.copy(msg)
+									msg : angular.copy(msg),
+									fa : _fa
 								};
 							}
 						}
 					}); // end modal.open
 				}, // end error
-				
+
 				/**
 				 * Wait Dialog
 				 *
@@ -311,25 +353,28 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				wait : function(header,msg,progress,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/wait.html',
 						controller : 'waitDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
 									header : angular.copy(header),
 									msg : angular.copy(msg),
-									progress : angular.copy(progress)
+									progress : angular.copy(progress),
+									fa : _fa
 								};
 							}
 						}
 					}); // end modal.open
 				}, // end wait
-				
+
 				/**
 				 * Notify Dialog
 				 *
@@ -340,24 +385,27 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				notify : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/notify.html',
 						controller : 'notifyDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
 									header : angular.copy(header),
-									msg : angular.copy(msg)
+									msg : angular.copy(msg),
+									fa : _fa
 								};
 							}
 						}
 					}); // end modal.open
 				}, // end notify
-				
+
 				/**
 				 * Confirm Dialog
 				 *
@@ -368,24 +416,27 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				confirm : function(header,msg,opts){
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : '/dialogs/confirm.html',
 						controller : 'confirmDialogCtrl',
 						backdrop: opts.bd,
+						backdropClass: opts.bdc,
 						keyboard: opts.kb,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
 							data : function(){
 								return {
 									header : angular.copy(header),
-									msg : angular.copy(msg)
+									msg : angular.copy(msg),
+									fa : _fa
 								};
 							}
 						}
 					}); // end modal.open
 				}, // end confirm
-				
+
 				/**
 				 * Create Custom Dialog
 				 *
@@ -394,19 +445,22 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				 * @param	data 	object
 				 * @param	opts	object
 				 */
-				create : function(url,ctrlr,data,opts){
+				create : function(url,ctrlr,data,opts,ctrlAs){
 					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
 					opts = _setOpts(opts);
 
-					return $modal.open({
+					return $uibModal.open({
 						templateUrl : url,
 						controller : ctrlr,
+						controllerAs : ctrlAs,
 						keyboard : opts.kb,
 						backdrop : opts.bd,
+						backdropClass: opts.bdc,
 						windowClass: opts.wc,
 						size: opts.ws,
+						animation: opts.anim,
 						resolve : {
-							data : function() { 
+							data : function() {
 								if(copy)
 									return angular.copy(data);
 								else
@@ -430,7 +484,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 
 angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires angular-sanitize.min.js (ngSanitize) //code.angularjs.org/1.2.1/angular-sanitize.min.js
 		
-	.config(['$translateProvider',function($translateProvider){
+	.config(['$translateProvider','dialogsProvider',function($translateProvider,dialogsProvider){
 		/** 
 		 * if Angular-Translate is not loaded, use the translate substitute
 		 * module and create default translations to use as default modal texts
@@ -438,7 +492,7 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 		try{
 			angular.module('pascalprecht.translate');
 		}catch(err){
-			console.log('Creating default translations for use without Angular-Translate.');
+			// console.log('Dialogs: Creating default translations for use without Angular-Translate.');
 
 			// This will set default modal buttons, header and message text
 			$translateProvider.translations('en-US',{
@@ -458,6 +512,46 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
 	            DIALOGS_NO: "No"
         	});
 		} // end try/catch
+
+		/**
+		 * Attempt to ascertain if page is using Font Awesome instead of the
+		 * regular Bootstrap Icons.  If you are changing the stylesheet name or
+		 * not including it from a CDN or have included Font-Awesome as a 
+		 * concatentation of CSS sheets together, then you will have to manually
+		 * set Font-Awesome usage in your Angular Module's config by including
+		 * the $dialogsProvider and calling the method $dialogsProvider.useFontAwesome().
+		 */
+		 try{
+		 	var _sheets = document.styleSheets;
+
+		 	sheetLoop:
+		 	for(var i = (_sheets.length - 1);i >= 0;i--){
+		 		var _matches = null;
+		 		var _rules = null;
+
+		 		if(!_sheets[i].disabled){
+			 		// check href of style sheet first
+			 		if(_sheets[i].href !== null)
+			 			_matches = _sheets[i].href.match(/font\-*awesome/i);
+
+			 		if(angular.isArray(_matches)){
+			 			dialogsProvider.useFontAwesome();
+			 			break; // done, leave the style sheet for loop
+			 		}else{
+			 			// try to find css rule .fa, in case style sheet has been concatenated
+			 			_rules = _sheets[i].cssRules;
+			 			for(var x = (_rules.length - 1);x >= 0;x--){
+			 				if(_rules[x].selectorText.toLowerCase() == '.fa'){
+			 					dialogsProvider.useFontAwesome();
+			 					break sheetLoop; // done, exit both for loops
+			 				}
+			 			}
+			 		}
+			 	} // end if(disabled)
+		 	} // end for
+		 }catch(err){
+		 	// console.log('Error Message: ' + err);
+		 }
 	}]) // end config
 
 	// Add default templates via $templateCache
@@ -467,9 +561,10 @@ angular.module('dialogs.main',['dialogs.services','ngSanitize']) // requires ang
     	var startSym = $interpolate.startSymbol();
     	var endSym = $interpolate.endSymbol();
     
-    	$templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="glyphicon glyphicon-warning-sign"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">'+startSym+'"DIALOGS_CLOSE" | translate'+endSym+'</button></div>');
-    	$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'"DIALOGS_PERCENT_COMPLETE" | translate'+endSym+'</span></div></div>');
-    	$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="glyphicon glyphicon-info-sign"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">'+startSym+'"DIALOGS_OK" | translate'+endSym+'</button></div>');
-    	$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click="no()">&times;</button><h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">'+startSym+'"DIALOGS_YES" | translate'+endSym+'</button><button type="button" class="btn btn-primary" ng-click="no()">'+startSym+'"DIALOGS_NO" | translate'+endSym+'</button></div>');
+    	$templateCache.put('/dialogs/error.html','<div class="modal-header dialog-header-error"><button type="button" class="close" ng-click="close()">&times;</button><h4 class="modal-title text-danger"><span class="'+startSym+'icon'+endSym+'"></span> <span ng-bind-html="header"></span></h4></div><div class="modal-body text-danger" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="close()">'+startSym+'"DIALOGS_CLOSE" | translate'+endSym+'</button></div>');
+    	$templateCache.put('/dialogs/wait.html','<div class="modal-header dialog-header-wait"><h4 class="modal-title"><span class="'+startSym+'icon'+endSym+'"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body"><p ng-bind-html="msg"></p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" ng-style="getProgress()"></div><span class="sr-only">'+startSym+'progress'+endSym+''+startSym+'"DIALOGS_PERCENT_COMPLETE" | translate'+endSym+'</span></div></div>');
+    	$templateCache.put('/dialogs/notify.html','<div class="modal-header dialog-header-notify"><button type="button" class="close" ng-click="close()" class="pull-right">&times;</button><h4 class="modal-title text-info"><span class="'+startSym+'icon'+endSym+'"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body text-info" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="close()">'+startSym+'"DIALOGS_OK" | translate'+endSym+'</button></div>');
+    	$templateCache.put('/dialogs/confirm.html','<div class="modal-header dialog-header-confirm"><button type="button" class="close" ng-click=“close()”>&times;</button><h4 class="modal-title"><span class="'+startSym+'icon'+endSym+'"></span> '+startSym+'header'+endSym+'</h4></div><div class="modal-body" ng-bind-html="msg"></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="yes()">'+startSym+'"DIALOGS_YES" | translate'+endSym+'</button><button type="button" class="btn btn-primary" ng-click="no()">'+startSym+'"DIALOGS_NO" | translate'+endSym+'</button></div>');
 	}]); // end run / dialogs.main
+
 })();

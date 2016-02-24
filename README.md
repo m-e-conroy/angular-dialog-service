@@ -28,7 +28,7 @@ app.controller("MyCtrl", function(dialogs){
 
 ```dialogs.notify('Something Happened','Something happened at this point in the application that I wish to let you know about');```
 
-```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{});```
+```dialogs.create('url/to/a/template','ctrlrToUse',{data: topass,anotherVar: 'value'},{},'ctrl');```
 
 ### API
 
@@ -61,7 +61,7 @@ All Dialogs return a object with property `result` which is a promise `OK/Yes` r
 
 #### dialogs.create
 
-```dialogs.create(url, ctrlr, data, opts)```
+```dialogs.create(url, ctrlr, data, opts, ctrlAs)```
 
 | Name | Type | Description |
 |---|---|---|
@@ -69,6 +69,7 @@ All Dialogs return a object with property `result` which is a promise `OK/Yes` r
 | ctrlr | `string` | Dialog Controller |
 | data | `object` | data available as a "data" service in the controller |
 | opts | `object<IDialogOptions>` | Options for the dialog with the addition of `copy: false|true` which will copy the data instead of passing reference |
+| ctrlAs | `string` | `controllerAs` reference
 
 #### IDialogOptions Properties
 
@@ -295,6 +296,21 @@ Notes
 - Bootstrap 3: There's a problem with the actual modal being displayed even though it appears in the HTML code to be present.  I found that adding a "display: block" to Bootstrap 3's .modal class solved the problem. *(v3.0 of this service no longer requires this fix)*
 - It should not rely on including the Bootstrap JS.
 - For version 2.0 + of this service module do not forget to include the *ngSanitize* Angular module.
+
+Contributing
+------------
+
+Install Dependencies
+
+```
+npm install --dev
+bower install
+```
+
+For Browser Testing `gulp watch`
+
+For Unit Testing `npm test`
+
 
 
 > Written with [StackEdit](https://stackedit.io/).
