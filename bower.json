@@ -35,8 +35,7 @@
   "dependencies": {
     "angular": "^1.5.0",
     "angular-sanitize": "^1.5.0",
-    "angular-bootstrap": "^1.1.2",
-    "angular-translate": "^2.9.2"
+    "angular-bootstrap": "^1.1.2"
   },
   "main": [
     "dist/dialogs.css",
