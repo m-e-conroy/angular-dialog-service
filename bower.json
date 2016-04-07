@@ -33,7 +33,6 @@
     "README.md"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6",
     "angular": "^1.5.0",
     "angular-sanitize": "^1.5.0",
     "angular-bootstrap": "^1.1.2",
