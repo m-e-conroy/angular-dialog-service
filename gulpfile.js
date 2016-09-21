@@ -21,7 +21,7 @@ gulp.task('concat-js',function(){
 	return gulp.src(['src/translate-substitution.js','src/dialogs-controllers.js','src/dialogs-services.js','src/dialogs-main.js'])
 		.pipe(concat('dialogs.js'))
 		.pipe(wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
-		.pipe(gulp.dest('src'));
+		.pipe(gulp.dest('temp'));
 }); // end concat-js
 
 gulp.task('compress-js',['concat-js'],function(){
@@ -34,27 +34,22 @@ gulp.task('compress-js',['concat-js'],function(){
 		' */',
 		''].join('\n');
 
-	gulp.src(['src/dialogs.js','src/dialogs-default-translations.js'])
+	gulp.src(['temp/dialogs.js','src/dialogs-default-translations.js'])
 		.pipe(header(banner, {bower : bower}))
 		.pipe(gulp.dest('dist'))
 		.pipe(gulp.dest('example/js'))
-		.pipe(minify({}))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('dist'))
-		.pipe(gulp.dest('example/js'));
-
+		.pipe(minify({ ext: '.min.js' }))
+		.pipe(gulp.dest('dist'));
 }); // end comrpess-js
 
 gulp.task('compress-css',function(){
 	gulp.src('src/*.css')
 		.pipe(concat('dialogs.css'))
 		.pipe(gulp.dest('dist'))
-		.pipe(gulp.dest('example/css'))
 		.pipe(minifyCSS({}))
 		.pipe(concat('dialogs.css'))
 		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('dist'))
-		.pipe(gulp.dest('example/css'));
+		.pipe(gulp.dest('dist'));
 
 }); // end compress-css
 
