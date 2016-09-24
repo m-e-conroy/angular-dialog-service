@@ -113,7 +113,24 @@
             DIALOGS_YES: "Sim",
             DIALOGS_NO: "Não"
         });
-
+        
+        $translateProvider.translations('tr-TR',{
+            DIALOGS_ERROR: "Hata",
+            DIALOGS_ERROR_MSG: "Bilinmeyen bir hata oluştu.",
+            DIALOGS_CLOSE: "Kapat",
+            DIALOGS_PLEASE_WAIT: "Lütfen Bekleyin",
+            DIALOGS_PLEASE_WAIT_ELIPS: "Lütfen Bekleyin...",
+            DIALOGS_PLEASE_WAIT_MSG: "İşlemin tamamlanması bekleniyor.",
+            DIALOGS_PERCENT_COMPLETE: "% Tamamlandı",
+            DIALOGS_NOTIFICATION: "Uyarı",
+            DIALOGS_NOTIFICATION_MSG: "Bilinmeyen uygulama uyarısı.",
+            DIALOGS_CONFIRMATION: "Konfirmasyon",
+            DIALOGS_CONFIRMATION_MSG: "Konfirmasyon gereklidir.",
+            DIALOGS_OK: "Tamam",
+            DIALOGS_YES: "Evet",
+            DIALOGS_NO: "Hayır"
+        });
+        
         $translateProvider.translations('zh-CN',{
             DIALOGS_ERROR: "错误",
             DIALOGS_ERROR_MSG: "出现未知错误。",
