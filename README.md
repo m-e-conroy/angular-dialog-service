@@ -9,7 +9,16 @@ A complete AngularJS service with controllers and templates for generating appli
 
 Installation
 -----
+Bower
 ```bower install angular-dialog-service --save```
+
+Npm
+```npm install angular-dialog-service --save ```
+
+Importing to project **( ES6 )**
+
+```import 'angular-dialog-service';```
+
 
 Usage
 -----
@@ -21,6 +30,7 @@ app.controller("MyCtrl", function(dialogs){
   // open dialogs here
 });
 ```
+
 
 ```dialogs.error('Error','An unknown error occurred preventing the completion of the requested action.');```
 
@@ -83,6 +93,18 @@ Note: All properties are optional
 | backdropClass | `string` | additional CSS class(es) to be added to a modal backdrop template |
 | windowClass | `string` | additional CSS class(es) to be added to a modal window template |
 | size | `string` | Optional suffix of modal window class. The value used is appended to the `modal-` class, i.e. a value of `sm` gives `modal-sm`. |
+
+### Callbacks
+
+Every dialog method ( confirm, wait,error,create ) return object with **result** property, **result** is Promise. Example usage with confirm:
+
+```javascript
+dialogs.confirm("Confirmation",'Do you want really do this action?')
+      .result
+      .then( function(){ console.log("Yes"); } )
+      .then( function(){ console.log("No"); } );
+```
+
 
 TODO: Add more usage explanations.
 
