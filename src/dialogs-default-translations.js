@@ -147,6 +147,23 @@
             DIALOGS_YES: "确认",
             DIALOGS_NO: "取消"
         });
+        
+        $translateProvider.translations('sv-SE',{
+            DIALOGS_ERROR: "Fel",
+            DIALOGS_ERROR_MSG: "Ett okänt fel har uppstått.",
+            DIALOGS_CLOSE: "Stäng",
+            DIALOGS_PLEASE_WAIT: "Vänligen vänta",
+            DIALOGS_PLEASE_WAIT_ELIPS: "Vänligen vänta...",
+            DIALOGS_PLEASE_WAIT_MSG: "Väntar på att processen skall slutföras.",
+            DIALOGS_PERCENT_COMPLETE: "% Färdigt",
+            DIALOGS_NOTIFICATION: "Meddelande",
+            DIALOGS_NOTIFICATION_MSG: "Okänt meddelande från applikationen.",
+            DIALOGS_CONFIRMATION: "Bekräftelse",
+            DIALOGS_CONFIRMATION_MSG: "Bekräftelse krävs.",
+            DIALOGS_OK: "OK",
+            DIALOGS_YES: "Ja",
+            DIALOGS_NO: "Nej"
+        });
 
         $translateProvider.preferredLanguage('en-US');
     }]); // end config
