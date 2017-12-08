@@ -119,7 +119,24 @@
             DIALOGS_YES: "Sim",
             DIALOGS_NO: "Não"
         });
-
+        
+        $translateProvider.translations('tr-TR',{
+            DIALOGS_ERROR: "Hata",
+            DIALOGS_ERROR_MSG: "Bilinmeyen bir hata oluştu.",
+            DIALOGS_CLOSE: "Kapat",
+            DIALOGS_PLEASE_WAIT: "Lütfen Bekleyin",
+            DIALOGS_PLEASE_WAIT_ELIPS: "Lütfen Bekleyin...",
+            DIALOGS_PLEASE_WAIT_MSG: "İşlemin tamamlanması bekleniyor.",
+            DIALOGS_PERCENT_COMPLETE: "% Tamamlandı",
+            DIALOGS_NOTIFICATION: "Uyarı",
+            DIALOGS_NOTIFICATION_MSG: "Bilinmeyen uygulama uyarısı.",
+            DIALOGS_CONFIRMATION: "Konfirmasyon",
+            DIALOGS_CONFIRMATION_MSG: "Konfirmasyon gereklidir.",
+            DIALOGS_OK: "Tamam",
+            DIALOGS_YES: "Evet",
+            DIALOGS_NO: "Hayır"
+        });
+        
         $translateProvider.translations('zh-CN',{
             DIALOGS_ERROR: "错误",
             DIALOGS_ERROR_MSG: "出现未知错误。",
@@ -135,6 +152,23 @@
             DIALOGS_OK: "确定",
             DIALOGS_YES: "确认",
             DIALOGS_NO: "取消"
+        });
+        
+        $translateProvider.translations('sv-SE',{
+            DIALOGS_ERROR: "Fel",
+            DIALOGS_ERROR_MSG: "Ett okänt fel har uppstått.",
+            DIALOGS_CLOSE: "Stäng",
+            DIALOGS_PLEASE_WAIT: "Vänligen vänta",
+            DIALOGS_PLEASE_WAIT_ELIPS: "Vänligen vänta...",
+            DIALOGS_PLEASE_WAIT_MSG: "Väntar på att processen skall slutföras.",
+            DIALOGS_PERCENT_COMPLETE: "% Färdigt",
+            DIALOGS_NOTIFICATION: "Meddelande",
+            DIALOGS_NOTIFICATION_MSG: "Okänt meddelande från applikationen.",
+            DIALOGS_CONFIRMATION: "Bekräftelse",
+            DIALOGS_CONFIRMATION_MSG: "Bekräftelse krävs.",
+            DIALOGS_OK: "OK",
+            DIALOGS_YES: "Ja",
+            DIALOGS_NO: "Nej"
         });
 
         $translateProvider.preferredLanguage('en-US');

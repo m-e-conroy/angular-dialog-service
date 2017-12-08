@@ -83,6 +83,7 @@ Note: All properties are optional
 | backdropClass | `string` | additional CSS class(es) to be added to a modal backdrop template |
 | windowClass | `string` | additional CSS class(es) to be added to a modal window template |
 | size | `string` | Optional suffix of modal window class. The value used is appended to the `modal-` class, i.e. a value of `sm` gives `modal-sm`. |
+| btnMessages | `object` | Optional map object redefining the text of a dialog button. This is only passed to built-in dialogs. The key to this object should be the same as the translation key. (ex. `DIALOGS_YES` and `DIALOGS_NO` for the `confirm` dialog) |
 
 TODO: Add more usage explanations.
 
