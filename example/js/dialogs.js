@@ -1,6 +1,6 @@
 /**
  * angular-dialog-service - A service to handle common dialog types in a web application.  Built on top of Angular-Bootstrap's modal
- * @version v5.3.0
+ * @version v5.3.1
  * @author Michael Conroy, michael.e.conroy@gmail.com
  * @license MIT, http://www.opensource.org/licenses/MIT
  */
@@ -370,8 +370,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 									header : angular.copy(header),
 									msg : angular.copy(msg),
 									progress : angular.copy(progress),
-									fa : _fa,
-									btnMessages: opts.btnMessages
+									fa : _fa
 								};
 							}
 						}

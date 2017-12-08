@@ -182,8 +182,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 									header : angular.copy(header),
 									msg : angular.copy(msg),
 									progress : angular.copy(progress),
-									fa : _fa,
-									btnMessages: opts.btnMessages
+									fa : _fa
 								};
 							}
 						}
