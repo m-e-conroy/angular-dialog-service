@@ -39,6 +39,19 @@ angular.module('modalTest',['ui.bootstrap','dialogs.main'])
 						$scope.confirmed = 'You confirmed "No."';
 					});
 					break;
+				case 'confirm2':
+					var dlg = dialogs.confirm(undefined, undefined, {
+						btnMessages: {
+							DIALOGS_YES: 'Submit',
+							DIALOGS_NO: 'Abort'
+						}
+					});
+					dlg.result.then(function(btn){
+						$scope.confirmed = 'You confirmed "Yes."';
+					},function(btn){
+						$scope.confirmed = 'You confirmed "No."';
+					});
+					break;
 				case 'custom':
 					var dlg = dialogs.create('/dialogs/custom.html','customDialogCtrl',{},{size:'lg',keyboard: true,backdrop: false,windowClass: 'my-class'});
 					dlg.result.then(function(name){
