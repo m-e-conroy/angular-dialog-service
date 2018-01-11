@@ -250,6 +250,36 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 				}, // end confirm
 
 				/**
+				 * Create Custom Dialog specifying a component
+				 *
+				 * @param	component 	string
+				 * @param	data 	object
+				 * @param	opts	object
+				 */
+				createWithComponent: function(component, data, opts) {
+					var copy = (opts && angular.isDefined(opts.copy)) ? opts.copy : _copy;
+					opts = _setOpts(opts);
+
+					return $uibModal.open({
+						component : component,
+						keyboard : opts.kb,
+						backdrop : opts.bd,
+						backdropClass: opts.bdc,
+						windowClass: opts.wc,
+						size: opts.ws,
+						animation: opts.anim,
+						resolve : {
+							data : function() {
+								if(copy)
+									return angular.copy(data);
+								else
+									return data;
+							}
+						}
+					}); // end modal.open
+				},  // end createWithComponent
+
+				/**
 				 * Create Custom Dialog
 				 *
 				 * @param	url 	string

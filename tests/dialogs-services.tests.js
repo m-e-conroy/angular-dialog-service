@@ -14,6 +14,19 @@ describe('Module dialogs.services', function(){
     }
   };
 
+  var modalComponentOptions = {
+    component: 'myComponent',
+    backdrop: true,
+    backdropClass: "dialogs-backdrop-default",
+    keyboard: true,
+    windowClass: "dialogs-default",
+    size: 'lg',
+    animation: false,
+    resolve : {
+      data : jasmine.any(Function)
+    }
+  }
+
   describe('Provider: dialogsProvider and Service: dialogs', function(){
 
     var provider;
@@ -24,106 +37,119 @@ describe('Module dialogs.services', function(){
       });
     });
 
-    it('should open modal instance with default error params', inject(function($modal){
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).error();
+    it('should open modal instance with default error params', inject(function($uibModal){
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).error();
       errorModalOptions = modalOptions;
       errorModalOptions.templateUrl = '/dialogs/error.html';
       errorModalOptions.controller = 'errorDialogCtrl';
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(errorModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(errorModalOptions);
     }));
 
-    it('should open modal instance with default wait params', inject(function($modal){
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).wait();
+    it('should open modal instance with default wait params', inject(function($uibModal){
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).wait();
       waitModalOptions = modalOptions;
       waitModalOptions.templateUrl = '/dialogs/wait.html';
       waitModalOptions.controller = 'waitDialogCtrl';
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(waitModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(waitModalOptions);
     }));
 
-    it('should open modal instance with default notify params', inject(function($modal){
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).notify();
+    it('should open modal instance with default notify params', inject(function($uibModal){
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).notify();
       notifyModalOptions = modalOptions;
       notifyModalOptions.templateUrl = '/dialogs/notify.html';
       notifyModalOptions.controller = 'notifyDialogCtrl';
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(notifyModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(notifyModalOptions);
     }));
 
-    it('should open modal instance with default confirm params', inject(function($modal){
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).confirm();
+    it('should open modal instance with default confirm params', inject(function($uibModal){
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).confirm();
       confirmModalOptions = modalOptions;
       confirmModalOptions.templateUrl = '/dialogs/confirm.html';
       confirmModalOptions.controller = 'confirmDialogCtrl';
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(confirmModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(confirmModalOptions);
     }));
 
-    it('should open modal instance with default create params', inject(function($modal){
-      spyOn($modal, 'open');
+    it('should open modal instance with specifying component params', inject(function($uibModal){
+      spyOn($uibModal, 'open');
+
+      createModalOptions = modalComponentOptions;
+
+      var service = provider.$get[1]($uibModal).createWithComponent(
+        createModalOptions.component
+      );
+
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(jasmine.objectContaining(createModalOptions));
+    }));
+
+    it('should open modal instance with using params', inject(function($uibModal){
+      spyOn($uibModal, 'open');
 
       createModalOptions = modalOptions;
       createModalOptions.templateUrl = '/dialogs/create.html';
       createModalOptions.controller = 'createDialogCtrl';
 
-      var service = provider.$get[1]($modal).create(
+      var service = provider.$get[1]($uibModal).create(
         createModalOptions.templateUrl,
         createModalOptions.controller
       );
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(jasmine.objectContaining(createModalOptions));
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(jasmine.objectContaining(createModalOptions));
     }));
 
-    it('should open modal with backdrop value from useBackdrop config', inject(function($modal){
+    it('should open modal with backdrop value from useBackdrop config', inject(function($uibModal){
       provider.useBackdrop(false);
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).error();
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).error();
       errorModalOptions = angular.copy(modalOptions);
       errorModalOptions.templateUrl = '/dialogs/error.html';
       errorModalOptions.controller = 'errorDialogCtrl';
       errorModalOptions.backdrop = false;
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(errorModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(errorModalOptions);
     }));
 
-    it('should open modal with keyboard value from useEscClose config', inject(function($modal){
+    it('should open modal with keyboard value from useEscClose config', inject(function($uibModal){
       provider.useEscClose(false);
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).error();
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).error();
       errorModalOptions = angular.copy(modalOptions);
       errorModalOptions.templateUrl = '/dialogs/error.html';
       errorModalOptions.controller = 'errorDialogCtrl';
       errorModalOptions.keyboard = false;
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(errorModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(errorModalOptions);
     }));
 
-    it('should open modal with windowClass value from useClass config', inject(function($modal){
+    it('should open modal with windowClass value from useClass config', inject(function($uibModal){
       provider.useClass("some-class");
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).error();
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).error();
       errorModalOptions = angular.copy(modalOptions);
       errorModalOptions.templateUrl = '/dialogs/error.html';
       errorModalOptions.controller = 'errorDialogCtrl';
       errorModalOptions.windowClass = "some-class";
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(errorModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(errorModalOptions);
     }));
 
-    it('should copy data when opening create dialog when useCopy is true in config', inject(function($modal){
+    it('should copy data when opening create dialog when useCopy is true in config', inject(function($uibModal){
       provider.useCopy(true);
       spyOn(angular, 'copy');
 
@@ -131,7 +157,7 @@ describe('Module dialogs.services', function(){
       createModalOptions.templateUrl = '/dialogs/create.html';
       createModalOptions.controller = 'createDialogCtrl';
 
-      var service = provider.$get[1]($modal).create(
+      var service = provider.$get[1]($uibModal).create(
         createModalOptions.templateUrl,
         createModalOptions.controller
       );
@@ -139,30 +165,30 @@ describe('Module dialogs.services', function(){
       expect(angular.copy).toHaveBeenCalled();
     }));
 
-    it('should open modal with size value from setSize config', inject(function($modal){
+    it('should open modal with size value from setSize config', inject(function($uibModal){
       provider.setSize("md");
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).error();
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).error();
       errorModalOptions = angular.copy(modalOptions);
       errorModalOptions.templateUrl = '/dialogs/error.html';
       errorModalOptions.controller = 'errorDialogCtrl';
       errorModalOptions.size = "md";
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(errorModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(errorModalOptions);
     }));
 
-    it('should open modal with animation true when useAnimation config is executed', inject(function($modal){
+    it('should open modal with animation true when useAnimation config is executed', inject(function($uibModal){
       provider.useAnimation();
-      spyOn($modal, 'open');
-      var service = provider.$get[1]($modal).error();
+      spyOn($uibModal, 'open');
+      var service = provider.$get[1]($uibModal).error();
       errorModalOptions = angular.copy(modalOptions);
       errorModalOptions.templateUrl = '/dialogs/error.html';
       errorModalOptions.controller = 'errorDialogCtrl';
       errorModalOptions.animation = true;
 
-      expect($modal.open).toHaveBeenCalled();
-      expect($modal.open).toHaveBeenCalledWith(errorModalOptions);
+      expect($uibModal.open).toHaveBeenCalled();
+      expect($uibModal.open).toHaveBeenCalledWith(errorModalOptions);
     }));
 
 
