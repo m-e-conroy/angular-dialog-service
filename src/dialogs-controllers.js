@@ -108,7 +108,11 @@ ctrlrs.controller('confirmDialogCtrl',['$scope','$uibModalInstance','$translate'
 	
 	$scope.no = function(){
 		$uibModalInstance.dismiss('no');
-	}; // end close
+	}; // end reject
+
+	$scope.close = function(){
+		$uibModalInstance.dismiss('cancel');
+	};// end close
 	
 	$scope.yes = function(){
 		$uibModalInstance.close('yes');
