@@ -28,7 +28,7 @@ ctrlrs.controller('errorDialogCtrl',['$scope','$uibModalInstance','$translate','
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_ERROR');
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_ERROR_MSG');
 	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-warning' : 'glyphicon glyphicon-warning-sign';
-	$scope.btnMessages = data.btnMessages || {};
+	$scope.btnMessages = data.btnMessages;
 
 	//-- Methods -----//
 	
@@ -48,7 +48,7 @@ ctrlrs.controller('waitDialogCtrl',['$scope','$uibModalInstance','$translate','$
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_PLEASE_WAIT_MSG');
 	$scope.progress = (angular.isDefined(data.progress)) ? data.progress : 100;
 	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-clock-o' : 'glyphicon glyphicon-time';
-	$scope.btnMessages = data.btnMessages || {};
+	$scope.btnMessages = data.btnMessages;
 
 	//-- Listeners -----//
 	
@@ -87,7 +87,7 @@ ctrlrs.controller('notifyDialogCtrl',['$scope','$uibModalInstance','$translate',
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_NOTIFICATION');
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_NOTIFICATION_MSG');
 	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-info' : 'glyphicon glyphicon-info-sign';
-	$scope.btnMessages = data.btnMessages || {};
+	$scope.btnMessages = data.btnMessages;
 
 	//-- Methods -----//
 	
@@ -106,7 +106,7 @@ ctrlrs.controller('confirmDialogCtrl',['$scope','$uibModalInstance','$translate'
 	$scope.header = (angular.isDefined(data.header)) ? data.header : $translate.instant('DIALOGS_CONFIRMATION');
 	$scope.msg = (angular.isDefined(data.msg)) ? data.msg : $translate.instant('DIALOGS_CONFIRMATION_MSG');
 	$scope.icon = (angular.isDefined(data.fa) && angular.equals(data.fa,true)) ? 'fa fa-check' : 'glyphicon glyphicon-check';
-	$scope.btnMessages = data.btnMessages || {};
+	$scope.btnMessages = data.btnMessages;
 
 	//-- Methods -----//
 	
