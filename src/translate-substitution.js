@@ -34,14 +34,14 @@ var translateSubMod = angular.module('translate.sub',[]);
 				/**
 				 * Instant
 				 * Retrieve the translation for the given key, if key not found
-				 * return an empty string.
+				 * return the key.
 				 * Example: $translate.instant('DIALOGS_OK');
 				 */
 				instant : function(what){
 					if(angular.isDefined(what) && angular.isDefined(_translations[_current][what]))
 						return _translations[_current][what];
 					else
-						return '';
+						return what;
 				} // end instant
 			}; // end return 
 		}]; // end $get

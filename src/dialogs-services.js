@@ -23,6 +23,7 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 			_opts.ws = (angular.isDefined(opts.size) && ((opts.size === 'sm') || (opts.size === 'lg') || (opts.size === 'md'))) ? opts.size : _wSize; // values: 'sm', 'lg', 'md'
 			_opts.wc = (angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; // additional CSS class(es) to be added to a modal window
 			_opts.anim = (angular.isDefined(opts.animation)) ? !!opts.animation : _animation; // values: true,false
+			_opts.btnMessages = (angular.isDefined(opts.btnMessages)) ? opts.btnMessages : {}; // button overrides
 			return _opts;
 		}; // end _setOpts
 
@@ -147,7 +148,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 								return {
 									header : angular.copy(header),
 									msg : angular.copy(msg),
-									fa : _fa
+									fa : _fa,
+									btnMessages: opts.btnMessages
 								};
 							}
 						}
@@ -211,7 +213,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 								return {
 									header : angular.copy(header),
 									msg : angular.copy(msg),
-									fa : _fa
+									fa : _fa,
+									btnMessages: opts.btnMessages
 								};
 							}
 						}
@@ -242,7 +245,8 @@ angular.module('dialogs.services',['ui.bootstrap.modal','dialogs.controllers'])
 								return {
 									header : angular.copy(header),
 									msg : angular.copy(msg),
-									fa : _fa
+									fa : _fa,
+									btnMessages: opts.btnMessages
 								};
 							}
 						}
