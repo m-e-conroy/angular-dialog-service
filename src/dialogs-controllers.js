@@ -109,6 +109,10 @@ ctrlrs.controller('confirmDialogCtrl',['$scope','$uibModalInstance','$translate'
 	$scope.btnMessages = data.btnMessages;
 
 	//-- Methods -----//
+
+  $scope.dismiss = function(){
+    $uibModalInstance.dismiss('dismiss');
+  }; // end close
 	
 	$scope.no = function(){
 		$uibModalInstance.dismiss('no');
