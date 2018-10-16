@@ -102,8 +102,10 @@ Every dialog method ( confirm, wait,error,create ) return object with **result**
 ```javascript
 dialogs.confirm("Confirmation",'Do you want really do this action?')
       .result
-      .then( function(){ console.log("Yes"); } )
-      .then( function(){ console.log("No"); } );
+      .then(
+      	function(){ console.log("Yes"); },
+	function(){ console.log("No"); }
+	);
 ```
 
 
